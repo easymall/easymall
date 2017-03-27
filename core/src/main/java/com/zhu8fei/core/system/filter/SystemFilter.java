@@ -1,6 +1,7 @@
 package com.zhu8fei.core.system.filter;
 
 import com.zhu8fei.core.system.SystemContext;
+import com.zhu8fei.core.system.trace.Trace;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +21,10 @@ public class SystemFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        SystemContext.setUserId(1L);
-        filterChain.doFilter(request,response);
+        // 目前只生成线程编号.
+        Trace trace = new Trace();
+        SystemContext.setTrace(trace.getThreadTrace());
+        filterChain.doFilter(request, response);
         SystemContext.clean();
     }
 
