@@ -15,6 +15,7 @@
         <module>product</module>
         <module>pay</module>
         <module>common</module>
+        <module>test</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -28,6 +29,10 @@
         <pagehelper.verion>5.0.0</pagehelper.verion>
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
+        <unitils.version>3.4.3</unitils.version>
+        <dbunit.version>2.5.3</dbunit.version>
+        <mockito.verison>1.10.19</mockito.verison>
+        <dbcp2.version>2.1.1</dbcp2.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -63,6 +68,12 @@
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
@@ -77,6 +88,71 @@
                 <artifactId>pagehelper</artifactId>
                 <version>${pagehelper.verion}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.unitils</groupId>
+                <artifactId>unitils-core</artifactId>
+                <version>${unitils.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.unitils</groupId>
+                <artifactId>unitils-spring</artifactId>
+                <version>${unitils.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.unitils</groupId>
+                <artifactId>unitils-inject</artifactId>
+                <version>${unitils.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.unitils</groupId>
+                <artifactId>unitils-mock</artifactId>
+                <version>${unitils.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.unitils</groupId>
+                <artifactId>unitils-easymock</artifactId>
+                <version>${unitils.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.unitils</groupId>
+                <artifactId>unitils-dbunit</artifactId>
+                <version>${unitils.version}</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.dbunit</groupId>
+                        <artifactId>dbunit</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.dbunit</groupId>
+                <artifactId>dbunit</artifactId>
+                <version>${dbunit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-configuration</groupId>
+                <artifactId>commons-configuration</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito.verison}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>${dbcp2.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
