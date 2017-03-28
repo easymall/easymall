@@ -9,20 +9,28 @@
                         connectionURL="jdbc:mysql://localhost:3306/easymall"
                         userId="root" password=""/>
 
-        <javaModelGenerator targetPackage="com.zhu8fei.mybatis.model" targetProject="\generator\src\main\java">
-            <property name="enableSubPackages" value="true"/>
+        <javaModelGenerator targetPackage="com.zhu8fei.mybatis.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.zhu8fei.mybatis.xml" targetProject="\generator\src\main\resources">
-            <property name="enableSubPackages" value="true"/>
+        <sqlMapGenerator targetPackage="com.zhu8fei.mybatis.xml" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhu8fei.mybatis.mapper" targetProject="\generator\src\main\resources">
-            <property name="enableSubPackages" value="true"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhu8fei.mybatis.model.mapper" targetProject="src/main/src">
+            <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
         <table schema="easymall" tableName="u_user" domainObjectName="User">
+            <ignoreColumn column="id" />
+            <ignoreColumn column="is_delete" />
+            <ignoreColumn column="create_time" />
+            <ignoreColumn column="create_user" />
+            <ignoreColumn column="create_user_name" />
+            <ignoreColumn column="modify_time" />
+            <ignoreColumn column="modify_user" />
+            <ignoreColumn column="modify_user_name" />
         </table>
 
     </context>

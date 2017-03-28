@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zhu8fei.mybatis</groupId>
-    <artifactId>ganarator</artifactId>
+    <artifactId>generator</artifactId>
 
     <build>
         <plugins>
@@ -19,7 +19,7 @@
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.5</version>
                 <configuration>
-
+                    <overwrite>true</overwrite>
                 </configuration>
                 <dependencies>
                     <dependency>
