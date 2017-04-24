@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhu8fei.mybatis.model.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="com.zhu8fei.mybatis.model.User">
+<mapper namespace="com.zhu8fei.common.mybatis.example.UserMapper">
+    <resultMap id="BaseResultMap" type="com.zhu8fei.common.mybatis.example.User">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="real_name" jdbcType="VARCHAR" property="realName"/>
@@ -18,7 +18,7 @@
         <result column="modify_user_name" jdbcType="VARCHAR" property="modifyUserName"/>
     </resultMap>
 
-    <update id="update" parameterType="com.zhu8fei.mybatis.model.User">
+    <update id="update" parameterType="com.zhu8fei.common.mybatis.example.User">
         update u_user
         <set>
             <if test="name != null">
@@ -63,7 +63,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <insert id="insert" parameterType="com.zhu8fei.mybatis.model.User">
+    <insert id="insert" parameterType="com.zhu8fei.common.mybatis.example.User">
         insert into u_user (id, name, real_name,
         email, mobile, password,
         salt, is_delete, create_time,
@@ -77,7 +77,7 @@
     </insert>
 
 
-    <update id="delete" parameterType="com.zhu8fei.mybatis.model.User">
+    <update id="delete" parameterType="com.zhu8fei.common.mybatis.example.User">
         update u_user
         <set>
             <if test="isDelete != null">
@@ -104,4 +104,8 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
+
+    <select id="select"  parameterType="com.zhu8fei.common.mybatis.example.User" resultMap="BaseResultMap">
+        select * from u_user
+    </select>
 </mapper>

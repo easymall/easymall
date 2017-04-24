@@ -64,4 +64,16 @@ public class User extends ModelBase {
     public void setSalt(String salt) {
         this.salt = salt == null ? null : salt.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", realName='" + realName + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                '}';
+    }
 }
