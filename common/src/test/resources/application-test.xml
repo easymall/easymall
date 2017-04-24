@@ -27,7 +27,21 @@
 
     <!-- mybatis文件配置，扫描所有mapper文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" p:dataSource-ref="dataSource"
-          p:mapperLocations="classpath:com/zhu8fei/*/**.xml"/>
+          p:mapperLocations="classpath:com/zhu8fei/*/**.xml">
+
+        <property name="plugins">
+            <array>
+                <!--   <bean class="com.zhu8fei.common.mybatis.plugin.InsertSqlPlugin">
+                   <property name="properties">
+                        <value>
+                            property-key=property-value
+                        </value>
+                    </property>
+                  </bean>
+                 -->
+            </array>
+        </property>
+    </bean>
 
     <!-- spring与mybatis整合配置，扫描所有dao -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
