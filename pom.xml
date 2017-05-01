@@ -40,6 +40,7 @@
         <dbcp2.version>2.1.1</dbcp2.version>
         <commonslang.version>2.6</commonslang.version>
         <commonslang3.version>3.5</commonslang3.version>
+        <shiro.version>1.4.0-RC2</shiro.version>
         <!-- plugin version -->
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
@@ -54,6 +55,16 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-web</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
