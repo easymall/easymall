@@ -17,6 +17,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         NDC.push("      MAIN-THREAD");
+        logger.info("main class start");
         SpringApplication.main(args);
         NDC.clear();
     }
