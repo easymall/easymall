@@ -13,6 +13,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.zhu8fei</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
         </dependency>

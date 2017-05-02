@@ -1,9 +1,9 @@
 package com.zhu8fei.common.mybatis.example;
 
-import com.zhu8fei.common.base.ModelBase;
+import com.zhu8fei.db.model.base.BaseEntity;
 
 
-public class User extends ModelBase {
+public class User extends BaseEntity {
 
     private String name;
 
