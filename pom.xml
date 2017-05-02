@@ -148,12 +148,6 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
-                <!--<exclusions>-->
-                    <!--<exclusion>-->
-                        <!--<groupId>ch.qos.logback</groupId>-->
-                        <!--<artifactId>logback-classic</artifactId>-->
-                    <!--</exclusion>-->
-                <!--</exclusions>-->
                 <version>${spring.boot.version}</version>
             </dependency>
             <!-- spring aop 依赖 -->
@@ -189,13 +183,13 @@
             </dependency>
             <!-- mybatis依赖结束 -->
 
-            <!-- slf4j log4j 依赖 -->
+            <!-- slf4j 依赖 -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-            <!-- slf4j log4j 依赖结束 -->
+            <!-- slf4j 依赖结束 -->
 
             <dependency>
                 <groupId>com.alibaba</groupId>
