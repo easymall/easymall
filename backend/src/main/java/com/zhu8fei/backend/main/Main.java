@@ -16,6 +16,7 @@ public class Main {
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws Exception {
+       // System.setProperty("spring.output.ansi.enabled","ALWAYS");
         NDC.push("      MAIN-THREAD");
         logger.info("main class start");
         SpringApplication.main(args);
