@@ -5,7 +5,7 @@
         <!-- encoder 默认配置为PatternLayoutEncoder -->
         <encoder>
             <!--<pattern>[%-5level] [%d{MM-dd HH:mm:ss.SSS}] [%thread] [%-22X{Trace}] [%logger{36}:%L] - %msg%n</pattern> -->
-            <pattern>[%clr(%d{MM-dd HH:mm:ss.SSS}){yellow}] [%clr(%-5level){faint}] [%clr(%-15.15thread){magenta}] [%clr(%-22.22X{Trace}){blue}] [%clr(%-36.36logger{36}:%-4.4L){green}] : %msg%n
+            <pattern>[%clr(%d{MM-dd HH:mm:ss.SSS}){yellow}] [%clr(%-5level){faint}] [%clr(%-15.15thread){magenta}] [%clr(%-22.22X{Trace}){blue}] [%clr(%-42.42logger{42}:%-4.4L){green}] : %msg%n
             </pattern>
         </encoder>
     </appender>

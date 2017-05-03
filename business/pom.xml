@@ -9,12 +9,23 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>security</artifactId>
-
+    <groupId>com.zhu8fei.business</groupId>
+    <artifactId>business</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>user</module>
+        <module>product</module>
+        <module>pay</module>
+        <module>order</module>
+    </modules>
     <dependencies>
         <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
+            <groupId>com.zhu8fei.framework</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zhu8fei.framework</groupId>
+            <artifactId>common</artifactId>
         </dependency>
     </dependencies>
 </project>

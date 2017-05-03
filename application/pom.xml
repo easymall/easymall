@@ -9,7 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>product</artifactId>
+    <groupId>com.zhu8fei.application</groupId>
+    <artifactId>application</artifactId>
+    <packaging>pom</packaging>
 
-
+    <modules>
+        <module>backend</module>
+        <module>front</module>
+    </modules>
 </project>
