@@ -17,4 +17,12 @@
         <module>backend</module>
         <module>front</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.zhu8fei.framework</groupId>
+            <artifactId>test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

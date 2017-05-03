@@ -341,12 +341,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.zhu8fei.framework</groupId>
-            <artifactId>test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
