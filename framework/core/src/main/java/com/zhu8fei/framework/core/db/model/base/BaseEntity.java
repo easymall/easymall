@@ -7,6 +7,7 @@ import java.util.Date;
  * Created by zhu8fei on 2017/3/9.
  */
 public class BaseEntity implements Serializable{
+    private Long id;
     private Integer isDelete;
     private Date createTime;
     private Long createUser;
@@ -16,6 +17,14 @@ public class BaseEntity implements Serializable{
     private String modifyUserName;
 
     public BaseEntity() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getIsDelete() {
