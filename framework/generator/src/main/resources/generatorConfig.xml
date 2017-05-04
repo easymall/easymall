@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <context id="easymall" targetRuntime="MyBatis3">
+    <context id="easymall" targetRuntime="com.zhu8fei.framework.mybatis.generator.IntrospectedTableMyBatis3Impl">
         <plugin type="com.zhu8fei.framework.mybatis.generator.MybatisTempletPlugin"/>
 
         <commentGenerator>
@@ -17,25 +17,24 @@
                         connectionURL="jdbc:mysql://localhost:3306/test"
                         userId="root" password="root"/>
 
-        <javaModelGenerator targetPackage="com.zhu8fei.framework.mybatis.model" targetProject="src/main/java">
-            <property name="enableSubPackages" value="false"/>
-            <property name="trimStrings" value="true"/>
+        <javaModelGenerator targetPackage="com.zhu8fei.framework.mybatis.model" targetProject="doc/generator/java">
+
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.zhu8fei.framework.mybatis.xml" targetProject="src/main/resources">
-            <property name="enableSubPackages" value="false"/>
+        <sqlMapGenerator targetPackage="com.zhu8fei.framework.mybatis.xml" targetProject="doc/generator/resources">
+
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhu8fei.framework.mybatis.model.mapper"
-                             targetProject="src/main/src">
-            <property name="enableSubPackages" value="false"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhu8fei.framework.mybatis.mapper"
+                             targetProject="doc/generator/java">
         </javaClientGenerator>
 
-        <table schema="easymall" tableName="u_user" domainObjectName="User"
+        <table schema="easymall" tableName="%"
                enableSelectByExample="false" enableDeleteByExample="false"
                enableCountByExample="false" enableUpdateByExample="false"
-               selectByExampleQueryId="false">
-         <property name="rootClass" value="com.zhu8fei.framework.core.mybatis.model.BaseEntity" />
+               selectByExampleQueryId="false"
+        >
+            <property name="rootClass" value="com.zhu8fei.framework.core.mybatis.model.BaseEntity"/>
         </table>
 
     </context>

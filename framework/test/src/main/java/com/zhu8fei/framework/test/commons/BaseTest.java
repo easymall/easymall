@@ -7,7 +7,7 @@ import org.slf4j.MDC;
 import java.util.UUID;
 
 /**
- * Created by cwx on 2017/5/4.
+ * Created by zhu8fei on 2017/5/4.
  */
 public class BaseTest {
     @Before

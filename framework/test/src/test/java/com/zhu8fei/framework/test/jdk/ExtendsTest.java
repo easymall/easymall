@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by cwx on 2017/5/4.
+ * Created by zhu8fei on 2017/5/4.
  */
 public class ExtendsTest extends BaseTest {
     Logger logger = LoggerFactory.getLogger(ExtendsTest.class);

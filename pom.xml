@@ -89,7 +89,7 @@
             </dependency>
             <dependency>
                 <groupId>com.zhu8fei.business</groupId>
-                <artifactId>pay</artifactId>
+                <artifactId>order</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- 3层model -->

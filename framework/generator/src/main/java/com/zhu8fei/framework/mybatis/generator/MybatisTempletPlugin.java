@@ -1,15 +1,15 @@
 package com.zhu8fei.framework.mybatis.generator;
 
-import org.mybatis.generator.api.CommentGenerator;
-import org.mybatis.generator.api.IntrospectedColumn;
-import org.mybatis.generator.api.IntrospectedTable;
-import org.mybatis.generator.api.PluginAdapter;
+import com.zhu8fei.framework.core.mybatis.model.BaseEntity;
+import org.mybatis.generator.api.*;
 import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.Document;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -17,9 +17,10 @@ import java.util.List;
  * Created by zhu8fei on 2017/5/4.
  */
 public class MybatisTempletPlugin extends PluginAdapter {
+    Logger logger = LoggerFactory.getLogger(MybatisTempletPlugin.class);
     @Override
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("BaseDao<" + introspectedTable.getBaseRecordType() + ">");
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("BaseMapper<" + introspectedTable.getBaseRecordType() + ">");
         FullyQualifiedJavaType imp = new FullyQualifiedJavaType("com.zhu8fei.framework.core.mybatis.mapper.BaseMapper");
 
         interfaze.addSuperInterface(fqjt);// 添加 extends BaseDao<User>
@@ -28,20 +29,15 @@ public class MybatisTempletPlugin extends PluginAdapter {
         return true;
     }
 
-    /**
-     * 生成实体中每个属性
-     */
-    @Override
-    public boolean modelGetterMethodGenerated(Method method, TopLevelClass topLevelClass,
-                                              IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
-        return true;
-    }
+
 
     /**
      * 生成实体
      */
     @Override
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        topLevelClass.setSuperClass(BaseEntity.class.toString());
+
         addSerialVersionUID(topLevelClass, introspectedTable);
         return super.modelBaseRecordClassGenerated(topLevelClass, introspectedTable);
     }
@@ -107,111 +103,19 @@ public class MybatisTempletPlugin extends PluginAdapter {
         return super.sqlMapDocumentGenerated(document, introspectedTable);
     }
 
-    @Override
-    public boolean sqlMapUpdateByPrimaryKeyWithoutBLOBsElementGenerated(XmlElement element,
-                                                                        IntrospectedTable introspectedTable) {
-        return false;
-    }
-
-    @Override
-    public boolean sqlMapInsertElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
-        return false;
-    }
-
-    @Override
-    public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(XmlElement element,
-                                                                     IntrospectedTable introspectedTable) {
-        // LIMIT5,10; // 检索记录行 6-15
-        //      XmlElement isNotNullElement = new XmlElement("if");//$NON-NLS-1$
-        //      isNotNullElement.addAttribute(new Attribute("test", "limitStart != null and limitStart >=0"));//$NON-NLS-1$ //$NON-NLS-2$
-        // isNotNullElement.addElement(new
-        // TextElement("limit ${limitStart} , ${limitEnd}"));
-        // element.addElement(isNotNullElement);
-        // LIMIT 5;//检索前 5个记录行
-        return super.sqlMapSelectByExampleWithoutBLOBsElementGenerated(element, introspectedTable);
-    }
-
-    /**
-     * mapping中添加方法
-     */
-    // @Override
-    public boolean sqlMapDocumentGenerated2(Document document, IntrospectedTable introspectedTable) {
-        String tableName = introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime();// 数据库表名
-        List<IntrospectedColumn> columns = introspectedTable.getAllColumns();
-        // 添加sql
-        XmlElement sql = new XmlElement("select");
-
-        XmlElement parentElement = document.getRootElement();
-        XmlElement deleteLogicByIdsElement = new XmlElement("update");
-        deleteLogicByIdsElement.addAttribute(new Attribute("id", "deleteLogicByIds"));
-        deleteLogicByIdsElement
-                .addElement(new TextElement(
-                        "update "
-                                + tableName
-                                + " set deleteFlag = #{deleteFlag,jdbcType=INTEGER} where id in "
-                                + " <foreach item=\"item\" index=\"index\" collection=\"ids\" open=\"(\" separator=\",\" close=\")\">#{item}</foreach> "));
-
-        parentElement.addElement(deleteLogicByIdsElement);
-        XmlElement queryPage = new XmlElement("select");
-        queryPage.addAttribute(new Attribute("id", "queryPage"));
-        queryPage.addAttribute(new Attribute("resultMap", "BaseResultMap"));
-        queryPage.addElement(new TextElement("select "));
-
-        XmlElement include = new XmlElement("include");
-        include.addAttribute(new Attribute("refid", "Base_Column_List"));
-
-        queryPage.addElement(include);
-        queryPage.addElement(new TextElement(" from " + tableName + " ${sql}"));
-        parentElement.addElement(queryPage);
-        return super.sqlMapDocumentGenerated(document, introspectedTable);
-    }
-
-    /*
-         * Dao中添加方法
-         */
-    private Method generateDeleteLogicByIds(Method method, IntrospectedTable introspectedTable) {
-        Method m = new Method("deleteLogicByIds");
-        m.setVisibility(method.getVisibility());
-        m.setReturnType(FullyQualifiedJavaType.getIntInstance());
-        m.addParameter(new Parameter(FullyQualifiedJavaType.getIntInstance(), "deleteFlag", "@Param(\"deleteFlag\")"));
-        m.addParameter(new Parameter(new FullyQualifiedJavaType("Integer[]"), "ids", "@Param(\"ids\")"));
-        context.getCommentGenerator().addGeneralMethodComment(m, introspectedTable);
-        return m;
-    }
-
-    /*
-     * 实体中添加属性
-     */
-    private void addLimit(TopLevelClass topLevelClass, IntrospectedTable introspectedTable, String name) {
-        CommentGenerator commentGenerator = context.getCommentGenerator();
-        Field field = new Field();
-        field.setVisibility(JavaVisibility.PROTECTED);
-        field.setType(FullyQualifiedJavaType.getIntInstance());
-        field.setName(name);
-        field.setInitializationString("-1");
-        commentGenerator.addFieldComment(field, introspectedTable);
-        topLevelClass.addField(field);
-        char c = name.charAt(0);
-        String camel = Character.toUpperCase(c) + name.substring(1);
-        Method method = new Method();
-        method.setVisibility(JavaVisibility.PUBLIC);
-        method.setName("set" + camel);
-        method.addParameter(new Parameter(FullyQualifiedJavaType.getIntInstance(), name));
-        method.addBodyLine("this." + name + "=" + name + ";");
-        commentGenerator.addGeneralMethodComment(method, introspectedTable);
-        topLevelClass.addMethod(method);
-        method = new Method();
-        method.setVisibility(JavaVisibility.PUBLIC);
-        method.setReturnType(FullyQualifiedJavaType.getIntInstance());
-        method.setName("get" + camel);
-        method.addBodyLine("return " + name + ";");
-        commentGenerator.addGeneralMethodComment(method, introspectedTable);
-        topLevelClass.addMethod(method);
-    }
 
     @Override
     public boolean validate(List<String> list) {
         return true;
     }
 
+    public static void generate() {
+        String config = MybatisTempletPlugin.class.getClassLoader().getResource("generatorConfig.xml").getFile();
+        String[] arg = { "-configfile", config, "-overwrite" };
+        ShellRunner.main(arg);
+    }
+
+    public static void main(String[] args) {
+        generate();
+    }
 }
