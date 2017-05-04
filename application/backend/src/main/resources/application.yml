@@ -6,4 +6,4 @@ spring:
       enabled: always
 
 server:
-  port: 80
+  port: 8090
