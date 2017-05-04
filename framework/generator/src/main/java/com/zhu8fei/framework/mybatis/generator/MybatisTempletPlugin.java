@@ -43,9 +43,4 @@ public class MybatisTempletPlugin extends PluginAdapter {
         return true;
     }
 
-    public static void main(String[] args) {
-        String config = MybatisTempletPlugin.class.getClassLoader().getResource("generatorConfig.xml").getFile();
-        String[] arg = {"-configfile", config, "-overwrite"};
-        ShellRunner.main(arg);
-    }
 }
