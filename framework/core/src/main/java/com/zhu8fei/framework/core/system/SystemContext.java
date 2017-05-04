@@ -34,7 +34,7 @@ public class SystemContext {
             throw new RuntimeException("key:" + key + " is not registered.");
         }
         if ((value == null)) {
-            throw new RuntimeException("value:" + value + " is null,i can't put it into the context map");
+            throw new RuntimeException("value:" + key + " is null,i can't put it into the context map");
         }
         if (key.length() > MAX_SIZE.intValue()) {
             throw new RuntimeException("key is more than " + MAX_SIZE + ", i can't put it into the context map");

@@ -1,5 +1,9 @@
 package com.zhu8fei.framework.test.commons.utils;
 
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -11,10 +15,6 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -182,6 +182,9 @@ public class FindNotMakeTestClass {
                         || (file.getName().endsWith(".class"));
             }
         });
+        if(dirfiles==null||dirfiles.length == 0){
+            return ;
+        }
         // 循环所有文件
         for (File file : dirfiles) {
             // 如果是目录 则继续扫描
