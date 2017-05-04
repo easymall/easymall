@@ -14,7 +14,7 @@
     http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
     <!-- 自动扫描web包 ,将带有注解的类 纳入spring容器管理 -->
-    <context:component-scan base-package="com.zhu8fei.common.mybatis"/>
+    <context:component-scan base-package="com.zhu8fei.framework.common.mybatis"/>
 
     <!-- dataSource 配置 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -31,7 +31,7 @@
 
         <property name="plugins">
             <array>
-                <!--   <bean class="com.zhu8fei.common.mybatis.plugin.InsertSqlPlugin">
+                <!--   <bean class="com.zhu8fei.framework.common.mybatis.plugin.InsertSqlPlugin">
                    <property name="properties">
                         <value>
                             property-key=property-value
@@ -45,7 +45,7 @@
 
     <!-- spring与mybatis整合配置，扫描所有dao -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
-          p:basePackage="com.zhu8fei.common.mybatis" p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
+          p:basePackage="com.zhu8fei.framework.common.mybatis" p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
 
     <!-- 对dataSource 数据源进行事务管理 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
