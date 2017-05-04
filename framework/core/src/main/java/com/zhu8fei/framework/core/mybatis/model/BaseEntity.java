@@ -1,4 +1,4 @@
-package com.zhu8fei.framework.core.mybatis.mode;
+package com.zhu8fei.framework.core.mybatis.model;
 
 import java.io.Serializable;
 import java.util.Date;

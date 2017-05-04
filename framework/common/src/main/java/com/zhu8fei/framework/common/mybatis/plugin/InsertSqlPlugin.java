@@ -1,7 +1,7 @@
 package com.zhu8fei.framework.common.mybatis.plugin;
 
 
-import com.zhu8fei.framework.core.mybatis.mode.BaseEntity;
+import com.zhu8fei.framework.core.mybatis.model.BaseEntity;
 import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Signature;
 

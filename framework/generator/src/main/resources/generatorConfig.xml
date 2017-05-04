@@ -14,33 +14,29 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/easymall"
-                        userId="root" password=""/>
+                        connectionURL="jdbc:mysql://localhost:3306/test"
+                        userId="root" password="root"/>
 
-        <javaModelGenerator targetPackage="com.zhu8fei.mybatis.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.zhu8fei.framework.mybatis.model" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.zhu8fei.mybatis.xml" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="com.zhu8fei.framework.mybatis.xml" targetProject="src/main/resources">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhu8fei.mybatis.model.mapper"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhu8fei.framework.mybatis.model.mapper"
                              targetProject="src/main/src">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-
-        <table schema="easymall" tableName="%" enableSelectByExample="false" enableDeleteByExample="false"
+        <table schema="easymall" tableName="u_user" domainObjectName="User"
+               enableSelectByExample="false" enableDeleteByExample="false"
                enableCountByExample="false" enableUpdateByExample="false"
                selectByExampleQueryId="false">
-            <property name="rootClass" value="com.zhu8fei.framework.core.db.model.base.BaseEntity"/>
+         <property name="rootClass" value="com.zhu8fei.framework.core.mybatis.model.BaseEntity" />
         </table>
-
-        <!--<table schema="easymall" tableName="u_user" domainObjectName="User">-->
-        <!--<property name="rootClass" value="com.zhu8fei.framework.core.db.model.base.BaseEntity" />-->
-        <!--</table>-->
 
     </context>
 </generatorConfiguration>

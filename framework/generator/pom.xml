@@ -13,6 +13,10 @@
     <artifactId>generator</artifactId>
     <dependencies>
         <dependency>
+            <groupId>com.zhu8fei.framework</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
             <version>1.3.5</version>
@@ -33,6 +37,11 @@
                     <overwrite>true</overwrite>
                 </configuration>
                 <dependencies>
+                    <dependency>
+                        <groupId>com.zhu8fei.mybatis</groupId>
+                        <artifactId>generator</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
