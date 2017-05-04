@@ -21,11 +21,9 @@
 
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.zhu8fei.framework.mybatis.xml" targetProject="doc/generator/resources">
 
-        </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhu8fei.framework.mybatis.mapper"
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.zhu8fei.framework.mybatis.mapper"
                              targetProject="doc/generator/java">
         </javaClientGenerator>
 
@@ -34,7 +32,11 @@
                enableCountByExample="false" enableUpdateByExample="false"
                selectByExampleQueryId="false"
         >
+        <!--<table schema="easymall" tableName="%"-->
+        <!--&gt;-->
             <property name="rootClass" value="com.zhu8fei.framework.core.mybatis.model.BaseEntity"/>
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+
         </table>
 
     </context>

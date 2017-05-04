@@ -4,6 +4,8 @@ import com.zhu8fei.framework.common.mybatis.example.User;
 import com.zhu8fei.framework.common.mybatis.example.UserMapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.unitils.UnitilsJUnit4;
 import org.unitils.dbunit.annotation.DataSet;
@@ -11,16 +13,14 @@ import org.unitils.dbunit.annotation.ExpectedDataSet;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBean;
 
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by zhu8fei on 2017/3/28.
  */
 public class InsertSqlPluginTest extends UnitilsJUnit4 {
-    @SpringApplicationContext({"application-test.xml","unitils-datasource.xml"})
+    Logger logger = LoggerFactory.getLogger(InsertSqlPluginTest.class);
+    @SpringApplicationContext({"application-test.xml", "unitils-datasource.xml"})
     ApplicationContext context;
 
     @SpringBean("userMapper")
@@ -43,17 +43,19 @@ public class InsertSqlPluginTest extends UnitilsJUnit4 {
         user.setSalt("321");
         userMapper.insert(user);
 
-        List<User> list = userMapper.select(user);
-
-        System.out.println(list);
+        User result = userMapper.selectByPrimaryKey(user.getId());
+        logger.info(result.getName());
+       logger.info(result.getEmail());
     }
 
     @DataSet("dataset.xls")
     @Test
     public void select() {
         User user = new User();
-        List<User> list = userMapper.select(user);
-        assertNotNull(list);
-        assertEquals(list.size(), 1);
+        user.setId(1L);
+        User result = userMapper.selectByPrimaryKey(user.getId());
+        logger.info(result.getName());
+        logger.info(result.getEmail());
+        assertNotNull(result);
     }
 }

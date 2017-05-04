@@ -1,20 +1,13 @@
 package com.zhu8fei.framework.mybatis.generator;
 
 
-import org.apache.commons.lang.WordUtils;
-
+import static com.zhu8fei.framework.mybatis.generator.GeneratorUtils.first;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
  * Created by zhu8fei on 2017/5/4.
  */
-public class IntrospectedTableMyBatis3Impl
-        extends org.mybatis.generator.codegen.mybatis3.IntrospectedTableMyBatis3Impl {
-    /**
-     * Calculate my batis3 xml mapper file name.
-     *
-     * @return the string
-     */
+public class IntrospectedTableMyBatis3Impl extends org.mybatis.generator.codegen.mybatis3.IntrospectedTableMyBatis3Impl {
     protected String calculateMyBatis3XmlMapperFileName() {
         StringBuilder sb = new StringBuilder();
         String tableName = first(fullyQualifiedTable.getIntrospectedTableName());
@@ -22,6 +15,7 @@ public class IntrospectedTableMyBatis3Impl
         sb.append("Mapper.xml"); //$NON-NLS-1$
         return sb.toString();
     }
+
 
     protected void calculateJavaClientAttributes() {
         if (context.getJavaClientGeneratorConfiguration() == null) {
@@ -96,15 +90,6 @@ public class IntrospectedTableMyBatis3Impl
         sb.append(tableName);
         sb.append("Example"); //$NON-NLS-1$
         setExampleType(sb.toString());
-    }
-
-    private String first(String tableName) {
-        String[] names = tableName.split("_");
-        StringBuilder sb = new StringBuilder();
-        for (int i = 1; i < names.length; i++) {
-            sb.append(WordUtils.capitalize(names[i]));
-        }
-        return sb.toString();
     }
 
 }

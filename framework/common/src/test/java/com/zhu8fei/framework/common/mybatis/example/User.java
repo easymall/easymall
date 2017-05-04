@@ -3,7 +3,6 @@ package com.zhu8fei.framework.common.mybatis.example;
 import com.zhu8fei.framework.core.mybatis.model.BaseEntity;
 
 public class User extends BaseEntity {
-
     private String name;
 
     private String realName;
@@ -16,12 +15,14 @@ public class User extends BaseEntity {
 
     private String salt;
 
+    private static final Long serialVersionUID = 1L;
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getRealName() {
@@ -29,7 +30,7 @@ public class User extends BaseEntity {
     }
 
     public void setRealName(String realName) {
-        this.realName = realName == null ? null : realName.trim();
+        this.realName = realName;
     }
 
     public String getEmail() {
@@ -37,7 +38,7 @@ public class User extends BaseEntity {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public String getMobile() {
@@ -45,7 +46,7 @@ public class User extends BaseEntity {
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
+        this.mobile = mobile;
     }
 
     public String getPassword() {
@@ -53,7 +54,7 @@ public class User extends BaseEntity {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public String getSalt() {
@@ -61,18 +62,6 @@ public class User extends BaseEntity {
     }
 
     public void setSalt(String salt) {
-        this.salt = salt == null ? null : salt.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", realName='" + realName + '\'' +
-                ", email='" + email + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", password='" + password + '\'' +
-                ", salt='" + salt + '\'' +
-                '}';
+        this.salt = salt;
     }
 }
