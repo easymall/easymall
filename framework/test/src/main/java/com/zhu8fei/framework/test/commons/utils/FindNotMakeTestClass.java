@@ -1,5 +1,6 @@
 package com.zhu8fei.framework.test.commons.utils;
 
+import com.zhu8fei.framework.test.commons.BaseTest;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +21,8 @@ import java.util.jar.JarFile;
 /**
  * @author zhu8fei Wong
  */
-@MarkTestTarget(testType = {"TestAll"})
-public class FindNotMakeTestClass {
+@MarkTestTarget({"TestAll"})
+public class FindNotMakeTestClass extends BaseTest {
     private Logger logger = LoggerFactory.getLogger(FindNotMakeTestClass.class);
 
     @Test
@@ -41,7 +42,7 @@ public class FindNotMakeTestClass {
                     logger.info(clazz.getName());
                     continue;
                 }
-                String[] testTypes = mtt.testType();
+                String[] testTypes = mtt.value();
                 boolean output = true;
                 for (int i = 0; i < testTypes.length; i++) {
                     if (!"none".equals(testTypes[i])) {

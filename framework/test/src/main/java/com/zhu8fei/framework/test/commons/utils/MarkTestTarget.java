@@ -4,8 +4,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-@MarkTestTarget(testType={"MarkTestTarget"})
-public @interface MarkTestTarget
-{
-  String[] testType() default {"none"};
+@MarkTestTarget({"MarkTestTarget"})
+public @interface MarkTestTarget {
+    String[] value() default {"none"};
 }

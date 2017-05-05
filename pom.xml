@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
     <properties>
         <!-- 是否跳过测试 -->
-        <test.skip>true</test.skip>
+        <test.skip>false</test.skip>
         <!-- jar version -->
         <spring.version>4.3.7.RELEASE</spring.version>
         <spring.boot.version>1.5.3.RELEASE</spring.boot.version>
@@ -375,6 +375,12 @@
                     <version>${surefire.version}</version>
                     <configuration>
                         <skipTests>${test.skip}</skipTests>
+                        <excludes>
+                            <exclude>**/*Test.java</exclude>
+                        </excludes>
+                        <includes>
+                            <include>**/*TestAll.java</include>
+                        </includes>
                     </configuration>
                 </plugin>
                 <!-- 测试报告插件 -->
