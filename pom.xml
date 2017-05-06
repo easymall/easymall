@@ -27,7 +27,6 @@
         <mysql.version>5.1.34</mysql.version>
         <junit.version>4.12</junit.version>
         <pagehelper.verion>5.0.0</pagehelper.verion>
-        <unitils.version>3.4.3</unitils.version>
         <dbunit.version>2.5.3</dbunit.version>
         <mockito.verison>1.10.19</mockito.verison>
         <dbcp2.version>2.1.1</dbcp2.version>
@@ -230,101 +229,20 @@
             </dependency>
             <!-- mysql connection poll 依赖结束 -->
 
-            <!-- 测试 工具 unitils 依赖 -->
+            <!-- 测试 工具 依赖 -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.unitils</groupId>
-                <artifactId>unitils-core</artifactId>
-                <version>${unitils.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.unitils</groupId>
-                <artifactId>unitils-spring</artifactId>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>slf4j-nop</artifactId>
-                        <groupId>org.slf4j</groupId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-context</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-beans</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-test</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-tx</artifactId>
-                    </exclusion>
-                </exclusions>
-                <version>${unitils.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.unitils</groupId>
-                <artifactId>unitils-inject</artifactId>
-                <version>${unitils.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.unitils</groupId>
-                <artifactId>unitils-mock</artifactId>
-                <version>${unitils.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.unitils</groupId>
-                <artifactId>unitils-easymock</artifactId>
-                <version>${unitils.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.unitils</groupId>
-                <artifactId>unitils-dbunit</artifactId>
-                <version>${unitils.version}</version>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.dbunit</groupId>
-                        <artifactId>dbunit</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-jdbc</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.dbunit</groupId>
-                <artifactId>dbunit</artifactId>
-                <version>${dbunit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>commons-configuration</groupId>
-                <artifactId>commons-configuration</artifactId>
-            </dependency>
+
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
                 <version>${mockito.verison}</version>
                 <scope>test</scope>
             </dependency>
-            <!-- 测试 工具  unitils 依赖结束 -->
+            <!-- 测试 工具 依赖结束 -->
 
         </dependencies>
     </dependencyManagement>

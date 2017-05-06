@@ -1,4 +1,4 @@
-package com.zhu8fei.framework.common.mybatis.example;
+package com.zhu8fei.framework.common.mybatis.model;
 
 import com.zhu8fei.framework.core.mybatis.model.BaseEntity;
 

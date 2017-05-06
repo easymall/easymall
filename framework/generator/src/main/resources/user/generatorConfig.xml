@@ -14,8 +14,8 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/test"
-                        userId="root" password="root"/>
+                        connectionURL="jdbc:mysql://localhost:3306/easymall"
+                        userId="root" password=""/>
 
         <javaModelGenerator targetPackage="com.zhu8fei.framework.mybatis.user.model" targetProject="doc/generator/java">
 
