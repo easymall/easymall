@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.commons.mybatis;
 
-import com.zhu8fei.framework.test.commons.excel.EasyMallCommonTestException;
+import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
 
 import java.lang.reflect.Method;
 
@@ -17,7 +17,7 @@ public interface MybatisTestProcessor {
      *
      * @param method
      */
-    void dataInsert(Method method) throws EasyMallCommonTestException;
+    void dataInsert(Method method) throws EasyMallTestException;
 
     /**
      * 通过给定的测试方法获取其注解. 获取测试结果数据文件. 并进行比对.
@@ -25,5 +25,5 @@ public interface MybatisTestProcessor {
      * @param method
      * @return 比对结果
      */
-    DataCompareResult compareResult(Method method) throws EasyMallCommonTestException;
+    DataCompareResult compareResult(Method method) throws EasyMallTestException;
 }

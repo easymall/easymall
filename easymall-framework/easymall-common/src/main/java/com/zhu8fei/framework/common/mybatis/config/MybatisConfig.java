@@ -24,7 +24,7 @@ public class MybatisConfig implements TransactionManagementConfigurer {
     DataSource dataSource;
 
     @Bean(name = "sqlSessionFactory")
-    public SqlSessionFactory sqlSessionFactoryBean() {
+    public SqlSessionFactory sqlSessionFactoryBean() throws EasyMallCommonException{
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setTypeAliasesPackage("com.zhu8fei.**.mybatis");

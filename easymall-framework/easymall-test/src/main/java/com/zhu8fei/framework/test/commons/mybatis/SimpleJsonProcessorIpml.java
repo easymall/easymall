@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.commons.mybatis;
 
-import com.zhu8fei.framework.test.commons.excel.EasyMallCommonTestException;
+import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Method;
@@ -11,18 +11,18 @@ import java.lang.reflect.Method;
 @Service
 public class SimpleJsonProcessorIpml implements MybatisTestProcessor {
     @Override
-    public void dataInsert(Method method) throws EasyMallCommonTestException{
+    public void dataInsert(Method method) throws EasyMallTestException {
         if (method == null) {
-            throw new EasyMallCommonTestException("Test method is not be null");
+            throw new EasyMallTestException("Test method is not be null");
         }
 
 
     }
 
     @Override
-    public DataCompareResult compareResult(Method method) throws EasyMallCommonTestException{
+    public DataCompareResult compareResult(Method method) throws EasyMallTestException {
         if (method == null) {
-            throw new EasyMallCommonTestException("Test method is not be null");
+            throw new EasyMallTestException("Test method is not be null");
         }
 
         return null;

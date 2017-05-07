@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.commons.mybatis;
 
-import com.zhu8fei.framework.test.commons.excel.EasyMallCommonTestException;
+import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.util.List;
@@ -11,12 +11,12 @@ import java.util.Set;
  * Created by zhu8fei on 2017/5/6.
  */
 public class SimpleMybatisSqlProvider {
-    public String insert(SimpleTable simpleTable) throws EasyMallCommonTestException {
+    public String insert(SimpleTable simpleTable) throws EasyMallTestException {
         SQL sql = new SQL();
         sql.INSERT_INTO(simpleTable.getTableName());
         List<Map<String, Object>> rows = simpleTable.getRows();
         if (rows.size() == 0) {
-            throw new EasyMallCommonTestException("预处理sql文件,数据为空值.");
+            throw new EasyMallTestException("预处理sql文件,数据为空值.");
         }
         for (Map<String, Object> row : rows) {
             Set<String> keys = row.keySet();
@@ -30,12 +30,12 @@ public class SimpleMybatisSqlProvider {
         return sql.toString();
     }
 
-    public String select(SimpleTable simpleTable) throws EasyMallCommonTestException {
+    public String select(SimpleTable simpleTable) throws EasyMallTestException {
         SQL sql = new SQL();
         sql.FROM(simpleTable.getTableName());
         List<Map<String, Object>> rows = simpleTable.getRows();
         if (rows.size() == 0) {
-            throw new EasyMallCommonTestException("预处理sql文件,数据为空值.");
+            throw new EasyMallTestException("预处理sql文件,数据为空值.");
         }
         for (Map<String, Object> row : rows) {
             Set<String> keys = row.keySet();

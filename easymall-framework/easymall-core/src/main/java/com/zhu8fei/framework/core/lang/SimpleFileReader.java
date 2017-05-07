@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class SimpleFileReader {
     private static Logger logger = LoggerFactory.getLogger(SimpleFileReader.class);
 
-    public static String readAnFileContext(String path) {
+    public static String readAnFileContext(String path) throws EasyMallCoreException {
         logger.debug("read file path : {}", path);
         File file = new File(path);
         if (!file.isFile()) {
