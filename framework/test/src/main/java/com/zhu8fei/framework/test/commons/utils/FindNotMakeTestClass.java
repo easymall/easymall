@@ -1,6 +1,5 @@
 package com.zhu8fei.framework.test.commons.utils;
 
-import com.zhu8fei.framework.test.commons.BaseTest;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +21,7 @@ import java.util.jar.JarFile;
  * @author zhu8fei Wong
  */
 @MarkTestTarget({"TestAll"})
-public class FindNotMakeTestClass extends BaseTest {
+public class FindNotMakeTestClass {
     private Logger logger = LoggerFactory.getLogger(FindNotMakeTestClass.class);
 
     @Test

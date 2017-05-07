@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
+import java.util.List;
+
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -26,7 +28,7 @@ public class InsertSqlPluginTest extends BaseTest {
     public void insert() {
         User user = new User();
         user.setName("test");
-        user.setRealName("last");
+        user.setRealName("last11");
         user.setEmail("zxx@zz.com");
         user.setMobile("13100912233");
         user.setPassword("123");
@@ -41,8 +43,9 @@ public class InsertSqlPluginTest extends BaseTest {
     @Test
     public void select() {
         User user = new User();
-        user.setId(1L);
-        User result = userMapper.selectByPrimaryKey(user.getId());
+        user.setRealName("last11");
+        List<User> list = userMapper.select(user);
+        User result=list.get(0);
         logger.info(result.getName());
         logger.info(result.getEmail());
         assertNotNull(result);
