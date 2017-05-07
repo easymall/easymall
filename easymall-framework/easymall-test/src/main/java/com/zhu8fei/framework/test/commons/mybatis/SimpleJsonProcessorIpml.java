@@ -12,18 +12,13 @@ import java.lang.reflect.Method;
 public class SimpleJsonProcessorIpml implements MybatisTestProcessor {
     @Override
     public void dataInsert(Method method) throws EasyMallTestException {
-        if (method == null) {
-            throw new EasyMallTestException("Test method is not be null");
-        }
 
 
     }
 
     @Override
     public DataCompareResult compareResult(Method method) throws EasyMallTestException {
-        if (method == null) {
-            throw new EasyMallTestException("Test method is not be null");
-        }
+
 
         return null;
     }

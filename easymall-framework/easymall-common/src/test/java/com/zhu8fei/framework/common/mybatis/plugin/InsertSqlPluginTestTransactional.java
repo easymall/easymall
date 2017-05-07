@@ -4,7 +4,7 @@ import com.zhu8fei.framework.common.mybatis.DataResourceConfig;
 import com.zhu8fei.framework.common.mybatis.config.MybatisConfig;
 import com.zhu8fei.framework.common.mybatis.mapper.UserMapper;
 import com.zhu8fei.framework.common.mybatis.model.User;
-import com.zhu8fei.framework.test.commons.BaseTest;
+import com.zhu8fei.framework.test.commons.TransactionalBaseTest;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +19,8 @@ import static org.junit.Assert.assertNotNull;
  * Created by zhu8fei on 2017/3/28.
  */
 @ContextConfiguration(classes = {MybatisConfig.class, DataResourceConfig.class})
-public class InsertSqlPluginTest extends BaseTest {
-    Logger logger = LoggerFactory.getLogger(InsertSqlPluginTest.class);
+public class InsertSqlPluginTestTransactional extends TransactionalBaseTest {
+    Logger logger = LoggerFactory.getLogger(InsertSqlPluginTestTransactional.class);
     @Autowired
     UserMapper userMapper;
 

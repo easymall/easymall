@@ -11,8 +11,8 @@ import java.lang.reflect.Method;
  */
 public class DataUtils {
     private static final String DOT = ".";
-    private static final String DEFALT_NAME = "data";
-    private static final String DEFALT_TYPE = "json";
+    private static final String DEFAULT_NAME = "data";
+    private static final String DEFAULT_TYPE = "json";
 
     /**
      * 返回预处理数据文件路径
@@ -48,16 +48,17 @@ public class DataUtils {
             path = DOT;
         }
         if (StringUtils.isEmpty(file)) {
-            file = DEFALT_NAME;
+            file = DEFAULT_NAME;
         }
         if (StringUtils.isEmpty(type)) {
-            type = DEFALT_TYPE;
+            type = DEFAULT_TYPE;
         }
-        if(DOT.equals(path)){
+        if (DOT.equals(path)) {
             Class clz = method.getDeclaringClass();
-            path = clz.getResource(".").getPath();
+            path = clz.getResource(".").getFile();
+        } else {
+            path = DataUtils.class.getResource("/").getFile() + path;
         }
-
-        return null;
+        return path + file + DOT + type;
     }
 }

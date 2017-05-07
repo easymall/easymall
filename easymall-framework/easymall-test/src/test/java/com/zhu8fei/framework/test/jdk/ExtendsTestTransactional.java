@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.jdk;
 
-import com.zhu8fei.framework.test.commons.BaseTest;
+import com.zhu8fei.framework.test.commons.TransactionalBaseTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
  * Created by zhu8fei on 2017/5/4.
  */
 @MarkTestTarget(MarkTestTarget.class)
-public class ExtendsTest extends BaseTest {
-    Logger logger = LoggerFactory.getLogger(ExtendsTest.class);
+public class ExtendsTestTransactional extends TransactionalBaseTest {
+    Logger logger = LoggerFactory.getLogger(ExtendsTestTransactional.class);
 
     @Test
     public void override() {
