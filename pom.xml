@@ -8,9 +8,9 @@
     <artifactId>easymall</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>framework</module>
-        <module>business</module>
-        <module>application</module>
+        <module>easymall-framework</module>
+        <module>easymall-business</module>
+        <module>easymall-application</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -52,54 +52,54 @@
             <!-- 1层model -->
             <dependency>
                 <groupId>com.zhu8fei.framework</groupId>
-                <artifactId>core</artifactId>
+                <artifactId>easymall-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zhu8fei.framework</groupId>
-                <artifactId>common</artifactId>
+                <artifactId>easymall-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zhu8fei.framework</groupId>
-                <artifactId>test</artifactId>
+                <artifactId>easymall-test</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zhu8fei.framework</groupId>
-                <artifactId>security</artifactId>
+                <artifactId>easymall-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- 2层model -->
             <dependency>
                 <groupId>com.zhu8fei.business</groupId>
-                <artifactId>user</artifactId>
+                <artifactId>easymall-user</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zhu8fei.business</groupId>
-                <artifactId>pay</artifactId>
+                <artifactId>easymall-pay</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zhu8fei.business</groupId>
-                <artifactId>product</artifactId>
+                <artifactId>easymall-product</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zhu8fei.business</groupId>
-                <artifactId>order</artifactId>
+                <artifactId>easymall-order</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- 3层model -->
             <dependency>
                 <groupId>com.zhu8fei.application</groupId>
-                <artifactId>front</artifactId>
+                <artifactId>easymall-front</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zhu8fei.application</groupId>
-                <artifactId>backend</artifactId>
+                <artifactId>easymall-backend</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- 自依赖结束 -->
