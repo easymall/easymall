@@ -1,5 +1,6 @@
 package com.zhu8fei.framework.common;
 
+import com.zhu8fei.framework.test.commons.utils.FindNotMakeTestClass;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -9,7 +10,7 @@ import org.junit.runners.Suite;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({})
-@MarkTestTarget({"MakeTestType"})
+@Suite.SuiteClasses({FindNotMakeTestClass.class})
+@MarkTestTarget({MarkTestTarget.class})
 public class CommonsTestAll {
 }

@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by zhu8fei on 2017/5/4.
  */
-@MarkTestTarget
+@MarkTestTarget(MarkTestTarget.class)
 public class ExtendsTest extends BaseTest {
     Logger logger = LoggerFactory.getLogger(ExtendsTest.class);
 

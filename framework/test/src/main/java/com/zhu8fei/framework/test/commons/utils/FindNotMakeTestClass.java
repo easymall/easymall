@@ -20,7 +20,7 @@ import java.util.jar.JarFile;
 /**
  * @author zhu8fei Wong
  */
-@MarkTestTarget({"TestAll"})
+@MarkTestTarget(MarkTestTarget.class)
 public class FindNotMakeTestClass {
     private Logger logger = LoggerFactory.getLogger(FindNotMakeTestClass.class);
 
@@ -35,21 +35,14 @@ public class FindNotMakeTestClass {
                 // 不监视内部类等
                 continue;
             }
-            if (clazz.getName().indexOf("Test") != -1) {
+            if (clazz.getName().indexOf("Test") == clazz.getName().length()-4) {
                 MarkTestTarget mtt = clazz.getAnnotation(MarkTestTarget.class);
                 if (mtt == null) {
                     logger.info(clazz.getName());
                     continue;
                 }
-                String[] testTypes = mtt.value();
-                boolean output = true;
-                for (int i = 0; i < testTypes.length; i++) {
-                    if (!"none".equals(testTypes[i])) {
-                        output = false;
-                        break;
-                    }
-                }
-                if (output) {
+                Class[] testTypes = mtt.value();
+                if(testTypes==null || testTypes.length==0){
                     logger.info(clazz.getName());
                 }
             }

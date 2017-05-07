@@ -8,7 +8,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({FindNotMakeTestClass.class})
-@MarkTestTarget({"MakeTestType"})
+@MarkTestTarget({MarkTestTarget.class})
 public class TestAll {
 
 }

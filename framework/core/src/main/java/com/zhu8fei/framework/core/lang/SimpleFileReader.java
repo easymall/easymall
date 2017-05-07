@@ -1,4 +1,4 @@
-package com.zhu8fei.framework.core.file;
+package com.zhu8fei.framework.core.lang;
 
 import com.zhu8fei.framework.core.exception.CoreException;
 import org.slf4j.Logger;
@@ -26,11 +26,7 @@ public class SimpleFileReader {
         try {
             List<String> contentLines = Files.lines(Paths.get(file.toURI()))
                     .collect(Collectors.toList());
-            if (contentLines != null) {
-                logger.debug("read file in {} lines", contentLines.size());
-            } else {
-                return sb.toString();
-            }
+            logger.debug("read file in {} lines", contentLines.size());
             for (String str : contentLines) {
                 sb.append(str);
             }

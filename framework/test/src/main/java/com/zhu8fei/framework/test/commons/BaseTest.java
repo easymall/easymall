@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
         DbUnitListener.class})
 @Transactional
 @Rollback
-@MarkTestTarget({"MarkTestTarget"})
+@MarkTestTarget({MarkTestTarget.class})
 public class BaseTest {
     @Before
     public void setup() {

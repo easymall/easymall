@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Created by zhu8fei on 2017/5/6.
  */
 @Service
-@MarkTestTarget({"MarkTestTarget"})
+@MarkTestTarget({MarkTestTarget.class})
 public class CoffeeBean implements Serializable {
     Logger logger = LoggerFactory.getLogger(getClass());
 

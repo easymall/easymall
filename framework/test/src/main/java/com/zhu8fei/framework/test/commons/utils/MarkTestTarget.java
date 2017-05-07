@@ -4,7 +4,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-@MarkTestTarget({"MarkTestTarget"})
+@MarkTestTarget({MarkTestTarget.class})
 public @interface MarkTestTarget {
-    String[] value() default {"none"};
+    Class[] value() default {};
 }
