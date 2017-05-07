@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.core.lang;
 
-import com.zhu8fei.framework.core.exception.CoreException;
+import com.zhu8fei.framework.core.exception.EasyMallCoreException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +21,7 @@ public class SimpleFileReader {
         logger.debug("read file path : {}", path);
         File file = new File(path);
         if (!file.isFile()) {
-            throw new CoreException("文件不存在");
+            throw new EasyMallCoreException("文件不存在");
         }
         StringBuilder sb = new StringBuilder();
         try {
@@ -33,7 +33,7 @@ public class SimpleFileReader {
             }
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
-            throw new CoreException(e.getMessage(), e);
+            throw new EasyMallCoreException(e.getMessage(), e);
         }
         return sb.toString();
     }

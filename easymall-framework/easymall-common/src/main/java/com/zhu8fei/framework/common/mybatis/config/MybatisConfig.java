@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.common.mybatis.config;
 
-import com.zhu8fei.framework.common.exception.CommonException;
+import com.zhu8fei.framework.common.exception.EasyMallCommonException;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -44,7 +44,7 @@ public class MybatisConfig implements TransactionManagementConfigurer {
             return bean.getObject();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            throw new CommonException(e);
+            throw new EasyMallCommonException(e);
         }
     }
 

@@ -1,4 +1,4 @@
-package com.zhu8fei.framework.test.commons.mysql;
+package com.zhu8fei.framework.test.commons.mybatis;
 
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.SelectKey;

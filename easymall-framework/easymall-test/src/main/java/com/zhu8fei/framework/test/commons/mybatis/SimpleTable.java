@@ -1,4 +1,4 @@
-package com.zhu8fei.framework.test.commons.mysql;
+package com.zhu8fei.framework.test.commons.mybatis;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +9,17 @@ import java.util.Map;
  */
 public class SimpleTable {
     private String tableName;
-    private List<Map<String, String>> rows = new ArrayList<>();
+    private List<Map<String, Object>> rows = new ArrayList<>();
 
-    public List<Map<String, String>> getRows() {
+    public List<Map<String, Object>> getRows() {
         return rows;
     }
-    public void addRows(Map<String,String> row){
+
+    public void addRows(Map<String, Object> row) {
         rows.add(row);
     }
 
-    public void addAllRows(List<Map<String, String>> rows){
+    public void addAllRows(List<Map<String, Object>> rows) {
         this.rows.addAll(rows);
     }
 
