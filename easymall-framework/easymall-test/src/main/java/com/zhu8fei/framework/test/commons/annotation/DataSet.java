@@ -5,6 +5,27 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * 预处理数据.提供测试开始时的数据
+ * prepare 准备数据
+ * expect 预期数据
+ *
+ * {
+ *     "prepare":[{
+ *         "tableName":"",
+ *         "columns":["column1","column2",...],
+ *         rows:[{"value1","value2",...},{"value1","value2",...} , ... ]
+ *         },
+ *     ...
+ *     ]
+ *     "expect":[{
+ *         "tableName":"",
+ *         "columns":["column1","column2",...],
+ *         rows:[{"value1","value2",...},{"value1","value2",...} , ... ]
+ *     },
+ *     ...
+ *     ]
+ * }
+ *
+ *
  * Created by zhu8fei on 2017/5/7.
  */
 @Retention(RetentionPolicy.RUNTIME)
