@@ -1,8 +1,8 @@
 package com.zhu8fei.framework.core;
 
 import com.zhu8fei.framework.core.test.method.LangTest;
-import com.zhu8fei.framework.test.commons.utils.FindNotMakeTestClass;
-import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
+import com.zhu8fei.framework.core.utils.FindNotMakeTestClass;
+import com.zhu8fei.framework.core.utils.MarkTestTarget;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 

@@ -1,9 +1,9 @@
 package com.zhu8fei.framework.core.lang;
 
+import com.zhu8fei.framework.core.BaseTest;
 import com.zhu8fei.framework.core.exception.EasyMallCoreException;
 import com.zhu8fei.framework.core.test.method.LangTest;
-import com.zhu8fei.framework.test.commons.BaseTest;
-import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
+import com.zhu8fei.framework.core.utils.MarkTestTarget;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;

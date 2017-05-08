@@ -10,16 +10,17 @@ import java.lang.annotation.RetentionPolicy;
  *
  * {
  *     "prepare":[{
- *         "tableName":"",
+ *         "tableName":"prepare_table",
  *         "columns":["column1","column2",...],
- *         rows:[{"value1","value2",...},{"value1","value2",...} , ... ]
+ *         "rows":[["value1","value2",...],["value1","value2",...] , ... ]
  *         },
  *     ...
  *     ]
  *     "expect":[{
- *         "tableName":"",
+ *         "tableName":"expect_table",
  *         "columns":["column1","column2",...],
- *         rows:[{"value1","value2",...},{"value1","value2",...} , ... ]
+ *         "rows":[["value1","value2",...],["value1","value2",...] , ... ],
+ *         "param":{"column":"value" , ...}
  *     },
  *     ...
  *     ]

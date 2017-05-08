@@ -18,8 +18,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.zhu8fei.framework</groupId>
-            <artifactId>easymall-test</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
