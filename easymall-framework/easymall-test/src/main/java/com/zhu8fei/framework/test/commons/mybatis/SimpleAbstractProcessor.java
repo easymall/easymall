@@ -19,8 +19,8 @@ public class SimpleAbstractProcessor {
     @Resource(name = "simpleMybatisMapper")
     protected SimpleMybatisMapper simpleMybatisMapper;
 
-    protected List<SimpleTable> insert(List<PrepareBean> prepares) {
-        if(prepares == null){
+    protected List<SimpleTable> insert(List<PrepareBean> prepares, String keyName) {
+        if (prepares == null) {
             return new ArrayList<>();
         }
         List<SimpleTable> result = new ArrayList<>();
@@ -28,6 +28,7 @@ public class SimpleAbstractProcessor {
             SimpleTable st = new SimpleTable();
             st.setTableName(prepare.getTableName());
             List<String> columns = prepare.getColumns();
+
             st.addAllColumns(columns);
             List<List<Object>> rows = prepare.getRows();
             // lambada 应该怎么写...
@@ -36,8 +37,15 @@ public class SimpleAbstractProcessor {
                 for (int i = 0; i < columns.size(); i++) {
                     rowMap.put(columns.get(i), row.get(i));
                 }
+                if (!columns.contains(keyName)) {
+                    rowMap.put(keyName, null);
+                }
                 st.addRow(rowMap);
             }
+            if (!columns.contains(keyName)) {
+                st.addColumn(keyName);
+            }
+
             simpleMybatisMapper.insert(st);
             result.add(st);
         }
@@ -46,18 +54,19 @@ public class SimpleAbstractProcessor {
 
     /**
      * 打印结果. 这个东西.是打还是不打好?
+     *
      * @param result 预处理数据插入结果
      */
     protected void printPrepare(List<SimpleTable> result) {
         if (result != null && result.size() != 0) {
             for (SimpleTable simpleTable : result) {
-                logger.debug("Prepare table name : {}",simpleTable.getTableName());
+                logger.debug("Prepare table name : {}", simpleTable.getTableName());
                 List<Map<String, Object>> rows = simpleTable.getRows();
-                for (Map<String,Object> row:rows){
-                    logger.debug("Prepare id : {}" ,row.get("id"));
+                for (Map<String, Object> row : rows) {
+                    logger.debug("Prepare id : {}", row.get("id"));
                 }
             }
-       }
+        }
     }
 
 }

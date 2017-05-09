@@ -8,11 +8,33 @@ import org.junit.Test;
 /**
  * Created by cwx on 2017/5/9.
  */
+// @Ignore
 @MarkTestTarget
 public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest {
-    @DataSet(value = "{}", log = true)
+
+    @DataSet(value = "{" +
+         "     \"prepare\": [{" +
+         "          \"tableName\": \"u_user\"," +
+         "          \"columns\": [ \"name\", \"real_name\"]," +
+         "          \"rows\": [" +
+         "               [\"name1\", \"real_name1\"]," +
+         "               [\"name2\", \"real_name2\"]," +
+         "          ]" +
+         "     }]," +
+         "     \"expect\": [{" +
+         "          \"tableName\": \"u_user\"," +
+         "          \"columns\": [\"name\", \"real_name\"]," +
+         "          \"rows\": [" +
+         "               [\"name1\", \"real_name1\"]," +
+         "               [\"name2\", \"real_name2\"]," +
+         "          ]," +
+         "          \"param\": {" +
+         "               \"column\": \"real_name%\"," +
+         "          }" +
+         "     }]" +
+         "}", log = true)
     @Test
     public void DataSetAnnotationTest() {
-
+        logger.info(" 谁知道呢. ");
     }
 }

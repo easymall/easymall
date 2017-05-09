@@ -29,12 +29,15 @@ public class SimpleMybatisSqlProvider {
         }
 
         StringBuilder sb = new StringBuilder(sql.toString());
+        sb.append(" values ");
+        int i = 0 ;
         for (Map<String, Object> row : rows) {
             logger.debug(row.toString());
             sb.append("(");
             for (String column : simpleTable.getColumns()) {
-                sb.append(" #{simpleTable.rows[{0}].").append(column).append("},");
+                sb.append(" #{rows[" + i + "].").append(column).append("},");
             }
+            i++;
             sb.deleteCharAt(sb.length() - 1);
             sb.append(" ) ,");
         }
@@ -58,21 +61,18 @@ public class SimpleMybatisSqlProvider {
                     StringBuilder inSql = new StringBuilder(key);
                     inSql.append(" in (");
                     Object[] paramArr = (Object[]) param;
-
+                    int i = 0;
                     for (Object obj : paramArr) {
                         logger.info(obj.toString());
-                        inSql.append("#{simpleTable.param[{0}].")
-                                .append(key).append("[{0}]} ,");
+                        inSql.append("#{param[{" + i + "}].").append(key).append("[{" + i + "}]} ,");
                     }
                     inSql.deleteCharAt(inSql.length() - 1);
                     inSql.append(" ) ");
-
                     WHERE(inSql.toString());
                 } else if (param instanceof String && ((String) param).contains("%")) {
-                    WHERE(key + " like #{simpleTable.param[{0}]." + key + "}");
+                    WHERE(key + " like #{param[{0}]." + key + "}");
                 } else {
-
-                    WHERE(key + "=#{simpleTable.param[{0}]." + key + "}");
+                    WHERE(key + "=#{param[{0}]." + key + "}");
                 }
             }
 

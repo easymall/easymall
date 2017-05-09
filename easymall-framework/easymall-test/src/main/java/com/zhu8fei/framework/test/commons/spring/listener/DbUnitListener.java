@@ -1,6 +1,7 @@
 package com.zhu8fei.framework.test.commons.spring.listener;
 
 import com.zhu8fei.framework.test.commons.annotation.DataSet;
+import com.zhu8fei.framework.test.commons.annotation.DataSetAnnotationUtils;
 import com.zhu8fei.framework.test.commons.mybatis.MybatisTestProcessor;
 import com.zhu8fei.framework.test.commons.mybatis.bean.DataCompareResult;
 import org.junit.Assert;
@@ -38,10 +39,9 @@ public class DbUnitListener implements TestExecutionListener {
     @Override
     public void beforeTestMethod(TestContext testContext) throws Exception {
         Method method = testContext.getTestMethod();
-        DataSet dataSet = method.getAnnotation(DataSet.class);
-        if (dataSet != null) {
-            Class implClass = dataSet.impl();
-            MybatisTestProcessor mybatisTestProcessor = testContext.getApplicationContext().<MybatisTestProcessor>getBean(implClass);
+        if (DataSetAnnotationUtils.isLog(method)) {
+            MybatisTestProcessor mybatisTestProcessor = testContext.
+                    getApplicationContext().<MybatisTestProcessor>getBean(DataSetAnnotationUtils.getImplName(method));
             mybatisTestProcessor.insertPrepareData(method);
         }
     }
@@ -49,20 +49,16 @@ public class DbUnitListener implements TestExecutionListener {
     @Override
     public void afterTestMethod(TestContext testContext) throws Exception {
         Method method = testContext.getTestMethod();
-        DataSet dataSet = method.getAnnotation(DataSet.class);
-        if (dataSet != null) {
-            Class implClass = dataSet.impl();
-            MybatisTestProcessor mybatisTestProcessor = testContext.getApplicationContext().<MybatisTestProcessor>getBean(implClass);
+        if (DataSetAnnotationUtils.isLog(method)) {
+            MybatisTestProcessor mybatisTestProcessor = testContext.
+                    getApplicationContext().<MybatisTestProcessor>getBean(DataSetAnnotationUtils.getImplName(method));
             DataCompareResult dataCompareResult = mybatisTestProcessor.compareResult(method);
-
-            if (dataCompareResult != null && dataCompareResult.isSuccess()) {
-                logger.info("Data test result : success");
-            } else {
+            if (dataCompareResult == null || !dataCompareResult.isSuccess()) {
                 logger.info("Data test result : failure");
                 Assert.fail();
             }
-
         }
+        logger.info("Data test result : success");
         MDC.clear();
     }
 

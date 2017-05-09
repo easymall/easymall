@@ -14,6 +14,40 @@ public class DataSetAnnotationUtils {
     private static final String DEFAULT_NAME = "data";
     private static final String DEFAULT_TYPE = "json";
 
+    /**
+     * 是否运行
+     *
+     * @param method
+     * @return
+     * @throws EasyMallTestException
+     */
+    public static boolean isRun(Method method) {
+        DataSet dataSet = method.getAnnotation(DataSet.class);
+        return dataSet != null && dataSet.run();
+    }
+
+    /**
+     * 是否运行
+     *
+     * @param method
+     * @return
+     * @throws EasyMallTestException
+     */
+    public static Class getImplName(Method method) throws EasyMallTestException {
+        if (method == null) {
+            throw new EasyMallTestException("Test method is not be null");
+        }
+        DataSet dataSet = method.getAnnotation(DataSet.class);
+        return dataSet.impl();
+    }
+
+    /**
+     * 是否打印日志
+     *
+     * @param method
+     * @return
+     * @throws EasyMallTestException
+     */
     public static boolean isLog(Method method) throws EasyMallTestException {
         if (method == null) {
             throw new EasyMallTestException("Test method is not be null");
@@ -21,8 +55,26 @@ public class DataSetAnnotationUtils {
         DataSet dataSet = method.getAnnotation(DataSet.class);
         return dataSet.log();
     }
+
+    /**
+     * 返回主键名
+     *
+     * @param method
+     * @return
+     * @throws EasyMallTestException
+     */
+    public static String getDataKeyName(Method method) throws EasyMallTestException {
+        if (method == null) {
+            throw new EasyMallTestException("Test method is not be null");
+        }
+        DataSet dataSet = method.getAnnotation(DataSet.class);
+        String keyName = dataSet.key();
+        return keyName;
+    }
+
     /**
      * 直接返回数据内容
+     *
      * @param method
      * @return
      * @throws EasyMallTestException
@@ -35,6 +87,7 @@ public class DataSetAnnotationUtils {
         String context = dataSet.value();
         return context;
     }
+
     /**
      * 返回预处理数据文件路径
      *

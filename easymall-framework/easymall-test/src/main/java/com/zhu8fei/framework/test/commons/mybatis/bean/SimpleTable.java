@@ -9,6 +9,7 @@ import java.util.Map;
  * Created by zhu8fei on 2017/5/7.
  */
 public class SimpleTable {
+    private String keyName = "id";
     private String tableName;
     private List<Map<String, Object>> rows = new ArrayList<>();
     private List<String> columns = new ArrayList<>();
@@ -16,6 +17,14 @@ public class SimpleTable {
 
     public List<Map<String, Object>> getRows() {
         return rows;
+    }
+
+    public String getKeyName() {
+        return keyName;
+    }
+
+    public void setKeyName(String keyName) {
+        this.keyName = keyName;
     }
 
     public void addRow(Map<String, Object> row) {
@@ -31,7 +40,7 @@ public class SimpleTable {
     }
 
     public void addAllColumns(List<String> columns) {
-        columns.addAll(columns);
+        this.columns.addAll(columns);
     }
 
     public List<String> getColumns() {

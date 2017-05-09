@@ -14,7 +14,7 @@ import java.util.Map;
 @Repository
 public interface SimpleMybatisMapper {
     @InsertProvider(type = SimpleMybatisSqlProvider.class, method = "insert")
-    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Long.class)
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "rows.id", before = false, resultType = Long.class)
     int insert(SimpleTable simpleTable);
 
     @SelectProvider(type = SimpleMybatisSqlProvider.class, method = "select")

@@ -38,7 +38,8 @@ public class SimpleJsonFileProcessorIpml extends SimpleAbstractProcessor impleme
             if (isLog) {
                 logger.debug("批量插入预处理数据.");
             }
-            List<SimpleTable> result = insert(prepares);
+            String keyName = DataSetAnnotationUtils.getDataKeyName(method);
+            List<SimpleTable> result = insert(prepares, keyName);
             if (isLog) {
                 printPrepare(result);
             }
