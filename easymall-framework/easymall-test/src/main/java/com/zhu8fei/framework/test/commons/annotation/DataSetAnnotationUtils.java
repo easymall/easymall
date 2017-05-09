@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.commons.annotation;
 
-import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
+import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Method;

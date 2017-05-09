@@ -8,7 +8,6 @@ import org.junit.Test;
 /**
  * Created by cwx on 2017/5/9.
  */
-// @Ignore
 @MarkTestTarget
 public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest {
 

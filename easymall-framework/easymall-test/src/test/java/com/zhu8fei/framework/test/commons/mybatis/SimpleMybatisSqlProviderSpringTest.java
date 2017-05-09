@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.commons.mybatis;
 
-import com.zhu8fei.framework.test.commons.BaseSpringTest;
+import com.zhu8fei.framework.test.commons.BaseTransactionalSpringTest;
 import com.zhu8fei.framework.test.commons.mybatis.bean.SimpleTable;
 import com.zhu8fei.framework.test.commons.mybatis.mapper.SimpleMybatisSqlProvider;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by zhu8fei on 2017/5/8.
  */
 @MarkTestTarget(PrepareAndExpectSqlTest.class)
-public class SimpleMybatisSqlProviderSpringTest extends BaseSpringTest {
+public class SimpleMybatisSqlProviderSpringTest extends BaseTransactionalSpringTest {
     private SimpleMybatisSqlProvider simpleMybatisSqlProvider;
 
     @Override
@@ -27,16 +27,12 @@ public class SimpleMybatisSqlProviderSpringTest extends BaseSpringTest {
     public void insert() throws Exception {
         SimpleTable simpleTable = new SimpleTable();
         simpleTable.setTableName("u_user");
-        simpleTable.addColumn("id");
+        simpleTable.addColumn("real_name");
         simpleTable.addColumn("name");
         Map<String, Object> row = new HashMap<>();
-        row.put("id", "1");
+        row.put("real_name", "real");
         row.put("name", "name");
-        simpleTable.addRow(row);
-        row = new HashMap<>();
-        row.put("id", "2");
-        row.put("name", "test");
-        simpleTable.addRow(row);
+        simpleTable.putRowAll(row);
         String sql = simpleMybatisSqlProvider.insert(simpleTable);
 
         logger.info(sql);

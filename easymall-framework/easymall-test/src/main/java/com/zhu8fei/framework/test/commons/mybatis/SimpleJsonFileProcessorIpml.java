@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.zhu8fei.framework.core.exception.EasyMallCoreException;
 import com.zhu8fei.framework.core.lang.SimpleFileReader;
 import com.zhu8fei.framework.test.commons.annotation.DataSetAnnotationUtils;
-import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
+import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
 import com.zhu8fei.framework.test.commons.mybatis.bean.DataCompareResult;
 import com.zhu8fei.framework.test.commons.mybatis.bean.DataJsonBean;
 import com.zhu8fei.framework.test.commons.mybatis.bean.PrepareBean;

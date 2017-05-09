@@ -19,6 +19,9 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 
 /**
  * 需要spring依赖的测试
+ *
+ * 注意. 此方法无事务控制.默认会提交到数据库.
+ *
  * Created by zhu8fei on 2017/5/7.
  */
 @RunWith(SpringJUnit4ClassRunner.class)

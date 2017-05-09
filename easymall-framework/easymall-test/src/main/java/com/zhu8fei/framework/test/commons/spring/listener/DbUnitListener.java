@@ -39,7 +39,7 @@ public class DbUnitListener implements TestExecutionListener {
     @Override
     public void beforeTestMethod(TestContext testContext) throws Exception {
         Method method = testContext.getTestMethod();
-        if (DataSetAnnotationUtils.isLog(method)) {
+        if (DataSetAnnotationUtils.isRun(method)) {
             MybatisTestProcessor mybatisTestProcessor = testContext.
                     getApplicationContext().<MybatisTestProcessor>getBean(DataSetAnnotationUtils.getImplName(method));
             mybatisTestProcessor.insertPrepareData(method);
@@ -49,7 +49,7 @@ public class DbUnitListener implements TestExecutionListener {
     @Override
     public void afterTestMethod(TestContext testContext) throws Exception {
         Method method = testContext.getTestMethod();
-        if (DataSetAnnotationUtils.isLog(method)) {
+        if (DataSetAnnotationUtils.isRun(method)) {
             MybatisTestProcessor mybatisTestProcessor = testContext.
                     getApplicationContext().<MybatisTestProcessor>getBean(DataSetAnnotationUtils.getImplName(method));
             DataCompareResult dataCompareResult = mybatisTestProcessor.compareResult(method);

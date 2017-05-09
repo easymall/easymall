@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.commons.mybatis;
 
-import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
+import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
 import com.zhu8fei.framework.test.commons.mybatis.bean.DataCompareResult;
 
 import java.lang.reflect.Method;

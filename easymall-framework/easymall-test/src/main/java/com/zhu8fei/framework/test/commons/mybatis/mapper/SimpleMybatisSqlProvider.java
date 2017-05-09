@@ -1,12 +1,11 @@
 package com.zhu8fei.framework.test.commons.mybatis.mapper;
 
-import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
+import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
 import com.zhu8fei.framework.test.commons.mybatis.bean.SimpleTable;
 import org.apache.ibatis.jdbc.SQL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,33 +16,15 @@ public class SimpleMybatisSqlProvider {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     public String insert(SimpleTable simpleTable) throws EasyMallTestException {
-        SQL sql = new SQL();
-        sql.INSERT_INTO(simpleTable.getTableName());
-        List<Map<String, Object>> rows = simpleTable.getRows();
-        if (rows.size() == 0) {
-            logger.error("预处理sql文件,数据为空值.");
-            throw new EasyMallTestException("预处理sql文件,数据为空值.");
-        }
-        for (String column : simpleTable.getColumns()) {
-            sql.INTO_COLUMNS(column);
-        }
-
-        StringBuilder sb = new StringBuilder(sql.toString());
-        sb.append(" values ");
-        int i = 0 ;
-        for (Map<String, Object> row : rows) {
-            logger.debug(row.toString());
-            sb.append("(");
+        SQL sql = new SQL() {{
+            INSERT_INTO(simpleTable.getTableName());
             for (String column : simpleTable.getColumns()) {
-                sb.append(" #{rows[" + i + "].").append(column).append("},");
+                INTO_VALUES("#{row." + column + "}");
+                INTO_COLUMNS(column);
             }
-            i++;
-            sb.deleteCharAt(sb.length() - 1);
-            sb.append(" ) ,");
-        }
-        sb.deleteCharAt(sb.length() - 1);
-        logger.debug(sb.toString());
-        return sb.toString();
+        }};
+        logger.debug(sql.toString());
+        return sql.toString();
     }
 
     public String select(SimpleTable simpleTable) throws EasyMallTestException {

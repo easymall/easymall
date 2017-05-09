@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.commons.mybatis.config;
 
-import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
+import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

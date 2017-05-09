@@ -9,30 +9,22 @@ import java.util.Map;
  * Created by zhu8fei on 2017/5/7.
  */
 public class SimpleTable {
-    private String keyName = "id";
+    private Long id;
     private String tableName;
-    private List<Map<String, Object>> rows = new ArrayList<>();
+    private Map<String, Object> row = new HashMap<>();
     private List<String> columns = new ArrayList<>();
     private Map<String, Object> param = new HashMap<>();
 
-    public List<Map<String, Object>> getRows() {
-        return rows;
+    public Object put(String column, String value) {
+        return row.put(column, value);
     }
 
-    public String getKeyName() {
-        return keyName;
+    public void putRowAll(Map<String, Object> row) {
+        this.row.putAll(row);
     }
 
-    public void setKeyName(String keyName) {
-        this.keyName = keyName;
-    }
-
-    public void addRow(Map<String, Object> row) {
-        rows.add(row);
-    }
-
-    public void addAllRows(List<Map<String, Object>> rows) {
-        this.rows.addAll(rows);
+    public Map<String, Object> getRow() {
+        return row;
     }
 
     public void addColumn(String column) {
@@ -61,5 +53,13 @@ public class SimpleTable {
 
     public Map<String, Object> getParam() {
         return param;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

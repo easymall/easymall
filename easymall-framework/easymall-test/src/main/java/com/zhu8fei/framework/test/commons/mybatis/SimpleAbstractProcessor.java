@@ -25,29 +25,24 @@ public class SimpleAbstractProcessor {
         }
         List<SimpleTable> result = new ArrayList<>();
         for (PrepareBean prepare : prepares) {
-            SimpleTable st = new SimpleTable();
-            st.setTableName(prepare.getTableName());
-            List<String> columns = prepare.getColumns();
-
-            st.addAllColumns(columns);
+            // 当前循环 一张表的数据
+            // 获取当前表全部数据行
             List<List<Object>> rows = prepare.getRows();
-            // lambada 应该怎么写...
+            // 循环数据并插入
             for (List<Object> row : rows) {
+                SimpleTable st = new SimpleTable();
+                st.setTableName(prepare.getTableName());
+                List<String> columns = prepare.getColumns();
+                st.addAllColumns(columns);
                 Map<String, Object> rowMap = new HashMap<>();
+                // 拼装数据
                 for (int i = 0; i < columns.size(); i++) {
                     rowMap.put(columns.get(i), row.get(i));
                 }
-                if (!columns.contains(keyName)) {
-                    rowMap.put(keyName, null);
-                }
-                st.addRow(rowMap);
+                st.putRowAll(rowMap);
+                simpleMybatisMapper.insert(st);
+                result.add(st);
             }
-            if (!columns.contains(keyName)) {
-                st.addColumn(keyName);
-            }
-
-            simpleMybatisMapper.insert(st);
-            result.add(st);
         }
         return result;
     }
@@ -61,10 +56,10 @@ public class SimpleAbstractProcessor {
         if (result != null && result.size() != 0) {
             for (SimpleTable simpleTable : result) {
                 logger.debug("Prepare table name : {}", simpleTable.getTableName());
-                List<Map<String, Object>> rows = simpleTable.getRows();
-                for (Map<String, Object> row : rows) {
-                    logger.debug("Prepare id : {}", row.get("id"));
-                }
+//                List<Map<String, Object>> rows = simpleTable.getRows();
+//                for (Map<String, Object> row : rows) {
+//                    logger.debug("Prepare id : {}", row.get("id"));
+//                }
             }
         }
     }
