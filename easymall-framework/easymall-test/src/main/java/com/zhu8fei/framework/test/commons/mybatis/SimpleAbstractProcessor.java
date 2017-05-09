@@ -56,10 +56,8 @@ public class SimpleAbstractProcessor {
         if (result != null && result.size() != 0) {
             for (SimpleTable simpleTable : result) {
                 logger.debug("Prepare table name : {}", simpleTable.getTableName());
-//                List<Map<String, Object>> rows = simpleTable.getRows();
-//                for (Map<String, Object> row : rows) {
-//                    logger.debug("Prepare id : {}", row.get("id"));
-//                }
+                Map<String, Object> row = simpleTable.getRow();
+                logger.debug("Prepare id : {}", row.get("id"));
             }
         }
     }
