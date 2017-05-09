@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.commons.mybatis.mapper;
 
-import com.zhu8fei.framework.test.commons.mybatis.SimpleTable;
+import com.zhu8fei.framework.test.commons.mybatis.bean.SimpleTable;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;

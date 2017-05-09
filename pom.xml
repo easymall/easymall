@@ -46,6 +46,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+
+        <org.slf4j.simpleLogger.logFile>${user.dir}/doc/logs/easymall-maven.log</org.slf4j.simpleLogger.logFile>
     </properties>
     <dependencyManagement>
         <dependencies>

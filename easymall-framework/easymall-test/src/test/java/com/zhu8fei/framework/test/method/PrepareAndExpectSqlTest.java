@@ -1,17 +1,20 @@
 package com.zhu8fei.framework.test.method;
 
 import com.zhu8fei.framework.TestAll;
-import com.zhu8fei.framework.test.commons.annotation.DataUtilsJunitTest;
+import com.zhu8fei.framework.test.commons.mybatis.SimpleMybatisSqlProviderSpringTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 /**
- * Created by zhu8fei on 2017/5/7.
+ * Created by cwx on 2017/5/9.
  */
-
 @RunWith(Suite.class)
-@Suite.SuiteClasses({DataUtilsJunitTest.class})
+@Suite.SuiteClasses({
+
+        SimpleMybatisSqlProviderSpringTest.class
+
+})
 @MarkTestTarget(TestAll.class)
-public class AnnotationTest {
+public class PrepareAndExpectSqlTest {
 }

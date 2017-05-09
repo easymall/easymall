@@ -1,7 +1,7 @@
 package com.zhu8fei.framework.test.commons.mybatis.mapper;
 
 import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
-import com.zhu8fei.framework.test.commons.mybatis.SimpleTable;
+import com.zhu8fei.framework.test.commons.mybatis.bean.SimpleTable;
 import org.apache.ibatis.jdbc.SQL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +47,7 @@ public class SimpleMybatisSqlProvider {
 
         SQL sql = new SQL() {{
             SELECT(simpleTable.getColumns().toArray(new String[]{}));
+            SELECT(" @rownum := ifnull(@rownum, 0) + 1 rownum ");
             FROM(simpleTable.getTableName());
             Map<String, Object> params = simpleTable.getParam();
             Set<String> keys = params.keySet();

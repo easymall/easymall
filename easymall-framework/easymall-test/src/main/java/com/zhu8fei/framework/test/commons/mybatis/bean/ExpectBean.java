@@ -1,4 +1,4 @@
-package com.zhu8fei.framework.test.commons.mybatis;
+package com.zhu8fei.framework.test.commons.mybatis.bean;
 
 import java.util.List;
 import java.util.Map;

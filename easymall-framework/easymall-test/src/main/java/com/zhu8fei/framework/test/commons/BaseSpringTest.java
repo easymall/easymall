@@ -18,6 +18,7 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 /**
+ * 需要spring依赖的测试
  * Created by zhu8fei on 2017/5/7.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,7 +27,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
         TransactionalTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
         DbUnitListener.class})
 @MarkTestTarget(MarkTestTarget.class)
-public class BaseTest {
+public class BaseSpringTest {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Before

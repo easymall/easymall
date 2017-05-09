@@ -2,7 +2,7 @@ package com.zhu8fei.framework.core.lang;
 
 import com.zhu8fei.framework.core.exception.EasyMallCoreException;
 import com.zhu8fei.framework.core.test.method.LangTest;
-import com.zhu8fei.framework.test.commons.BaseTest;
+import com.zhu8fei.framework.test.commons.BaseJunitTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -13,7 +13,7 @@ import org.junit.rules.ExpectedException;
  * Created by zhu8fei on 2017/5/7.
  */
 @MarkTestTarget(LangTest.class)
-public class SimpleFileReaderTest extends BaseTest {
+public class SimpleFileReaderJunitTest extends BaseJunitTest {
     @Rule
     public ExpectedException exception = ExpectedException.none();
 

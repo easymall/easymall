@@ -3,7 +3,7 @@ package com.zhu8fei.framework.common.mybatis.plugin;
 
 import com.zhu8fei.framework.common.mybatis.mapper.UserMapper;
 import com.zhu8fei.framework.common.mybatis.model.User;
-import com.zhu8fei.framework.test.commons.TransactionalBaseTest;
+import com.zhu8fei.framework.test.commons.BaseTransactionalSpringTest;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +16,8 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by zhu8fei on 2017/3/28.
  */
-public class InsertSqlPluginTransactionalTest extends TransactionalBaseTest {
-    Logger logger = LoggerFactory.getLogger(InsertSqlPluginTransactionalTest.class);
+public class InsertSqlPluginTransactionalSpringTest extends BaseTransactionalSpringTest {
+    Logger logger = LoggerFactory.getLogger(InsertSqlPluginTransactionalSpringTest.class);
     @Autowired
     UserMapper userMapper;
 

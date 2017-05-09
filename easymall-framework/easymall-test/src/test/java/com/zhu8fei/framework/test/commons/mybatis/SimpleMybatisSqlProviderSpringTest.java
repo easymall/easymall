@@ -1,9 +1,10 @@
 package com.zhu8fei.framework.test.commons.mybatis;
 
-import com.zhu8fei.framework.test.commons.BaseTest;
+import com.zhu8fei.framework.test.commons.BaseSpringTest;
+import com.zhu8fei.framework.test.commons.mybatis.bean.SimpleTable;
 import com.zhu8fei.framework.test.commons.mybatis.mapper.SimpleMybatisSqlProvider;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
-import org.junit.Ignore;
+import com.zhu8fei.framework.test.method.PrepareAndExpectSqlTest;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -12,9 +13,8 @@ import java.util.Map;
 /**
  * Created by zhu8fei on 2017/5/8.
  */
-@Ignore // 暂时忽略这个测试
-@MarkTestTarget
-public class SimpleMybatisSqlProviderTest extends BaseTest {
+@MarkTestTarget(PrepareAndExpectSqlTest.class)
+public class SimpleMybatisSqlProviderSpringTest extends BaseSpringTest {
     private SimpleMybatisSqlProvider simpleMybatisSqlProvider;
 
     @Override

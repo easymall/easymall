@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.spring;
 
-import com.zhu8fei.framework.test.commons.BaseTest;
+import com.zhu8fei.framework.test.commons.BaseSpringTest;
 import com.zhu8fei.framework.test.commons.spring.bean.EmptyConfig;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import com.zhu8fei.framework.test.method.MethodTest;
@@ -15,7 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
  */
 @ContextConfiguration(classes = {EmptyConfig.class})
 @MarkTestTarget(MethodTest.class)
-public class SpringJunitProcessTransactionalTest extends BaseTest {
+public class SpringJunitProcessTransactionalSpringTest extends BaseSpringTest {
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired

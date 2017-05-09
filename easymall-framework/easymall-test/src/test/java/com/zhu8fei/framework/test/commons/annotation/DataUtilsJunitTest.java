@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.commons.annotation;
 
-import com.zhu8fei.framework.test.commons.BaseTest;
+import com.zhu8fei.framework.test.commons.BaseJunitTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import com.zhu8fei.framework.test.method.AnnotationTest;
 import org.junit.Assert;
@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
  * Created by zhu8fei on 2017/5/7.
  */
 @MarkTestTarget(AnnotationTest.class)
-public class DataUtilsTest extends BaseTest {
+public class DataUtilsJunitTest extends BaseJunitTest {
 
     @DataSet(path = "/", value = "SimpleFileReader", run = false)
     @Test
