@@ -15,7 +15,6 @@ public class BaseEntity implements Serializable {
     private Date modifyTime;
     private Long modifyUser;
     private String modifyUserName;
-    static String TABLE_NAME = "aa";
     public static String Test() {
         return "";
     }
