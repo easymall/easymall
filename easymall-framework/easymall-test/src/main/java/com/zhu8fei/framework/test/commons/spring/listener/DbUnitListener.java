@@ -10,6 +10,7 @@ import org.slf4j.MDC;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ import java.util.UUID;
 /**
  * Created by zhu8fei on 2017/5/5.
  */
+@Component
 @Transactional
 public class DbUnitListener implements TestExecutionListener, ApplicationContextAware {
 
