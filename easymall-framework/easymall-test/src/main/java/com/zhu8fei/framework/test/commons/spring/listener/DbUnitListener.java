@@ -7,10 +7,6 @@ import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,14 +15,15 @@ import java.lang.reflect.Method;
 import java.util.UUID;
 
 /**
+ * 使用DataSet注解 预处理数据 , 对比操作结果
+ *
+ * @see DataSet
  * Created by zhu8fei on 2017/5/5.
  */
-@Component
 @Transactional
-public class DbUnitListener implements TestExecutionListener, ApplicationContextAware {
+public class DbUnitListener implements TestExecutionListener {
 
-    Logger logger = LoggerFactory.getLogger(getClass());
-    private ApplicationContext applicationContext;
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public void beforeTestClass(TestContext testContext) throws Exception {
@@ -36,7 +33,6 @@ public class DbUnitListener implements TestExecutionListener, ApplicationContext
     @Override
     public void prepareTestInstance(TestContext testContext) throws Exception {
         MDC.put("Trace", UUID.randomUUID().toString());
-        logger.debug("prepareTestInstance");
     }
 
     @Override
@@ -45,27 +41,21 @@ public class DbUnitListener implements TestExecutionListener, ApplicationContext
         DataSet dataSet = method.getAnnotation(DataSet.class);
         if (dataSet != null) {
             Class implClass = dataSet.impl();
-            MybatisTestProcessor mybatisTestProcessor = applicationContext.<MybatisTestProcessor>getBean(implClass);
+            MybatisTestProcessor mybatisTestProcessor = testContext.getApplicationContext().<MybatisTestProcessor>getBean(implClass);
             mybatisTestProcessor.insertPrepareData(method);
         }
-        logger.debug("beforeTestMethod");
     }
 
     @Override
     public void afterTestMethod(TestContext testContext) throws Exception {
-        logger.debug("afterTestMethod");
-        MDC.clear();
-    }
-
-    @Override
-    public void afterTestClass(TestContext testContext) throws Exception {
         Method method = testContext.getTestMethod();
         DataSet dataSet = method.getAnnotation(DataSet.class);
         if (dataSet != null) {
             Class implClass = dataSet.impl();
-            MybatisTestProcessor mybatisTestProcessor = applicationContext.<MybatisTestProcessor>getBean(implClass);
+            MybatisTestProcessor mybatisTestProcessor = testContext.getApplicationContext().<MybatisTestProcessor>getBean(implClass);
             DataCompareResult dataCompareResult = mybatisTestProcessor.compareResult(method);
-            if (dataCompareResult.isSuccess()) {
+
+            if (dataCompareResult != null && dataCompareResult.isSuccess()) {
                 logger.info("Data test result : success");
             } else {
                 logger.info("Data test result : failure");
@@ -73,11 +63,12 @@ public class DbUnitListener implements TestExecutionListener, ApplicationContext
             }
 
         }
-        logger.debug("afterTestClass");
+        MDC.clear();
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
+    public void afterTestClass(TestContext testContext) throws Exception {
+
     }
+
 }

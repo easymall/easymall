@@ -20,6 +20,9 @@ public class SimpleAbstractProcessor {
     protected SimpleMybatisMapper simpleMybatisMapper;
 
     protected List<SimpleTable> insert(List<PrepareBean> prepares) {
+        if(prepares == null){
+            return new ArrayList<>();
+        }
         List<SimpleTable> result = new ArrayList<>();
         for (PrepareBean prepare : prepares) {
             SimpleTable st = new SimpleTable();

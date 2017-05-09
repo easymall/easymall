@@ -22,10 +22,18 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
  * Created by zhu8fei on 2017/5/7.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {MybatisConfig.class, DataResourceConfig.class, EmptyConfig.class})
-@TestExecutionListeners(listeners = {DependencyInjectionTestExecutionListener.class,
+@ContextConfiguration(classes = {
+
+        MybatisConfig.class, DataResourceConfig.class, EmptyConfig.class
+
+})
+@TestExecutionListeners(listeners = {
+
+        DependencyInjectionTestExecutionListener.class,
         TransactionalTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
-        DbUnitListener.class})
+        DbUnitListener.class
+
+})
 @MarkTestTarget(MarkTestTarget.class)
 public class BaseSpringTest {
     protected Logger logger = LoggerFactory.getLogger(getClass());

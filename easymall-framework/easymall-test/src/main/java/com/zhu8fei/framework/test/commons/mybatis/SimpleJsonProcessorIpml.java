@@ -50,9 +50,13 @@ public class SimpleJsonProcessorIpml extends SimpleAbstractProcessor implements 
 
     @Override
     public DataCompareResult compareResult(Method method) throws EasyMallTestException {
+        // 读取数据
 
+        // 判断数据是否匹配.
 
-        return null;
+        // 处理结果并返回
+        DataCompareResult result = new DataCompareResult();
+        return result;
     }
 
 }

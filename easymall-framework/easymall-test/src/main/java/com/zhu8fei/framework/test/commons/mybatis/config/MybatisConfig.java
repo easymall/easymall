@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
@@ -18,8 +19,9 @@ import javax.sql.DataSource;
 /**
  * Created by zhu8fei on 2017/5/4.
  */
+@Configuration
 public class MybatisConfig implements TransactionManagementConfigurer {
-    Logger logger = LoggerFactory.getLogger(MybatisConfig.class);
+    private Logger logger = LoggerFactory.getLogger(MybatisConfig.class);
     @Autowired
     DataSource dataSource;
 
