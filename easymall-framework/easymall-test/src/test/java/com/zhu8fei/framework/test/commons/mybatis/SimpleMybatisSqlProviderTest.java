@@ -2,6 +2,7 @@ package com.zhu8fei.framework.test.commons.mybatis;
 
 import com.zhu8fei.framework.test.commons.BaseTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 /**
  * Created by zhu8fei on 2017/5/8.
  */
+@Ignore // 暂时忽略这个测试
 @MarkTestTarget
 public class SimpleMybatisSqlProviderTest extends BaseTest {
     private SimpleMybatisSqlProvider simpleMybatisSqlProvider;

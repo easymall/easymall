@@ -25,10 +25,11 @@ public class FindNotMakeTestClass {
     private Logger logger = LoggerFactory.getLogger(FindNotMakeTestClass.class);
     private static final String PROJECT_NAME_PRE = "easymall-";
     private static final String CLASS_NAME_PREFIX = "Test";
+    private static final String PACKAGE_NAME_PREFIX = "com.zhu8fei";
 
     @Test
     public void findNotMakeTest() {
-        Set<Class<?>> javaClass = getClasses("com.zhu8fei");
+        Set<Class<?>> javaClass = getClasses(PACKAGE_NAME_PREFIX);
 
         logger.info("============++++++++++++++==============");
         logger.info("写过并未添加测试的测试类:");

@@ -3,12 +3,13 @@ package com.zhu8fei.framework.test.commons.mybatis;
 import com.alibaba.fastjson.JSON;
 import com.zhu8fei.framework.test.commons.BaseTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
+import com.zhu8fei.framework.test.method.MethodTest;
 import org.junit.Test;
 
 /**
  * Created by zhu8fei on 2017/5/8.
  */
-@MarkTestTarget
+@MarkTestTarget(MethodTest.class)
 public class ExpectBeanTest extends BaseTest {
     @Test
     public void jsonFormat() {

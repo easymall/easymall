@@ -34,6 +34,7 @@
         <commonslang3.version>3.5</commonslang3.version>
         <commons-codec>1.9</commons-codec>
         <shiro.version>1.3.2</shiro.version>
+        <servlet.version>2.5</servlet.version>
         <!-- plugin version -->
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
@@ -228,7 +229,13 @@
                 <version>${dbcp2.version}</version>
             </dependency>
             <!-- mysql connection poll 依赖结束 -->
-
+            <!-- java ee 依赖 -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet.version}</version>
+            </dependency>
+            <!-- java ee 依赖结束  -->
             <!-- 测试 工具 依赖 -->
             <dependency>
                 <groupId>junit</groupId>

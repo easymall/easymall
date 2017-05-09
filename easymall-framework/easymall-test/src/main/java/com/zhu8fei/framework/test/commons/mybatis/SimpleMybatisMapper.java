@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by zhu8fei on 2017/5/6.
  */
-@Repository
+@Repository("simpleMybatisMapper")
 public interface SimpleMybatisMapper {
     @InsertProvider(type = SimpleMybatisSqlProvider.class, method = "insert")
     @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Long.class)
