@@ -1,6 +1,6 @@
-package com.zhu8fei.framework.common.mybatis.config;
+package com.zhu8fei.framework.test.commons.mybatis.config;
 
-import com.zhu8fei.framework.common.exception.EasyMallCommonException;
+import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -24,10 +24,10 @@ public class MybatisConfig implements TransactionManagementConfigurer {
     DataSource dataSource;
 
     @Bean(name = "sqlSessionFactory")
-    public SqlSessionFactory sqlSessionFactoryBean() throws EasyMallCommonException{
+    public SqlSessionFactory sqlSessionFactoryBean() throws EasyMallTestException{
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage("com.zhu8fei.**.mybatis");
+        bean.setTypeAliasesPackage("com.zhu8fei.**.mybatis.model");
 
         //分页插件
         // PageInterceptor pageHelper = new PageInterceptor();
@@ -44,7 +44,7 @@ public class MybatisConfig implements TransactionManagementConfigurer {
             return bean.getObject();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            throw new EasyMallCommonException(e);
+            throw new EasyMallTestException(e);
         }
     }
 

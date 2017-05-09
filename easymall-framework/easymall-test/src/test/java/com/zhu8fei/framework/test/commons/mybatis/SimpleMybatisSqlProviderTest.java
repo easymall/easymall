@@ -1,6 +1,7 @@
 package com.zhu8fei.framework.test.commons.mybatis;
 
 import com.zhu8fei.framework.test.commons.BaseTest;
+import com.zhu8fei.framework.test.commons.mybatis.mapper.SimpleMybatisSqlProvider;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.Ignore;
 import org.junit.Test;

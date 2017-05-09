@@ -1,4 +1,4 @@
-package com.zhu8fei.framework.common.mybatis.config;
+package com.zhu8fei.framework.test.commons.mybatis.config;
 
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;

@@ -1,6 +1,7 @@
-package com.zhu8fei.framework.test.commons.mybatis;
+package com.zhu8fei.framework.test.commons.mybatis.mapper;
 
 import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
+import com.zhu8fei.framework.test.commons.mybatis.SimpleTable;
 import org.apache.ibatis.jdbc.SQL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

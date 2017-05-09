@@ -320,6 +320,13 @@
                             <format>xml</format>
                         </formats>
                         <aggregate>true</aggregate>
+                        <instrumentation>
+                            <excludes>
+                                <!--此处用于指定哪些类会从单元测试的统计范围中被剔除 -->
+                                <exclude>**/Mock*.class</exclude>
+                                <exclude>**/Main.class</exclude>
+                            </excludes>
+                        </instrumentation>
                     </configuration>
                 </plugin>
             </plugins>

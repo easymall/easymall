@@ -3,19 +3,16 @@ package com.zhu8fei.framework.core.lang;
 import com.zhu8fei.framework.core.exception.EasyMallCoreException;
 import com.zhu8fei.framework.core.test.method.LangTest;
 import com.zhu8fei.framework.test.commons.BaseTest;
-import com.zhu8fei.framework.test.commons.spring.bean.EmptyConfig;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.springframework.test.context.ContextConfiguration;
 
 /**
  * Created by zhu8fei on 2017/5/7.
  */
 @MarkTestTarget(LangTest.class)
-@ContextConfiguration(classes = EmptyConfig.class)
 public class SimpleFileReaderTest extends BaseTest {
     @Rule
     public ExpectedException exception = ExpectedException.none();

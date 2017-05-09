@@ -1,4 +1,4 @@
-package com.zhu8fei.framework.common.mybatis;
+package com.zhu8fei.framework.test.commons.jdbc;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;

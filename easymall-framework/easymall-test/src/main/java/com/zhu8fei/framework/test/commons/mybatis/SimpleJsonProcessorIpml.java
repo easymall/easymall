@@ -5,10 +5,12 @@ import com.zhu8fei.framework.core.exception.EasyMallCoreException;
 import com.zhu8fei.framework.core.lang.SimpleFileReader;
 import com.zhu8fei.framework.test.commons.annotation.DataUtils;
 import com.zhu8fei.framework.test.commons.excel.EasyMallTestException;
+import com.zhu8fei.framework.test.commons.mybatis.mapper.SimpleMybatisMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
@@ -21,9 +23,7 @@ import java.util.Map;
 public class SimpleJsonProcessorIpml implements MybatisTestProcessor {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
-    //@Resource(name = "simpleMybatisMapper")
-    //@Autowired
-    // FIXME 囧!!! 无效配置.需要检查
+    @Resource(name = "simpleMybatisMapper")
     private SimpleMybatisMapper simpleMybatisMapper;
 
     @Override

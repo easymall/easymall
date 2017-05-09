@@ -1,7 +1,6 @@
 package com.zhu8fei.framework.common.mybatis.plugin;
 
-import com.zhu8fei.framework.common.mybatis.DataResourceConfig;
-import com.zhu8fei.framework.common.mybatis.config.MybatisConfig;
+
 import com.zhu8fei.framework.common.mybatis.mapper.UserMapper;
 import com.zhu8fei.framework.common.mybatis.model.User;
 import com.zhu8fei.framework.test.commons.TransactionalBaseTest;
@@ -9,7 +8,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
 
@@ -18,9 +16,8 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by zhu8fei on 2017/3/28.
  */
-@ContextConfiguration(classes = {MybatisConfig.class, DataResourceConfig.class})
-public class InsertSqlPluginTestTransactional extends TransactionalBaseTest {
-    Logger logger = LoggerFactory.getLogger(InsertSqlPluginTestTransactional.class);
+public class InsertSqlPluginTransactionalTest extends TransactionalBaseTest {
+    Logger logger = LoggerFactory.getLogger(InsertSqlPluginTransactionalTest.class);
     @Autowired
     UserMapper userMapper;
 

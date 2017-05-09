@@ -1,5 +1,7 @@
 package com.zhu8fei.framework.test.commons;
 
+import com.zhu8fei.framework.test.commons.jdbc.DataResourceConfig;
+import com.zhu8fei.framework.test.commons.mybatis.config.MybatisConfig;
 import com.zhu8fei.framework.test.commons.spring.bean.EmptyConfig;
 import com.zhu8fei.framework.test.commons.spring.listener.DbUnitListener;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
@@ -19,7 +21,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
  * Created by zhu8fei on 2017/5/7.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = EmptyConfig.class)
+@ContextConfiguration(classes = {MybatisConfig.class, DataResourceConfig.class, EmptyConfig.class})
 @TestExecutionListeners(listeners = {DependencyInjectionTestExecutionListener.class,
         TransactionalTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
         DbUnitListener.class})

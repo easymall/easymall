@@ -1,5 +1,6 @@
-package com.zhu8fei.framework.test.commons.mybatis;
+package com.zhu8fei.framework.test.commons.mybatis.mapper;
 
+import com.zhu8fei.framework.test.commons.mybatis.SimpleTable;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
@@ -10,7 +11,7 @@ import java.util.Map;
 /**
  * Created by zhu8fei on 2017/5/6.
  */
-@Repository("simpleMybatisMapper")
+@Repository
 public interface SimpleMybatisMapper {
     @InsertProvider(type = SimpleMybatisSqlProvider.class, method = "insert")
     @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Long.class)

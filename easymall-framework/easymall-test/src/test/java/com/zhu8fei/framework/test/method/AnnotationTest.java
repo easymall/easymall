@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.method;
 
-import com.zhu8fei.framework.test.TestAll;
+import com.zhu8fei.framework.TestAll;
 import com.zhu8fei.framework.test.commons.annotation.DataUtilsTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.runner.RunWith;

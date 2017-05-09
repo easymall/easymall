@@ -2,7 +2,7 @@ package com.zhu8fei.framework.core.test.method;
 
 
 import com.zhu8fei.framework.core.lang.SimpleFileReaderTest;
-import com.zhu8fei.framework.test.TestAll;
+import com.zhu8fei.framework.TestAll;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

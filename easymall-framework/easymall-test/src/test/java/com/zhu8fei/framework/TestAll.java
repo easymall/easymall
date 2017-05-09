@@ -1,4 +1,4 @@
-package com.zhu8fei.framework.test;
+package com.zhu8fei.framework;
 
 import com.zhu8fei.framework.core.test.method.LangTest;
 import com.zhu8fei.framework.test.commons.utils.FindNotMakeTestClass;
