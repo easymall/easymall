@@ -57,22 +57,6 @@ public class DataSetAnnotationUtils {
     }
 
     /**
-     * 返回主键名
-     *
-     * @param method
-     * @return
-     * @throws EasyMallTestException
-     */
-    public static String getDataKeyName(Method method) throws EasyMallTestException {
-        if (method == null) {
-            throw new EasyMallTestException("Test method is not be null");
-        }
-        DataSet dataSet = method.getAnnotation(DataSet.class);
-        String keyName = dataSet.key();
-        return keyName;
-    }
-
-    /**
      * 直接返回数据内容
      *
      * @param method

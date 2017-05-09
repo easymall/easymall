@@ -19,7 +19,7 @@ public class SimpleAbstractProcessor {
     @Resource(name = "simpleMybatisMapper")
     protected SimpleMybatisMapper simpleMybatisMapper;
 
-    protected List<SimpleTable> insert(List<PrepareBean> prepares, String keyName) {
+    protected List<SimpleTable> insert(List<PrepareBean> prepares) {
         if (prepares == null) {
             return new ArrayList<>();
         }

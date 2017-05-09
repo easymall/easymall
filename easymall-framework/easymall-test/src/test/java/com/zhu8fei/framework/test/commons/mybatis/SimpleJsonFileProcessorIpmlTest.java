@@ -31,7 +31,7 @@ public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest
          "               \"column\": \"real_name%\"," +
          "          }" +
          "     }]" +
-         "}", log = true)
+         "}")
     @Test
     public void DataSetAnnotationTest() {
         logger.info(" 谁知道呢. ");

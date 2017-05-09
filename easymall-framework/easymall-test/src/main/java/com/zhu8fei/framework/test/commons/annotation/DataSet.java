@@ -75,11 +75,5 @@ public @interface DataSet {
      * @return
      */
     boolean log() default false;
-
-    /**
-     * 主键名
-     * @return
-     */
-    String key() default "id";
 }
 
