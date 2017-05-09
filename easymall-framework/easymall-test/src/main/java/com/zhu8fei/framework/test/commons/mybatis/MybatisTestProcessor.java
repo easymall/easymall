@@ -18,7 +18,7 @@ public interface MybatisTestProcessor {
      *
      * @param method
      */
-    void dataInsert(Method method) throws EasyMallTestException;
+    void insertPrepareData(Method method) throws EasyMallTestException;
 
     /**
      * 通过给定的测试方法获取其注解. 获取测试结果数据文件. 并进行比对.

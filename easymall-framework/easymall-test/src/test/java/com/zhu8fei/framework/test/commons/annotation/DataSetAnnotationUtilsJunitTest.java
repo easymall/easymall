@@ -12,13 +12,13 @@ import java.lang.reflect.Method;
  * Created by zhu8fei on 2017/5/7.
  */
 @MarkTestTarget(AnnotationTest.class)
-public class DataUtilsJunitTest extends BaseJunitTest {
+public class DataSetAnnotationUtilsJunitTest extends BaseJunitTest {
 
     @DataSet(path = "/", value = "SimpleFileReader", run = false)
     @Test
     public void dataSetFileName() throws Exception {
         Method method = getClass().getMethod("dataSetFileName");
-        String fileName = DataUtils.dataSetFileName(method);
+        String fileName = DataSetAnnotationUtils.dataSetFileName(method);
         logger.info(fileName);
     }
 
@@ -26,7 +26,7 @@ public class DataUtilsJunitTest extends BaseJunitTest {
     @Test
     public void dataSetFileNameToDot() throws Exception {
         Method method = getClass().getMethod("dataSetFileNameToDot");
-        String fileName = DataUtils.dataSetFileName(method);
+        String fileName = DataSetAnnotationUtils.dataSetFileName(method);
         logger.info(fileName);
         Assert.assertTrue(fileName.contains("com/zhu8fei/framework/test/commons/annotation/SimpleFileReader.json"));
     }

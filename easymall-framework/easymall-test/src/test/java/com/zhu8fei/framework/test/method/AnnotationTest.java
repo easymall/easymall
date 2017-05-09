@@ -1,7 +1,7 @@
 package com.zhu8fei.framework.test.method;
 
 import com.zhu8fei.framework.TestAll;
-import com.zhu8fei.framework.test.commons.annotation.DataUtilsJunitTest;
+import com.zhu8fei.framework.test.commons.annotation.DataSetAnnotationUtilsJunitTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -11,7 +11,7 @@ import org.junit.runners.Suite;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({DataUtilsJunitTest.class})
+@Suite.SuiteClasses({DataSetAnnotationUtilsJunitTest.class})
 @MarkTestTarget(TestAll.class)
 public class AnnotationTest {
 }

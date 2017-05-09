@@ -9,11 +9,32 @@ import java.lang.reflect.Method;
  * DataSet注解工具类
  * Created by zhu8fei on 2017/5/7.
  */
-public class DataUtils {
+public class DataSetAnnotationUtils {
     private static final String DOT = ".";
     private static final String DEFAULT_NAME = "data";
     private static final String DEFAULT_TYPE = "json";
 
+    public static boolean isLog(Method method) throws EasyMallTestException {
+        if (method == null) {
+            throw new EasyMallTestException("Test method is not be null");
+        }
+        DataSet dataSet = method.getAnnotation(DataSet.class);
+        return dataSet.log();
+    }
+    /**
+     * 直接返回数据内容
+     * @param method
+     * @return
+     * @throws EasyMallTestException
+     */
+    public static String dataContext(Method method) throws EasyMallTestException {
+        if (method == null) {
+            throw new EasyMallTestException("Test method is not be null");
+        }
+        DataSet dataSet = method.getAnnotation(DataSet.class);
+        String context = dataSet.value();
+        return context;
+    }
     /**
      * 返回预处理数据文件路径
      *
@@ -27,7 +48,7 @@ public class DataUtils {
         }
         DataSet dataSet = method.getAnnotation(DataSet.class);
         String path = dataSet.path();
-        String file = dataSet.value();
+        String file = dataSet.file();
         String type = dataSet.type();
 
         return getPath(method, path, file, type);
@@ -57,7 +78,7 @@ public class DataUtils {
             Class clz = method.getDeclaringClass();
             path = clz.getResource(".").getFile();
         } else {
-            path = DataUtils.class.getResource("/").getFile() + path;
+            path = DataSetAnnotationUtils.class.getResource("/").getFile() + path;
         }
         return path + file + DOT + type;
     }

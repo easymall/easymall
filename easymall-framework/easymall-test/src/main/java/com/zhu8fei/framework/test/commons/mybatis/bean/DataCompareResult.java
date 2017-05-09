@@ -9,6 +9,7 @@ import java.util.Map;
  * Created by zhu8fei on 2017/5/7.
  */
 public class DataCompareResult {
+    public static final String index = "";
     private boolean success = true;
     private List<Map<String, Object>> diffRows;
 
