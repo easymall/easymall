@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Created by zhu8fei on 2017/5/10.
@@ -24,20 +26,22 @@ public class FileUtilsTest extends BaseJunitTest {
     public void createFileTest() throws IOException {
         logger.info("user.dir : {}", projectDir);
         // 日志.log文件 会被git忽略
+        FileUtils.createFile(projectDir+"\\a\\a.log");
         FileUtils.createFile(projectDir + "\\a.log");
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("is a directory");
-        FileUtils.createFile(projectDir);
+        Files.delete(Paths.get(projectDir + "\\a.log"));
+        Files.delete(Paths.get(projectDir + "\\a\\a.log"));
+        Files.delete(Paths.get(projectDir + "\\a"));
     }
 
     @Test
     public void createDirTest() throws IOException {
         logger.info("user.dir : {}", projectDir);
         // 日志.log文件 会被git忽略
-        FileUtils.mkdir(projectDir + "\\a");
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("is a file");
-        FileUtils.mkdir(projectDir + "\\a.log");
-
+        FileUtils.mkdir(projectDir + "\\b.log");
+        Files.delete(Paths.get(projectDir + "\\b.log"));
+        FileUtils.mkdir(projectDir + "\\b\\b");
+        FileUtils.mkdir(projectDir + "\\b");
+        Files.delete(Paths.get(projectDir + "\\b\\b"));
+        Files.delete(Paths.get(projectDir + "\\b"));
     }
 }

@@ -1,5 +1,7 @@
 package com.zhu8fei.framework.test.commons.utils;
 
+import com.zhu8fei.framework.core.lang.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -7,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.JarURLConnection;
 import java.net.URL;
@@ -28,6 +31,10 @@ public class FindNotMakeTestClass {
     @Before
     public void init() {
         logPath = System.getProperty("findClassLogPath");
+        if (StringUtils.isEmpty(logPath)) {
+            logger.warn("看到这句话,正常情况是,你手动启动了test case");
+            logPath = System.getProperty("user.dir") + "/target/logs/findClass.log";
+        }
     }
 
     private Logger logger = LoggerFactory.getLogger(FindNotMakeTestClass.class);
@@ -38,9 +45,8 @@ public class FindNotMakeTestClass {
     @Test
     public void findNotMakeTest() {
         Set<Class<?>> javaClass = getClasses(PACKAGE_NAME_PREFIX);
-
-        logInfo("============++++++++++++++==============");
-        logInfo("写过并未添加测试的测试类:");
+        // WTF windows
+        logInfo("============    project : " + System.getProperty("user.dir") + " Without control Test cases:   ==============\n");
         for (Class<?> clazz : javaClass) {
             if (clazz.getName().indexOf("$") != -1) {
                 // 不监视内部类等
@@ -58,8 +64,9 @@ public class FindNotMakeTestClass {
                 }
             }
         }
-
-        logInfo("============++++++++++++++==============");
+        logInfo("\n");
+        logInfo("============+++++++++++++++++++++++++++++++++++++++++++++++++==============");
+        logInfo("\n\n");
     }
 
     /**
@@ -216,7 +223,18 @@ public class FindNotMakeTestClass {
     private void logInfo(String msg) {
         if (logPath == null) {
             logger.info(msg);
+        } else {
+            try {
+                FileUtils.createFile(logPath);
+                // WTF windows
+                FileWriter fw = new FileWriter(logPath, true);
+                fw.write(msg);
+                fw.write("\n");
+                fw.flush();
+                fw.close();
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+            }
         }
-
     }
 }

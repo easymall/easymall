@@ -3,12 +3,13 @@ package com.zhu8fei.framework.test.commons.mybatis;
 import com.zhu8fei.framework.test.commons.BaseTransactionalSpringTest;
 import com.zhu8fei.framework.test.commons.annotation.DataSet;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
+import com.zhu8fei.framework.test.method.PrepareAndExpectSqlTest;
 import org.junit.Test;
 
 /**
  * Created by zhu8fei on 2017/5/9.
  */
-@MarkTestTarget
+@MarkTestTarget(PrepareAndExpectSqlTest.class)
 public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest {
 
     @DataSet(value = "{" +
