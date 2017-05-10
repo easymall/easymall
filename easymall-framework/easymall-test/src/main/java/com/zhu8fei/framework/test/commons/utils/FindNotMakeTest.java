@@ -23,7 +23,7 @@ import java.util.jar.JarFile;
 /**
  * @author zhu8fei Wong
  */
-@MarkTestTarget()
+@MarkTestTarget(MarkTestTarget.class)
 public class FindNotMakeTest {
     private String logPath = null;
 
@@ -58,7 +58,7 @@ public class FindNotMakeTest {
                     continue;
                 }
                 Class[] testTypes = mtt.value();
-                if ( testTypes.length == 0) {
+                if (testTypes.length == 0) {
                     logInfo(clazz.getName());
                 }
             }
@@ -129,7 +129,7 @@ public class FindNotMakeTest {
                                 if (idx != -1) {
                                     // 获取包名 把"/"替换成"."
                                     packageName = name.substring(0, idx).replace('/', '.');
-                                    if (!packageName.contains(pack) ) {
+                                    if (!packageName.contains(pack)) {
                                         return null;
                                     }
                                 }
@@ -185,7 +185,7 @@ public class FindNotMakeTest {
             return;
         }
         // 如果存在 就获取包下的所有文件 包括目录
-        File[] dirfiles = dir.listFiles((file)-> {
+        File[] dirfiles = dir.listFiles((file) -> {
             // 自定义过滤规则 如果可以循环(包含子目录) 或则是以.class结尾的文件(编译好的java类文件)
             return (file.isDirectory()) || (file.getName().endsWith(".class"));
         });
