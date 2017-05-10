@@ -25,7 +25,7 @@ import java.util.jar.JarFile;
  * @author zhu8fei Wong
  */
 @MarkTestTarget(MarkTestTarget.class)
-public class FindNotMakeTestClass {
+public class FindNotMakeTest {
     private String logPath = null;
 
     @Before
@@ -37,7 +37,7 @@ public class FindNotMakeTestClass {
         }
     }
 
-    private Logger logger = LoggerFactory.getLogger(FindNotMakeTestClass.class);
+    private Logger logger = LoggerFactory.getLogger(FindNotMakeTest.class);
     private static final String PROJECT_NAME_PRE = "easymall-";
     private static final String CLASS_NAME_PREFIX = "Test";
     private static final String PACKAGE_NAME_PREFIX = "com.zhu8fei";
@@ -146,7 +146,7 @@ public class FindNotMakeTestClass {
                                 }
                                 // 去掉后面的".class" 获取真正的类名
                                 String className = name.substring(packageName.length() + 1, name.length() - 6);
-                                if (className.indexOf(CLASS_NAME_PREFIX) < 0) {
+                                if (!className.contains(CLASS_NAME_PREFIX)) {
                                     continue;
                                 }
                                 try {
