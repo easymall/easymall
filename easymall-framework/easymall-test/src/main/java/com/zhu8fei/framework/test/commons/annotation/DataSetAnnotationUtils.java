@@ -1,9 +1,9 @@
 package com.zhu8fei.framework.test.commons.annotation;
 
+import com.zhu8fei.framework.core.exception.EasyMallCoreException;
+import com.zhu8fei.framework.core.lang.SimpleFileReader;
 import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
 import com.zhu8fei.framework.test.commons.mybatis.MybatisTestProcessor;
-import com.zhu8fei.framework.test.commons.mybatis.SimpleJsonFileProcessorIpml;
-import com.zhu8fei.framework.test.commons.mybatis.SimpleJsonProcessorIpml;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Method;
@@ -41,18 +41,13 @@ public class DataSetAnnotationUtils {
         }
         DataSet dataSet = method.getAnnotation(DataSet.class);
 
-        // xxx 想不明白这个注册器要怎么写了.
-
         String type = dataSet.type();
-        String value = dataSet.value();
-        if("json".equals(type)){
-            if(StringUtils.isEmpty(value)){
-                return SimpleJsonFileProcessorIpml.class;
-            }else{
-                return SimpleJsonProcessorIpml.class;
-            }
+
+        Class<? extends MybatisTestProcessor> clz = DataSetProcessorEnum.getProcessorType(type);
+        if (clz == null) {
+            throw new EasyMallTestException("实现类型(DataSet.type)错误");
         }
-        throw new EasyMallTestException("实现类型错误");
+        return clz;
     }
 
     /**
@@ -83,7 +78,17 @@ public class DataSetAnnotationUtils {
         }
         DataSet dataSet = method.getAnnotation(DataSet.class);
         String context = dataSet.value();
+        if (StringUtils.isNotEmpty(context)) {
+            return context;
+        }
+        try {
+            context =  SimpleFileReader.readAnFileContext(DataSetAnnotationUtils.dataSetFileName(method));
+        } catch (EasyMallCoreException e) {
+            throw new EasyMallTestException(e.getMessage(), e);
+        }
+
         return context;
+
     }
 
     /**
@@ -112,9 +117,9 @@ public class DataSetAnnotationUtils {
      * 返回路径
      *
      * @param method 测试方法
-     * @param path 文件地址(不包含文件名)
-     * @param file 文件名
-     * @param type 文件类型
+     * @param path   文件地址(不包含文件名)
+     * @param file   文件名
+     * @param type   文件类型
      * @return 返回文件内容
      * @throws EasyMallTestException
      */

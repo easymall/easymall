@@ -1,7 +1,5 @@
 package com.zhu8fei.framework.test.commons.annotation;
 
-import com.zhu8fei.framework.test.commons.mybatis.SimpleJsonProcessorIpml;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -36,11 +34,13 @@ public @interface DataSet {
 
     /**
      * 文件路径
+     * value存在则不使用此字段
      */
     String path() default ".";
 
     /**
      * 文件名
+     * value存在则不使用此字段
      */
     String file() default "";
 
