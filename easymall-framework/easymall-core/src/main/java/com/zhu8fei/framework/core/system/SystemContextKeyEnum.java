@@ -6,7 +6,7 @@ import org.springframework.util.StringUtils;
  * Created by zhu8fei on 2017/3/18.
  */
 public enum SystemContextKeyEnum {
-    userId_, userName_, local_,;
+    userId_, userName_, local_, trace_,;
 
     private SystemContextKeyEnum() {
     }

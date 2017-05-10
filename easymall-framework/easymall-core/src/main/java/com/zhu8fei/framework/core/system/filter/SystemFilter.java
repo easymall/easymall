@@ -2,8 +2,7 @@ package com.zhu8fei.framework.core.system.filter;
 
 import com.zhu8fei.framework.core.system.SystemContext;
 import com.zhu8fei.framework.core.system.trace.Trace;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import java.io.IOException;
  * 系统日志
  */
 public class SystemFilter implements Filter {
-    private Logger logger = LoggerFactory.getLogger(SystemFilter.class);
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }
@@ -27,8 +25,10 @@ public class SystemFilter implements Filter {
         // 目前只生成线程编号.
         Trace trace = new Trace();
         SystemContext.setTrace(trace.getThreadTrace());
-        logger.debug("run filter?");
+        MDC.put("Trace", SystemContext.getTrace());
+        System.out.println("  filer is running  ");
         filterChain.doFilter(request, response);
+        MDC.clear();
         SystemContext.clean();
     }
 
