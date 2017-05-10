@@ -1,7 +1,7 @@
-package com.zhu8fei.framework.core.test.method;
+package com.zhu8fei.framework.core.method;
 
 
-import com.zhu8fei.framework.TestAll;
+import com.zhu8fei.framework.CoreTestAll;
 import com.zhu8fei.framework.core.lang.FileUtilsTest;
 import com.zhu8fei.framework.core.lang.SimpleFileReaderJunitTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
         SimpleFileReaderJunitTest.class , FileUtilsTest.class
 
 })
-@MarkTestTarget(TestAll.class)
+@MarkTestTarget(CoreTestAll.class)
 public class LangTest {
 
 }

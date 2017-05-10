@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="logLayout"
+              value="[%yellow(%d{MM-dd HH:mm:ss.SSS})] [ %highlight(%-5level)] [%magenta(%-15.15thread)] [%blue(%-22.22X{Trace})] [%green(%-42.42logger{42}:%-4.4L)] : %msg%n"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoder 默认配置为PatternLayoutEncoder -->
+        <encoder charset="UTF-8">
+            <!--<pattern>[%-5level] [%d{MM-dd HH:mm:ss.SSS}] [%thread] [%-22X{Trace}] [%logger{36}:%L] - %msg%n</pattern> -->
+            <pattern>${logLayout}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="ROOT" level="debug" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="org" level="error" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="net" level="error" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="console"/>
+    </root>
+
+</configuration>
