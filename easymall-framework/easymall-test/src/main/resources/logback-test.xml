@@ -15,7 +15,7 @@
     <logger name="ROOT" level="debug" additivity="false">
         <appender-ref ref="console"/>
     </logger>
-    <logger name="org.springframework" level="error" additivity="false">
+    <logger name="org" level="error" additivity="false">
         <appender-ref ref="console"/>
     </logger>
 
