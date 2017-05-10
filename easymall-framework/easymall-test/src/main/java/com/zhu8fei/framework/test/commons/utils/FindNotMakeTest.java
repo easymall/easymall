@@ -104,11 +104,6 @@ public class FindNotMakeTest {
                     try {
                         // 获取jar
                         jar = ((JarURLConnection) url.openConnection()).getJarFile();
-
-                        String jarName = jar.getName();
-                        if (!jarName.contains(PROJECT_NAME_PRE)) {
-                            return null;
-                        }
                         // 从此jar包 得到一个枚举类
                         Enumeration<JarEntry> entries = jar.entries();
                         // 同样的进行循环迭代
@@ -132,9 +127,7 @@ public class FindNotMakeTest {
                                     if (!packageName.contains(pack)) {
                                         return null;
                                     }
-                                }
-                                // 如果可以迭代下去 并且是一个包
-                                if ((idx == -1)) {
+                                } else {
                                     continue;
                                 }
                                 // 如果是一个.class文件 而且不是目录

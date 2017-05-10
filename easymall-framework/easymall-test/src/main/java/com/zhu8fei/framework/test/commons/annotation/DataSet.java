@@ -9,9 +9,6 @@ import java.lang.annotation.RetentionPolicy;
  * 预处理数据.提供测试开始时的数据
  * prepare 准备数据
  * expect 预期数据
- * <p>
- * <p>
- * <p>
  * Created by zhu8fei on 2017/5/7.
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -39,40 +36,26 @@ public @interface DataSet {
 
     /**
      * 文件路径
-     *
-     * @return
      */
     String path() default ".";
 
     /**
      * 文件名
-     *
-     * @return
      */
     String file() default "";
 
     /**
      * 文件类型
-     *
-     * @return
      */
     String type() default "json";
 
     /**
      * 是否执行数据验证处理
-     * @return
      */
     boolean run() default true;
 
     /**
-     * 默认数据处理类型
-     * @return
-     */
-    Class impl() default SimpleJsonProcessorIpml.class;
-
-    /**
      * 是否打印日志
-     * @return
      */
     boolean log() default false;
 }

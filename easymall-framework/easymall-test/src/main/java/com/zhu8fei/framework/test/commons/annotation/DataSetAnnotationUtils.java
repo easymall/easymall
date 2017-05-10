@@ -1,6 +1,9 @@
 package com.zhu8fei.framework.test.commons.annotation;
 
 import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
+import com.zhu8fei.framework.test.commons.mybatis.MybatisTestProcessor;
+import com.zhu8fei.framework.test.commons.mybatis.SimpleJsonFileProcessorIpml;
+import com.zhu8fei.framework.test.commons.mybatis.SimpleJsonProcessorIpml;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Method;
@@ -32,12 +35,24 @@ public class DataSetAnnotationUtils {
      * @return 实现类名
      * @throws EasyMallTestException
      */
-    public static Class getImplName(Method method) throws EasyMallTestException {
+    public static Class<? extends MybatisTestProcessor> getImplName(Method method) throws EasyMallTestException {
         if (method == null) {
             throw new EasyMallTestException("Test method is not be null");
         }
         DataSet dataSet = method.getAnnotation(DataSet.class);
-        return dataSet.impl();
+
+        // xxx 想不明白这个注册器要怎么写了.
+
+        String type = dataSet.type();
+        String value = dataSet.value();
+        if("json".equals(type)){
+            if(StringUtils.isEmpty(value)){
+                return SimpleJsonFileProcessorIpml.class;
+            }else{
+                return SimpleJsonProcessorIpml.class;
+            }
+        }
+        throw new EasyMallTestException("实现类型错误");
     }
 
     /**

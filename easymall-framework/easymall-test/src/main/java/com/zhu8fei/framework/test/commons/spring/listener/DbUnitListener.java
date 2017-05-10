@@ -49,7 +49,7 @@ public class DbUnitListener extends AbstractTestExecutionListener implements Tes
         Method method = testContext.getTestMethod();
         if (DataSetAnnotationUtils.isRun(method)) {
             MybatisTestProcessor mybatisTestProcessor = testContext.
-                    getApplicationContext().<MybatisTestProcessor>getBean(DataSetAnnotationUtils.getImplName(method));
+                    getApplicationContext().getBean(DataSetAnnotationUtils.getImplName(method));
             mybatisTestProcessor.insertPrepareData(method);
         }
     }
@@ -59,7 +59,7 @@ public class DbUnitListener extends AbstractTestExecutionListener implements Tes
         Method method = testContext.getTestMethod();
         if (DataSetAnnotationUtils.isRun(method)) {
             MybatisTestProcessor mybatisTestProcessor = testContext.
-                    getApplicationContext().<MybatisTestProcessor>getBean(DataSetAnnotationUtils.getImplName(method));
+                    getApplicationContext().getBean(DataSetAnnotationUtils.getImplName(method));
             boolean success = mybatisTestProcessor.compareResult(method);
             if (!success) {
                 logger.info("Data test result : failure");
