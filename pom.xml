@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
     <properties>
         <!-- 是否跳过测试 -->
-        <test.skip>false</test.skip>
+        <maven.test.skip>true</maven.test.skip>
         <!-- jar version -->
         <spring.version>4.3.7.RELEASE</spring.version>
         <spring.boot.version>1.5.3.RELEASE</spring.boot.version>
@@ -315,7 +315,7 @@
                                 <value>true</value>
                             </property>
                         </systemProperties>
-                        <skipTests>${test.skip}</skipTests>
+                        <skipTests>${maven.test.skip}</skipTests>
                         <excludes>
                             <exclude>**/*Test.java</exclude>
                         </excludes>

@@ -1,5 +1,6 @@
 package com.zhu8fei.framework.core.system;
 
+import com.zhu8fei.framework.core.method.SystemTest;
 import com.zhu8fei.framework.test.commons.BaseSpringBootTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by zhu8fei on 2017/5/10.
  */
-@MarkTestTarget
+@MarkTestTarget(SystemTest.class)
 public class FilterTest extends BaseSpringBootTest {
     @Test
     public void request() throws Exception {
