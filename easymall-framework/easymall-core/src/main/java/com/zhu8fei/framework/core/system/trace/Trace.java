@@ -10,7 +10,7 @@ public class Trace {
     private final String threadTrace;
 
     public Trace() {
-        // FIXME UUID 算法性能略差,复杂度比较高,比较适合加密使用  此处需要修改为 高效随机算法. 粗略尝试,MAC pro 计算结果为300k dps
+        // XXX UUID 算法性能略差,复杂度比较高,比较适合加密使用  此处需要修改为 高效随机算法. 粗略尝试,MAC pro 计算结果为300k dps
         threadTrace = UUID.randomUUID().toString();
     }
 
