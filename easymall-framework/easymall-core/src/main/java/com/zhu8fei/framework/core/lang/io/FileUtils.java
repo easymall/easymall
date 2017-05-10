@@ -14,18 +14,19 @@ public class FileUtils {
      *
      * @param file
      */
-    public static void createFile(File file) throws IOException {
+    public static boolean createFile(File file) throws IOException {
         Assert.notNull(file, "File not be null");
         if (file.isDirectory()) {
             throw new IllegalArgumentException("File : " + file.getAbsolutePath() + " is a directory !");
         }
         if (file.exists()) {
-            return;
+            return true;
         }
         if (!file.getParentFile().exists()) {
             mkdir(file.getParentFile());
         }
         file.createNewFile();
+        return true;
     }
 
     /**
@@ -33,9 +34,9 @@ public class FileUtils {
      *
      * @param file
      */
-    public static void createFile(String file) throws IOException {
+    public static boolean createFile(String file) throws IOException {
         Assert.notNull(file, "File not be null");
-        createFile(new File(file));
+        return createFile(new File(file));
     }
 
     /**
@@ -43,9 +44,9 @@ public class FileUtils {
      *
      * @param file
      */
-    public static void mkdir(String file) throws IOException {
+    public static boolean mkdir(String file) throws IOException {
         Assert.notNull(file, "directory not be null");
-        mkdir(new File(file));
+        return mkdir(new File(file));
     }
 
     /**
@@ -53,18 +54,19 @@ public class FileUtils {
      *
      * @param file
      */
-    public static void mkdir(File file) throws IOException {
+    public static boolean mkdir(File file) throws IOException {
         Assert.notNull(file, "directory not be null");
 
         if (file.isFile()) {
             throw new IllegalArgumentException("File : " + file.getAbsolutePath() + " is a file !");
         }
         if (file.exists()) {
-            return;
+            return true;
         }
         if (!file.getParentFile().exists()) {
             mkdir(file.getParentFile());
         }
         file.mkdir();
+        return true;
     }
 }
