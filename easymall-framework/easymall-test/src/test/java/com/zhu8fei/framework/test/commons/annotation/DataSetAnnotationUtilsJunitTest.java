@@ -28,6 +28,6 @@ public class DataSetAnnotationUtilsJunitTest extends BaseJunitTest {
         Method method = getClass().getMethod("dataSetFileNameToDot");
         String fileName = DataSetAnnotationUtils.dataSetFileName(method);
         logger.info(fileName);
-        Assert.assertTrue(fileName.contains("com/zhu8fei/framework/test/commons/annotation/SimpleFileReader.json"));
+        Assert.assertTrue(fileName.contains("com/zhu8fei/framework/test/commons/annotation/DataSetAnnotationUtilsJunitTest.dataSetFileNameToDot.json"));
     }
 }

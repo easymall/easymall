@@ -2,13 +2,14 @@ package com.zhu8fei.framework.test.system;
 
 import com.zhu8fei.framework.test.commons.BaseJunitTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
+import com.zhu8fei.framework.test.method.SystemTest;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
  * Created by zhu8fei on 2017/5/10.
  */
-@MarkTestTarget(System.class)
+@MarkTestTarget(SystemTest.class)
 public class MavenPropertyTest extends BaseJunitTest {
     @Test
     public void getMavenProperty() {

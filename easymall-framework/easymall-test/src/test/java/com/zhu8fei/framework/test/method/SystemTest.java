@@ -12,7 +12,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 
-        MavenPropertyTest.class
+        MavenPropertyTest.class, MavenPropertyTest.class
 
 })
 @MarkTestTarget(TestAll.class)
