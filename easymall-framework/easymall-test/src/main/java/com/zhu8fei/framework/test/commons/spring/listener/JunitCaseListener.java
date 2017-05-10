@@ -22,12 +22,12 @@ import java.util.UUID;
  * Created by zhu8fei on 2017/5/5.
  */
 @Transactional
-public class DbUnitListener extends AbstractTestExecutionListener implements TestExecutionListener {
+public class JunitCaseListener extends AbstractTestExecutionListener implements TestExecutionListener {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
-     * Returns {@code 4500}.
+     * Returns {@code 2500}.
      */
     @Override
     public final int getOrder() {

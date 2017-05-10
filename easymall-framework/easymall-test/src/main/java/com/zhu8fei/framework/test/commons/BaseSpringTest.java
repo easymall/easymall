@@ -3,7 +3,7 @@ package com.zhu8fei.framework.test.commons;
 import com.zhu8fei.framework.test.commons.jdbc.DataResourceConfig;
 import com.zhu8fei.framework.test.commons.mybatis.config.MybatisConfig;
 import com.zhu8fei.framework.test.commons.spring.bean.EmptyConfig;
-import com.zhu8fei.framework.test.commons.spring.listener.DbUnitListener;
+import com.zhu8fei.framework.test.commons.spring.listener.JunitCaseListener;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.After;
 import org.junit.Before;
@@ -34,7 +34,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 
         DependencyInjectionTestExecutionListener.class,
         TransactionalTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
-        DbUnitListener.class
+        JunitCaseListener.class
 
 })
 @MarkTestTarget(MarkTestTarget.class)

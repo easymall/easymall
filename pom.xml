@@ -34,7 +34,7 @@
         <commonslang3.version>3.5</commonslang3.version>
         <commons-codec>1.9</commons-codec>
         <shiro.version>1.3.2</shiro.version>
-        <servlet.version>2.5</servlet.version>
+        <servlet.version>3.1.0</servlet.version>
         <!-- plugin version -->
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
@@ -234,7 +234,7 @@
             <!-- java ee 依赖 -->
             <dependency>
                 <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
+                <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet.version}</version>
             </dependency>
             <!-- java ee 依赖结束  -->
@@ -244,7 +244,11 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
