@@ -34,7 +34,19 @@ public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest
          "     }]" +
          "}",log=true)
     @Test
-    public void DataSetAnnotationTest() {
+    public void dataSetAnnotationTest() {
+        logger.info(" 谁知道呢. ");
+    }
+
+    @Test
+    @DataSet(impl = SimpleJsonFileProcessorIpml.class)
+    public void dataSetFileTest() {
+        logger.info(" 谁知道呢. ");
+    }
+
+    @Test
+    @DataSet(path = "/", file = "SimpleFileReader", impl = SimpleJsonFileProcessorIpml.class)
+    public void dataSetTest() {
         logger.info(" 谁知道呢. ");
     }
 }

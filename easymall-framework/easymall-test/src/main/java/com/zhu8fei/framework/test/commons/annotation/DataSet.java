@@ -49,7 +49,7 @@ public @interface DataSet {
      *
      * @return
      */
-    String file() default "data";
+    String file() default "";
 
     /**
      * 文件类型

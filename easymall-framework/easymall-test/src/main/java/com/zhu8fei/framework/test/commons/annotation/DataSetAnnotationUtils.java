@@ -17,9 +17,8 @@ public class DataSetAnnotationUtils {
     /**
      * 是否运行
      *
-     * @param method
-     * @return
-     * @throws EasyMallTestException
+     * @param method 测试方法
+     * @return 是否运行
      */
     public static boolean isRun(Method method) {
         DataSet dataSet = method.getAnnotation(DataSet.class);
@@ -29,8 +28,8 @@ public class DataSetAnnotationUtils {
     /**
      * 是否运行
      *
-     * @param method
-     * @return
+     * @param method 测试方法
+     * @return 实现类名
      * @throws EasyMallTestException
      */
     public static Class getImplName(Method method) throws EasyMallTestException {
@@ -44,8 +43,8 @@ public class DataSetAnnotationUtils {
     /**
      * 是否打印日志
      *
-     * @param method
-     * @return
+     * @param method 测试方法
+     * @return 是否打印日志
      * @throws EasyMallTestException
      */
     public static boolean isLog(Method method) throws EasyMallTestException {
@@ -59,8 +58,8 @@ public class DataSetAnnotationUtils {
     /**
      * 直接返回数据内容
      *
-     * @param method
-     * @return
+     * @param method 测试方法
+     * @return 注解内容
      * @throws EasyMallTestException
      */
     public static String dataContext(Method method) throws EasyMallTestException {
@@ -75,9 +74,9 @@ public class DataSetAnnotationUtils {
     /**
      * 返回预处理数据文件路径
      *
-     * @param method
-     * @return
-     * @throws
+     * @param method 测试方法
+     * @return 文件内容
+     * @throws EasyMallTestException
      */
     public static String dataSetFileName(Method method) throws EasyMallTestException {
         if (method == null) {
@@ -87,18 +86,21 @@ public class DataSetAnnotationUtils {
         String path = dataSet.path();
         String file = dataSet.file();
         String type = dataSet.type();
-
+        if (StringUtils.isEmpty(file)) {
+            file = method.getDeclaringClass().getSimpleName();
+            file += "." + method.getName();
+        }
         return getPath(method, path, file, type);
     }
 
     /**
      * 返回路径
      *
-     * @param method
-     * @param path
-     * @param file
-     * @param type
-     * @return
+     * @param method 测试方法
+     * @param path 文件地址(不包含文件名)
+     * @param file 文件名
+     * @param type 文件类型
+     * @return 返回文件内容
      * @throws EasyMallTestException
      */
     private static String getPath(Method method, String path, String file, String type) throws EasyMallTestException {
