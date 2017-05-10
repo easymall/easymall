@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.JarURLConnection;
@@ -186,11 +185,9 @@ public class FindNotMakeTest {
             return;
         }
         // 如果存在 就获取包下的所有文件 包括目录
-        File[] dirfiles = dir.listFiles(new FileFilter() {
+        File[] dirfiles = dir.listFiles((file)-> {
             // 自定义过滤规则 如果可以循环(包含子目录) 或则是以.class结尾的文件(编译好的java类文件)
-            public boolean accept(File file) {
-                return (file.isDirectory()) || (file.getName().endsWith(".class"));
-            }
+            return (file.isDirectory()) || (file.getName().endsWith(".class"));
         });
         if (dirfiles == null || dirfiles.length == 0) {
             return;
