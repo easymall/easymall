@@ -3,13 +3,12 @@ package com.zhu8fei.framework.test.commons.mybatis;
 import com.alibaba.fastjson.JSON;
 import com.zhu8fei.framework.test.commons.annotation.DataSetAnnotationUtils;
 import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
-import com.zhu8fei.framework.test.commons.mybatis.bean.*;
-import com.zhu8fei.framework.test.commons.mybatis.mapper.SimpleMybatisMapper;
+import com.zhu8fei.framework.test.commons.mybatis.bean.DataSetBean;
+import com.zhu8fei.framework.test.commons.mybatis.bean.SimpleTable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -21,9 +20,6 @@ import java.util.List;
 public class SimpleJsonProcessorIpml extends SimpleAbstractProcessor implements MybatisTestProcessor {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
-    @Resource(name = "simpleMybatisMapper")
-    private SimpleMybatisMapper simpleMybatisMapper;
-
     @Override
     public void insertPrepareData(Method method) throws EasyMallTestException {
         boolean isLog = DataSetAnnotationUtils.isLog(method);
@@ -62,7 +58,5 @@ public class SimpleJsonProcessorIpml extends SimpleAbstractProcessor implements 
         // 处理结果并返回
         return expectData(bean);
     }
-
-
 
 }

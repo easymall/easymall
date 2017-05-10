@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 /**
- * Created by cwx on 2017/5/9.
+ * Created by zhu8fei on 2017/5/9.
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

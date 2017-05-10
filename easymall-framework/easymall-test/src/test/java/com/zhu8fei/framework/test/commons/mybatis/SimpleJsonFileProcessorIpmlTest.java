@@ -6,7 +6,7 @@ import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.Test;
 
 /**
- * Created by cwx on 2017/5/9.
+ * Created by zhu8fei on 2017/5/9.
  */
 @MarkTestTarget
 public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest {
@@ -31,7 +31,7 @@ public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest
          "               \"real_name\": \"real_name%\"," +
          "          }" +
          "     }]" +
-         "}")
+         "}",log=true)
     @Test
     public void DataSetAnnotationTest() {
         logger.info(" 谁知道呢. ");

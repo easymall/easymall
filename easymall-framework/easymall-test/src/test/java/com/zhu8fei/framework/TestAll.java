@@ -5,6 +5,7 @@ import com.zhu8fei.framework.test.commons.utils.FindNotMakeTestClass;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import com.zhu8fei.framework.test.method.MethodTest;
 import com.zhu8fei.framework.test.method.PrepareAndExpectSqlTest;
+import com.zhu8fei.framework.test.method.SystemTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -14,7 +15,9 @@ import org.junit.runners.Suite;
 
         FindNotMakeTestClass.class, LangTest.class,
 
-        PrepareAndExpectSqlTest.class, MethodTest.class
+        PrepareAndExpectSqlTest.class, MethodTest.class,
+
+        SystemTest.class
 
 })
 @MarkTestTarget({MarkTestTarget.class})

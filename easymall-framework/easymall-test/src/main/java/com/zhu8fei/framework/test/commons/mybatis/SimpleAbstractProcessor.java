@@ -138,7 +138,7 @@ public class SimpleAbstractProcessor {
             for (SimpleTable simpleTable : result) {
                 logger.debug("Prepare table name : {}", simpleTable.getTableName());
                 Map<String, Object> row = simpleTable.getRow();
-                logger.debug("Prepare id : {}", row.get("id"));
+                logger.debug("Prepare id : {}", simpleTable.getId());
             }
         }
     }

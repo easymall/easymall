@@ -301,6 +301,16 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${surefire.version}</version>
                     <configuration>
+                        <systemProperties>
+                            <property>
+                                <name>findClassLogPath</name>
+                                <value>${user.dir}/doc/logs/findClass.log</value>
+                            </property>
+                            <property>
+                                <name>isMavenRunner</name>
+                                <value>true</value>
+                            </property>
+                        </systemProperties>
                         <skipTests>${test.skip}</skipTests>
                         <excludes>
                             <exclude>**/*Test.java</exclude>
