@@ -28,7 +28,7 @@ public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest
          "               [\"name2\", \"real_name2\"]," +
          "          ]," +
          "          \"param\": {" +
-         "               \"column\": \"real_name%\"," +
+         "               \"real_name\": \"real_name%\"," +
          "          }" +
          "     }]" +
          "}")

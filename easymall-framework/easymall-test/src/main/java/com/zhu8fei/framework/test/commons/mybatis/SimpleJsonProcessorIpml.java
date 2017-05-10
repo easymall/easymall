@@ -3,10 +3,7 @@ package com.zhu8fei.framework.test.commons.mybatis;
 import com.alibaba.fastjson.JSON;
 import com.zhu8fei.framework.test.commons.annotation.DataSetAnnotationUtils;
 import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
-import com.zhu8fei.framework.test.commons.mybatis.bean.DataCompareResult;
-import com.zhu8fei.framework.test.commons.mybatis.bean.DataJsonBean;
-import com.zhu8fei.framework.test.commons.mybatis.bean.PrepareBean;
-import com.zhu8fei.framework.test.commons.mybatis.bean.SimpleTable;
+import com.zhu8fei.framework.test.commons.mybatis.bean.*;
 import com.zhu8fei.framework.test.commons.mybatis.mapper.SimpleMybatisMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,30 +31,38 @@ public class SimpleJsonProcessorIpml extends SimpleAbstractProcessor implements 
         if (isLog) {
             logger.debug("Json context : {}", context);
         }
-        DataJsonBean bean = JSON.parseObject(context, DataJsonBean.class);
+        DataSetBean bean = JSON.parseObject(context, DataSetBean.class);
         if (isLog) {
             logger.debug("DataJsonBean format result : {}", bean);
         }
-        List<PrepareBean> prepares = bean.getPrepare();
         if (isLog) {
             logger.debug("批量插入预处理数据.");
         }
-
-        List<SimpleTable> result = insert(prepares);
+        List<SimpleTable> result = insert(bean);
         if (isLog) {
             printPrepare(result);
         }
     }
 
     @Override
-    public DataCompareResult compareResult(Method method) throws EasyMallTestException {
+    public boolean compareResult(Method method) throws EasyMallTestException {
+        boolean isLog = DataSetAnnotationUtils.isLog(method);
         // 读取数据
+        String context = DataSetAnnotationUtils.dataContext(method);
+        if (isLog) {
+            logger.debug("Json context : {}", context);
+        }
+        DataSetBean bean = JSON.parseObject(context, DataSetBean.class);
 
         // 判断数据是否匹配.
+        if (isLog) {
+            logger.debug("DataJsonBean format result : {}", bean);
+        }
 
         // 处理结果并返回
-        DataCompareResult result = new DataCompareResult();
-        return result;
+        return expectData(bean);
     }
+
+
 
 }

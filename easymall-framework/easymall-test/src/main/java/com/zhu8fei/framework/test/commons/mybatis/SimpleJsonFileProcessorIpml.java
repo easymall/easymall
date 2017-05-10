@@ -5,9 +5,7 @@ import com.zhu8fei.framework.core.exception.EasyMallCoreException;
 import com.zhu8fei.framework.core.lang.SimpleFileReader;
 import com.zhu8fei.framework.test.commons.annotation.DataSetAnnotationUtils;
 import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
-import com.zhu8fei.framework.test.commons.mybatis.bean.DataCompareResult;
-import com.zhu8fei.framework.test.commons.mybatis.bean.DataJsonBean;
-import com.zhu8fei.framework.test.commons.mybatis.bean.PrepareBean;
+import com.zhu8fei.framework.test.commons.mybatis.bean.DataSetBean;
 import com.zhu8fei.framework.test.commons.mybatis.bean.SimpleTable;
 import org.springframework.stereotype.Service;
 
@@ -24,21 +22,20 @@ public class SimpleJsonFileProcessorIpml extends SimpleAbstractProcessor impleme
     public void insertPrepareData(Method method) throws EasyMallTestException {
         boolean isLog = DataSetAnnotationUtils.isLog(method);
         String path = DataSetAnnotationUtils.dataSetFileName(method);
-        String context;
         try {
-            context = SimpleFileReader.readAnFileContext(path);
+            String context = SimpleFileReader.readAnFileContext(path);
             if (isLog) {
                 logger.debug("Json file context : {}", context);
             }
-            DataJsonBean bean = JSON.parseObject(context, DataJsonBean.class);
+            DataSetBean bean = JSON.parseObject(context, DataSetBean.class);
             if (isLog) {
                 logger.debug("DataJsonBean format result : {}", bean);
             }
-            List<PrepareBean> prepares = bean.getPrepare();
+
             if (isLog) {
                 logger.debug("批量插入预处理数据.");
             }
-            List<SimpleTable> result = insert(prepares);
+            List<SimpleTable> result = insert(bean);
             if (isLog) {
                 printPrepare(result);
             }
@@ -51,10 +48,30 @@ public class SimpleJsonFileProcessorIpml extends SimpleAbstractProcessor impleme
     }
 
     @Override
-    public DataCompareResult compareResult(Method method) throws EasyMallTestException {
+    public boolean compareResult(Method method) throws EasyMallTestException {
+        boolean isLog = DataSetAnnotationUtils.isLog(method);
 
+        String path = DataSetAnnotationUtils.dataSetFileName(method);
+        // 读取数据
+        DataSetBean bean;
+        try {
+            String context = SimpleFileReader.readAnFileContext(path);
+            if (isLog) {
+                logger.debug("Json context : {}", context);
+            }
+            bean = JSON.parseObject(context, DataSetBean.class);
 
-        return null;
+            // 判断数据是否匹配.
+            if (isLog) {
+                logger.debug("DataJsonBean format result : {}", bean);
+            }
+        } catch (EasyMallCoreException e) {
+            logger.error(e.getMessage(), e);
+            throw new EasyMallTestException(e.getMessage(), e);
+        }
+
+        // 处理结果并返回
+        return expectData(bean);
     }
 
 }

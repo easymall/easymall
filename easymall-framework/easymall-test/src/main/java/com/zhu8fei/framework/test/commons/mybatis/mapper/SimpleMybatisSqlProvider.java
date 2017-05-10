@@ -47,7 +47,7 @@ public class SimpleMybatisSqlProvider {
                     inSql.append(" ) ");
                     WHERE(inSql.toString());
                 } else if (param instanceof String && ((String) param).contains("%")) {
-                    WHERE(key + " like #{param." + key + "}");
+                    WHERE(key + " like '" + param + "'");
                 } else {
                     WHERE(key + "=#{param." + key + "}");
                 }

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by zhu8fei on 2017/5/8.
  */
-public class DataJsonBean {
+public class DataSetBean {
     private List<PrepareBean> prepare;
     private List<ExpectBean> expect;
 

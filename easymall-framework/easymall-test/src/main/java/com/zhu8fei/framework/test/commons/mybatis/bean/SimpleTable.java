@@ -51,6 +51,10 @@ public class SimpleTable {
         param.put(column, value);
     }
 
+    public void putParamAll(Map<String, Object> param) {
+        this.param.putAll(param);
+    }
+
     public Map<String, Object> getParam() {
         return param;
     }

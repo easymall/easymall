@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,6 +19,6 @@ public interface SimpleMybatisMapper {
     int insert(SimpleTable simpleTable);
 
     @SelectProvider(type = SimpleMybatisSqlProvider.class, method = "select")
-    Map<String, String> select(SimpleTable simpleTable);
+    List<Map<String, String>> select(SimpleTable simpleTable);
 
 }

@@ -2,7 +2,7 @@ package com.zhu8fei.framework.test.commons.mybatis;
 
 import com.alibaba.fastjson.JSON;
 import com.zhu8fei.framework.test.commons.BaseJunitTest;
-import com.zhu8fei.framework.test.commons.mybatis.bean.DataJsonBean;
+import com.zhu8fei.framework.test.commons.mybatis.bean.DataSetBean;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import com.zhu8fei.framework.test.method.MethodTest;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class ExpectBeanJunitTest extends BaseJunitTest {
                 "   } ]" +
                 "  }";
 
-        DataJsonBean bean = JSON.parseObject(json, DataJsonBean.class);
+        DataSetBean bean = JSON.parseObject(json, DataSetBean.class);
         logger.info(bean.toString());
     }
 

@@ -3,13 +3,13 @@ package com.zhu8fei.framework.test.commons.spring.listener;
 import com.zhu8fei.framework.test.commons.annotation.DataSet;
 import com.zhu8fei.framework.test.commons.annotation.DataSetAnnotationUtils;
 import com.zhu8fei.framework.test.commons.mybatis.MybatisTestProcessor;
-import com.zhu8fei.framework.test.commons.mybatis.bean.DataCompareResult;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
+import org.springframework.test.context.support.AbstractTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Method;
@@ -22,9 +22,17 @@ import java.util.UUID;
  * Created by zhu8fei on 2017/5/5.
  */
 @Transactional
-public class DbUnitListener implements TestExecutionListener {
+public class DbUnitListener extends AbstractTestExecutionListener implements TestExecutionListener {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
+
+    /**
+     * Returns {@code 4500}.
+     */
+    @Override
+    public final int getOrder() {
+        return 2500;
+    }
 
     @Override
     public void beforeTestClass(TestContext testContext) throws Exception {
@@ -52,8 +60,8 @@ public class DbUnitListener implements TestExecutionListener {
         if (DataSetAnnotationUtils.isRun(method)) {
             MybatisTestProcessor mybatisTestProcessor = testContext.
                     getApplicationContext().<MybatisTestProcessor>getBean(DataSetAnnotationUtils.getImplName(method));
-            DataCompareResult dataCompareResult = mybatisTestProcessor.compareResult(method);
-            if (dataCompareResult == null || !dataCompareResult.isSuccess()) {
+            boolean success = mybatisTestProcessor.compareResult(method);
+            if (!success) {
                 logger.info("Data test result : failure");
                 Assert.fail();
             }

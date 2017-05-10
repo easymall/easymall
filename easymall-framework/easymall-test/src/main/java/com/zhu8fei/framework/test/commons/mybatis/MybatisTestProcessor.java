@@ -1,7 +1,6 @@
 package com.zhu8fei.framework.test.commons.mybatis;
 
 import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
-import com.zhu8fei.framework.test.commons.mybatis.bean.DataCompareResult;
 
 import java.lang.reflect.Method;
 
@@ -26,5 +25,5 @@ public interface MybatisTestProcessor {
      * @param method
      * @return 比对结果
      */
-    DataCompareResult compareResult(Method method) throws EasyMallTestException;
+    boolean compareResult(Method method) throws EasyMallTestException;
 }
