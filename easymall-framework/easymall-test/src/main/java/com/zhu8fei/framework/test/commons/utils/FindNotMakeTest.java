@@ -24,7 +24,7 @@ import java.util.jar.JarFile;
 /**
  * @author zhu8fei Wong
  */
-@MarkTestTarget(MarkTestTarget.class)
+@MarkTestTarget()
 public class FindNotMakeTest {
     private String logPath = null;
 
@@ -32,7 +32,7 @@ public class FindNotMakeTest {
     public void init() {
         logPath = System.getProperty("findClassLogPath");
         if (StringUtils.isEmpty(logPath)) {
-            logger.warn("看到这句话,正常情况是,你手动启动了test case");
+            logger.warn("看到这句话,正常情况是,你手动启动了test case, 请到target/logs/findClass.log 查看结果");
             logPath = System.getProperty("user.dir") + "/target/logs/findClass.log";
         }
     }
@@ -48,7 +48,7 @@ public class FindNotMakeTest {
         // WTF windows
         logInfo("============    project : " + System.getProperty("user.dir") + " Without control Test cases:   ==============\n");
         for (Class<?> clazz : javaClass) {
-            if (clazz.getName().indexOf("$") != -1) {
+            if (clazz.getName().contains("$")) {
                 // 不监视内部类等
                 continue;
             }
@@ -59,7 +59,7 @@ public class FindNotMakeTest {
                     continue;
                 }
                 Class[] testTypes = mtt.value();
-                if (testTypes == null || testTypes.length == 0) {
+                if ( testTypes.length == 0) {
                     logInfo(clazz.getName());
                 }
             }
@@ -75,12 +75,10 @@ public class FindNotMakeTest {
      * @param pack
      * @return
      */
-    public Set<Class<?>> getClasses(String pack) {
+    private Set<Class<?>> getClasses(String pack) {
 
         // 第一个class类的集合
-        Set<Class<?>> classes = new LinkedHashSet<Class<?>>();
-        // 是否循环迭代
-        boolean recursive = true;
+        Set<Class<?>> classes = new LinkedHashSet<>();
         // 获取包的名字 并进行替换
         String packageName = pack;
         String packageDirName = packageName.replace('.', '/');
@@ -99,7 +97,7 @@ public class FindNotMakeTest {
                     // 获取包的物理路径
                     String filePath = URLDecoder.decode(url.getFile(), "UTF-8");
                     // 以文件的方式扫描整个包下的文件 并添加到集合中
-                    findAndAddClassesInPackageByFile(packageName, filePath, recursive, classes);
+                    findAndAddClassesInPackageByFile(packageName, filePath, classes);
                 } else if ("jar".equals(protocol)) {
                     // 如果是jar包文件
                     // 定义一个JarFile
@@ -109,7 +107,7 @@ public class FindNotMakeTest {
                         jar = ((JarURLConnection) url.openConnection()).getJarFile();
 
                         String jarName = jar.getName();
-                        if (jarName.indexOf(PROJECT_NAME_PRE) < 0) {
+                        if (!jarName.contains(PROJECT_NAME_PRE)) {
                             return null;
                         }
                         // 从此jar包 得到一个枚举类
@@ -132,12 +130,12 @@ public class FindNotMakeTest {
                                 if (idx != -1) {
                                     // 获取包名 把"/"替换成"."
                                     packageName = name.substring(0, idx).replace('/', '.');
-                                    if (packageName.indexOf(pack) < 0) {
+                                    if (!packageName.contains(pack) ) {
                                         return null;
                                     }
                                 }
                                 // 如果可以迭代下去 并且是一个包
-                                if ((idx == -1) && recursive) {
+                                if ((idx == -1)) {
                                     continue;
                                 }
                                 // 如果是一个.class文件 而且不是目录
@@ -177,10 +175,9 @@ public class FindNotMakeTest {
      *
      * @param packageName
      * @param packagePath
-     * @param recursive
      * @param classes
      */
-    public void findAndAddClassesInPackageByFile(String packageName, String packagePath, final boolean recursive, Set<Class<?>> classes) {
+    private void findAndAddClassesInPackageByFile(String packageName, String packagePath, Set<Class<?>> classes) {
         // 获取此包的目录 建立一个File
         File dir = new File(packagePath);
         // 如果不存在或者 也不是目录就直接返回
@@ -192,7 +189,7 @@ public class FindNotMakeTest {
         File[] dirfiles = dir.listFiles(new FileFilter() {
             // 自定义过滤规则 如果可以循环(包含子目录) 或则是以.class结尾的文件(编译好的java类文件)
             public boolean accept(File file) {
-                return (recursive && file.isDirectory()) || (file.getName().endsWith(".class"));
+                return (file.isDirectory()) || (file.getName().endsWith(".class"));
             }
         });
         if (dirfiles == null || dirfiles.length == 0) {
@@ -202,7 +199,7 @@ public class FindNotMakeTest {
         for (File file : dirfiles) {
             // 如果是目录 则继续扫描
             if (file.isDirectory()) {
-                findAndAddClassesInPackageByFile(packageName + "." + file.getName(), file.getAbsolutePath(), recursive, classes);
+                findAndAddClassesInPackageByFile(packageName + "." + file.getName(), file.getAbsolutePath(), classes);
             } else {
                 // 如果是java类文件 去掉后面的.class 只留下类名
                 String className = file.getName().substring(0, file.getName().length() - 6);
