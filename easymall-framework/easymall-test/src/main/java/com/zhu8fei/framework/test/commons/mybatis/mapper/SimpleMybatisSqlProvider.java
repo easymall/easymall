@@ -28,10 +28,8 @@ public class SimpleMybatisSqlProvider {
     }
 
     public String select(SimpleTable simpleTable) throws EasyMallTestException {
-
         SQL sql = new SQL() {{
             SELECT(simpleTable.getColumns().toArray(new String[]{}));
-            SELECT(" @rownum := ifnull(@rownum, 0) + 1 rownum ");
             FROM(simpleTable.getTableName());
             Map<String, Object> params = simpleTable.getParam();
             Set<String> keys = params.keySet();
@@ -42,18 +40,16 @@ public class SimpleMybatisSqlProvider {
                     StringBuilder inSql = new StringBuilder(key);
                     inSql.append(" in (");
                     Object[] paramArr = (Object[]) param;
-                    int i = 0;
-                    for (Object obj : paramArr) {
-                        logger.info(obj.toString());
-                        inSql.append("#{param[{" + i + "}].").append(key).append("[{" + i + "}]} ,");
+                    for (int i = 0; i < paramArr.length; i++) {
+                        inSql.append("#{param.").append(key).append("[" + i + "]} ,");
                     }
                     inSql.deleteCharAt(inSql.length() - 1);
                     inSql.append(" ) ");
                     WHERE(inSql.toString());
                 } else if (param instanceof String && ((String) param).contains("%")) {
-                    WHERE(key + " like #{param[{0}]." + key + "}");
+                    WHERE(key + " like #{param." + key + "}");
                 } else {
-                    WHERE(key + "=#{param[{0}]." + key + "}");
+                    WHERE(key + "=#{param." + key + "}");
                 }
             }
 
