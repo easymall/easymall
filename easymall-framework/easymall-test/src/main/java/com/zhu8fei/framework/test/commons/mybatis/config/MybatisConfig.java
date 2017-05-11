@@ -27,9 +27,20 @@ public class MybatisConfig implements TransactionManagementConfigurer {
     @Autowired
     DataSource dataSource;
 
+    /**
+     * 工厂方法 为 mock提供切入口
+     * @return
+     */
+    public SqlSessionFactoryBean getSqlSessionFactoryBeanInstance(){
+        return new SqlSessionFactoryBean();
+    }
+
     @Bean(name = "sqlSessionFactory")
-    public SqlSessionFactory sqlSessionFactoryBean() throws EasyMallTestException{
-        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+    public SqlSessionFactory sqlSessionFactoryBean() throws EasyMallTestException {
+        // 原写法
+        //   SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        // 这样做. 没办法mock到. 于是使用工厂方法
+        SqlSessionFactoryBean bean = getSqlSessionFactoryBeanInstance();
         bean.setDataSource(dataSource);
         bean.setTypeAliasesPackage("com.zhu8fei.**.mybatis.model");
 
@@ -48,7 +59,7 @@ public class MybatisConfig implements TransactionManagementConfigurer {
             return bean.getObject();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            throw new EasyMallTestException(e);
+            throw new EasyMallTestException(e.getMessage(),e);
         }
     }
 
