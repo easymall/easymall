@@ -1,6 +1,6 @@
-package com.zhu8fei.framework.common.mybatis.mapper;
+package com.zhu8fei.framework.core.mybatis.mapper;
 
-import com.zhu8fei.framework.common.mybatis.model.User;
+import com.zhu8fei.framework.core.mybatis.model.User;
 import org.apache.ibatis.jdbc.SQL;
 
 public class UserSqlProvider {

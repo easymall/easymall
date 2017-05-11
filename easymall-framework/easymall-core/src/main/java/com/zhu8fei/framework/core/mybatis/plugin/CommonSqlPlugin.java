@@ -1,6 +1,8 @@
-package com.zhu8fei.framework.common.mybatis.plugin;
+package com.zhu8fei.framework.core.mybatis.plugin;
 
-import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Invocation;
+import org.apache.ibatis.plugin.Plugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

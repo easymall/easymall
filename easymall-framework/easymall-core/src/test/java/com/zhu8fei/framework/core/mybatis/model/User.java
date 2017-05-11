@@ -1,6 +1,4 @@
-package com.zhu8fei.framework.common.mybatis.model;
-
-import com.zhu8fei.framework.core.mybatis.model.BaseEntity;
+package com.zhu8fei.framework.core.mybatis.model;
 
 public class User extends BaseEntity {
     private String name;

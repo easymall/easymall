@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.commons;
 
-import com.zhu8fei.framework.test.commons.jdbc.DataResourceConfig;
+import com.zhu8fei.framework.core.jdbc.DataResourceConfig;
 import com.zhu8fei.framework.test.commons.mybatis.config.MybatisConfig;
 import com.zhu8fei.framework.test.commons.spring.bean.EmptyConfig;
 import com.zhu8fei.framework.test.commons.spring.listener.JunitCaseListener;
@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -37,6 +38,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
         JunitCaseListener.class
 
 })
+@ActiveProfiles("easymall-test")
 @MarkTestTarget(MarkTestTarget.class)
 public class BaseSpringTest {
     protected Logger logger = LoggerFactory.getLogger(getClass());

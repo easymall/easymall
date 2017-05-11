@@ -1,9 +1,10 @@
-package com.zhu8fei.framework.common.mybatis.plugin;
+package com.zhu8fei.framework.core.mybatis.plugin;
 
 
-import com.zhu8fei.framework.common.mybatis.mapper.UserMapper;
-import com.zhu8fei.framework.common.mybatis.model.User;
+import com.zhu8fei.framework.core.mybatis.mapper.UserMapper;
+import com.zhu8fei.framework.core.mybatis.model.User;
 import com.zhu8fei.framework.test.commons.BaseTransactionalSpringTest;
+import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by zhu8fei on 2017/3/28.
  */
+@MarkTestTarget
 public class InsertSqlPluginTransactionalSpringTest extends BaseTransactionalSpringTest {
     Logger logger = LoggerFactory.getLogger(InsertSqlPluginTransactionalSpringTest.class);
     @Autowired
@@ -42,7 +44,7 @@ public class InsertSqlPluginTransactionalSpringTest extends BaseTransactionalSpr
         User user = new User();
         user.setRealName("last11");
         List<User> list = userMapper.select(user);
-        User result=list.get(0);
+        User result = list.get(0);
         logger.info(result.getName());
         logger.info(result.getEmail());
         assertNotNull(result);

@@ -6,6 +6,7 @@ import com.zhu8fei.framework.test.commons.utils.FindNotMakeTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.springframework.test.context.ActiveProfiles;
 
 /**
  * Created by zhu8fei on 2017/5/10.
@@ -17,6 +18,7 @@ import org.junit.runners.Suite;
         LangTest.class, SystemTest.class, FindNotMakeTest.class
 
 })
+@ActiveProfiles("test")
 @MarkTestTarget({MarkTestTarget.class})
 public class CoreTestAll {
 }

@@ -2,9 +2,13 @@
 
 ## 核心框架
 
-### 权限认证
+### 通用功能
 
-[需求设计](authentication.md)
+[功能简介](framework/common/commons.md)
+
+### 测试框架
+
+[功能简介](framework/test/test.md)
 
 ## 后台管理
 
@@ -22,6 +26,10 @@
 ## 前台管理
 
 ### 用户中心
+
+#### 权限认证
+
+[需求设计](business/user/authentication.md)
 
 ### 购物车
 

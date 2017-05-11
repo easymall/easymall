@@ -25,11 +25,6 @@
         </dependency>
         <dependency>
             <groupId>com.zhu8fei.framework</groupId>
-            <artifactId>easymall-common</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.zhu8fei.framework</groupId>
             <artifactId>easymall-test</artifactId>
             <scope>test</scope>
         </dependency>

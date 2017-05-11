@@ -1,7 +1,6 @@
-package com.zhu8fei.framework.common.mybatis.mapper;
+package com.zhu8fei.framework.core.mybatis.mapper;
 
-import com.zhu8fei.framework.common.mybatis.model.User;
-import com.zhu8fei.framework.core.mybatis.mapper.BaseMapper;
+import com.zhu8fei.framework.core.mybatis.model.User;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.stereotype.Repository;
