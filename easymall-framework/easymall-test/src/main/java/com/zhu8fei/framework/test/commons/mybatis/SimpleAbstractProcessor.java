@@ -1,6 +1,8 @@
 package com.zhu8fei.framework.test.commons.mybatis;
 
 import com.zhu8fei.framework.core.lang.CollectionDiff;
+import com.zhu8fei.framework.test.commons.annotation.DataSetAnnotationUtils;
+import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
 import com.zhu8fei.framework.test.commons.mybatis.bean.*;
 import com.zhu8fei.framework.test.commons.mybatis.mapper.SimpleMybatisMapper;
 import org.slf4j.Logger;
@@ -8,16 +10,68 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
  * Created by zhu8fei on 2017/5/6.
  */
 @Service
-public class SimpleAbstractProcessor {
+public abstract class SimpleAbstractProcessor implements MybatisTestProcessor {
     protected Logger logger = LoggerFactory.getLogger(getClass());
     @Resource(name = "simpleMybatisMapper")
     protected SimpleMybatisMapper simpleMybatisMapper;
+
+    @Override
+    public void insertPrepareData(Method method) throws EasyMallTestException {
+        boolean isLog = DataSetAnnotationUtils.isLog(method);
+        String context = DataSetAnnotationUtils.dataContext(method);
+        if (isLog) {
+            logger.debug("Json context : {}", context);
+        }
+        DataSetBean bean = getDataSetPrepareBean(context);
+        if (isLog) {
+            logger.debug("DataJsonBean format result : {}", bean);
+        }
+        if (isLog) {
+            logger.debug("批量插入预加载数据.");
+        }
+        List<SimpleTable> result = insert(bean);
+        if (isLog) {
+            printPrepare(result);
+        }
+    }
+
+    /**
+     * @param context 数据内容
+     * @return 返回预加载数据
+     */
+    protected abstract DataSetBean getDataSetPrepareBean(String context);
+
+    /**
+     * @param context 数据内容
+     * @return 返回处理后的数据
+     */
+    protected abstract DataSetBean getDataSetCompareBean(String context);
+
+    @Override
+    public boolean compareResult(Method method) throws EasyMallTestException {
+        boolean isLog = DataSetAnnotationUtils.isLog(method);
+        // 读取数据
+        String context = DataSetAnnotationUtils.dataContext(method);
+        if (isLog) {
+            logger.debug("Json context : {}", context);
+        }
+        DataSetBean bean = getDataSetCompareBean(context);
+
+        // 判断数据是否匹配.
+        if (isLog) {
+            logger.debug("DataJsonBean format result : {}", bean);
+        }
+
+        // 处理结果并返回
+        return expectData(bean);
+    }
 
     protected List<SimpleTable> insert(DataSetBean bean) {
         if (bean == null) {
