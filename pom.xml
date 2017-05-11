@@ -39,6 +39,7 @@
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
         <surefire.version>2.19.1</surefire.version>
+        <surefire.report.version>2.20</surefire.report.version>
         <cobertura.version>2.7</cobertura.version>
         <exec.maven.version>1.6.0</exec.maven.version>
         <!-- 环境参数 -->
@@ -343,7 +344,16 @@
                             </excludes>
                         </instrumentation>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>cobertura</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
+
             </plugins>
         </pluginManagement>
         <plugins>
