@@ -2,6 +2,7 @@ package com.zhu8fei.framework.test.method;
 
 import com.zhu8fei.framework.EasyMallTestAll;
 import com.zhu8fei.framework.test.commons.mybatis.ExpectBeanJunitTest;
+import com.zhu8fei.framework.test.commons.mybatis.MybatisConfigTest;
 import com.zhu8fei.framework.test.commons.mybatis.SimpleMybatisSqlProviderSpringTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import com.zhu8fei.framework.test.jdk.CollectionDiffTest;
@@ -21,7 +22,9 @@ import org.junit.runners.Suite;
 
         ExtendsTransactionalSpringTest.class, SimpleMybatisSqlProviderSpringTest.class,
 
-        MethodAndClassTest.class,CollectionDiffTest.class
+        MethodAndClassTest.class,CollectionDiffTest.class,MybatisConfigTest.class,
+
+
 
 })
 @MarkTestTarget(EasyMallTestAll.class)
