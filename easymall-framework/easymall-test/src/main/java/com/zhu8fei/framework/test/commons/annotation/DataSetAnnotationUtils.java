@@ -5,6 +5,8 @@ import com.zhu8fei.framework.core.lang.SimpleFileReader;
 import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
 import com.zhu8fei.framework.test.commons.mybatis.MybatisTestProcessor;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 
@@ -13,6 +15,7 @@ import java.lang.reflect.Method;
  * Created by zhu8fei on 2017/5/7.
  */
 public class DataSetAnnotationUtils {
+    private static Logger logger = LoggerFactory.getLogger(DataSetAnnotationUtils.class);
     private static final String DOT = ".";
     private static final String DEFAULT_TYPE = "json";
 
@@ -24,8 +27,10 @@ public class DataSetAnnotationUtils {
      */
     public static boolean isRun(Method method) {
         DataSet dataSet = method.getAnnotation(DataSet.class);
-        boolean isRun = dataSet != null && dataSet.run();
-        return isRun;
+        if (dataSet == null) {
+            return false;
+        }
+        return dataSet.run();
     }
 
     /**
@@ -43,6 +48,7 @@ public class DataSetAnnotationUtils {
         }
         Class<? extends MybatisTestProcessor> clz = DataSetProcessorEnum.getProcessorType(type);
         if (clz == null) {
+            logger.error("实现类型(DataSet.type)错误 method : {}", method.getName());
             throw new EasyMallTestException("实现类型(DataSet.type)错误");
         }
         return clz;
@@ -76,6 +82,7 @@ public class DataSetAnnotationUtils {
         try {
             context = SimpleFileReader.readAnFileContext(DataSetAnnotationUtils.dataSetFileName(method));
         } catch (EasyMallCoreException e) {
+            logger.error(e.getMessage(), e);
             throw new EasyMallTestException(e.getMessage(), e);
         }
 
@@ -101,6 +108,7 @@ public class DataSetAnnotationUtils {
         }
         return getPath(method, path, file, type);
     }
+
 
     /**
      * 返回路径

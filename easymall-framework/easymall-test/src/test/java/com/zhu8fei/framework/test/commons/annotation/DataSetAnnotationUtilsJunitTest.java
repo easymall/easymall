@@ -64,4 +64,10 @@ public class DataSetAnnotationUtilsJunitTest extends BaseJunitTest {
         DataSetAnnotationUtils.isRun(method);
     }
 
+    @Test
+    public void instance() {
+        // WTF 不创建当前对象.  则这个类就没有被覆盖.
+        new DataSetAnnotationUtils();
+    }
+
 }
