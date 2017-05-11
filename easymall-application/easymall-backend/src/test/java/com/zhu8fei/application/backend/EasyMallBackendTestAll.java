@@ -1,4 +1,4 @@
-package com.zhu8fei.business.user;
+package com.zhu8fei.application.backend;
 
 import com.zhu8fei.framework.test.commons.utils.FindNotMakeTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
@@ -12,5 +12,5 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({FindNotMakeTest.class})
 @MarkTestTarget({MarkTestTarget.class})
-public class UserTestAll {
+public class EasyMallBackendTestAll {
 }

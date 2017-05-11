@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.core.method;
 
-import com.zhu8fei.framework.CoreTestAll;
+import com.zhu8fei.framework.EasyMallCoreTestAll;
 import com.zhu8fei.framework.core.system.FilterTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import org.junit.runner.RunWith;
@@ -15,6 +15,6 @@ import org.junit.runners.Suite;
         FilterTest.class
 
 })
-@MarkTestTarget(CoreTestAll.class)
+@MarkTestTarget(EasyMallCoreTestAll.class)
 public class SystemTest {
 }

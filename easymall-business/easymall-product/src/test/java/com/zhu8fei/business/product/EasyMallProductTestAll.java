@@ -11,5 +11,5 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({FindNotMakeTest.class})
 @MarkTestTarget({MarkTestTarget.class})
-public class ProductTestAll {
+public class EasyMallProductTestAll {
 }

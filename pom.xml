@@ -319,7 +319,7 @@
                             <exclude>**/*Test.java</exclude>
                         </excludes>
                         <includes>
-                            <include>**/*TestAll.java</include>
+                            <include>**/EasyMall*TestAll.java</include>
                         </includes>
                     </configuration>
                 </plugin>

@@ -20,5 +20,5 @@ import org.springframework.test.context.ActiveProfiles;
 })
 @ActiveProfiles("test")
 @MarkTestTarget({MarkTestTarget.class})
-public class CoreTestAll {
+public class EasyMallCoreTestAll {
 }

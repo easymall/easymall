@@ -1,4 +1,4 @@
-package com.zhu8fei.application.front;
+package com.zhu8fei.core.security;
 
 import com.zhu8fei.framework.test.commons.utils.FindNotMakeTest;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
@@ -12,5 +12,5 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({FindNotMakeTest.class})
 @MarkTestTarget({MarkTestTarget.class})
-public class FrontTestAll {
+public class EasyMallSecurityTestAll {
 }

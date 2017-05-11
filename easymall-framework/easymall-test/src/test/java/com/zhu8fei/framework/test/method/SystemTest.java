@@ -1,6 +1,6 @@
 package com.zhu8fei.framework.test.method;
 
-import com.zhu8fei.framework.TestAll;
+import com.zhu8fei.framework.EasyMallTestAll;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import com.zhu8fei.framework.test.system.MavenPropertyTest;
 import org.junit.runner.RunWith;
@@ -15,6 +15,6 @@ import org.junit.runners.Suite;
         MavenPropertyTest.class, MavenPropertyTest.class
 
 })
-@MarkTestTarget(TestAll.class)
+@MarkTestTarget(EasyMallTestAll.class)
 public class SystemTest {
 }

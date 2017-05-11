@@ -21,6 +21,6 @@ import org.junit.runners.Suite;
 
 })
 @MarkTestTarget({MarkTestTarget.class})
-public class TestAll {
+public class EasyMallTestAll {
 
 }
