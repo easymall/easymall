@@ -5,13 +5,10 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserMapper extends BaseMapper<User> {
-    @Delete({
-            "delete from u_user",
-            "where id = #{id,jdbcType=BIGINT}"
-    })
-    int deleteByPrimaryKey(Long id);
 
     @Insert({
             "insert into u_user (name, real_name, ",
@@ -29,10 +26,6 @@ public interface UserMapper extends BaseMapper<User> {
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Long.class)
     int insert(User record);
-
-    @InsertProvider(type=UserSqlProvider.class, method="insertSelective")
-    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Long.class)
-    int insertSelective(User record);
 
     @Select({
             "select",
@@ -59,25 +52,13 @@ public interface UserMapper extends BaseMapper<User> {
     })
     User selectByPrimaryKey(Long id);
 
-    @UpdateProvider(type=UserSqlProvider.class, method="updateByPrimaryKeySelective")
-    int updateByPrimaryKeySelective(User record);
-
-    @Update({
-            "update u_user",
-            "set name = #{name,jdbcType=VARCHAR},",
-            "real_name = #{realName,jdbcType=VARCHAR},",
-            "email = #{email,jdbcType=VARCHAR},",
-            "mobile = #{mobile,jdbcType=VARCHAR},",
-            "password = #{password,jdbcType=VARCHAR},",
-            "salt = #{salt,jdbcType=VARCHAR},",
-            "is_delete = #{isDelete,jdbcType=INTEGER},",
-            "create_time = #{createTime,jdbcType=DATE},",
-            "create_user = #{createUser,jdbcType=BIGINT},",
-            "create_user_name = #{createUserName,jdbcType=VARCHAR},",
-            "modify_time = #{modifyTime,jdbcType=DATE},",
-            "modify_user = #{modifyUser,jdbcType=BIGINT},",
-            "modify_user_name = #{modifyUserName,jdbcType=VARCHAR}",
-            "where id = #{id,jdbcType=BIGINT}"
+    @Select({
+            "select",
+            "id, name, real_name, email, mobile, password, salt, is_delete, create_time, ",
+            "create_user, create_user_name, modify_time, modify_user, modify_user_name",
+            "from u_user",
+            "where real_name = #{realName,jdbcType=VARCHAR}"
     })
-    int updateByPrimaryKey(User record);
+    @Override
+    List<User> select(User user);
 }

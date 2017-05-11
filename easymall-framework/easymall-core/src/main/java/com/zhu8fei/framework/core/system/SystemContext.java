@@ -9,13 +9,13 @@ import java.util.HashMap;
  * 上下文类. 用于获取当前操作的上下文.
  */
 public class SystemContext {
-    private static String USER_ID = "userId_";
-    private static String USER_NAME = "userName_";
-    private static String LOCALE = "locale_";
-    private static String TRACE = "trace_";
-    private static transient ThreadLocal<Map<String, String>> contextMap = new ThreadLocal();
-    private static Integer MAX_CAPACITY = Integer.valueOf(20);
-    private static Integer MAX_SIZE = Integer.valueOf(200);
+    private static String USER_ID = SystemContextKeyEnum.userId_.name();
+    private static String USER_NAME = SystemContextKeyEnum.userName_.name();
+    private static String LOCALE = SystemContextKeyEnum.locale_.name();
+    private static String TRACE = SystemContextKeyEnum.trace_.name();
+    private static final transient ThreadLocal<Map<String, String>> contextMap = new ThreadLocal<>();
+    private static Integer MAX_CAPACITY = 20;
+    private static Integer MAX_SIZE = 200;
 
     public static Map<String, String> getContextMap() {
         return contextMap.get();
@@ -44,11 +44,11 @@ public class SystemContext {
         if (contextMap == null) {
             synchronized (SystemContext.contextMap) {
                 if (contextMap == null) {
-                    contextMap = new HashMap();
+                    contextMap = new HashMap<>();
                     SystemContext.contextMap.set(contextMap);
                 }
             }
-        } else if (contextMap.size() > MAX_CAPACITY.intValue()) {
+        } else if (contextMap.size() > MAX_CAPACITY) {
             throw new RuntimeException("the context map is full, can't put anything");
         }
         return contextMap.put(key, value);
@@ -79,8 +79,8 @@ public class SystemContext {
 
     public static void setUserName(String userName) {
         if (userName != null) {
-            if (userName.length() > MAX_SIZE.intValue()) {
-                put(USER_NAME, userName.substring(0, MAX_SIZE.intValue()));
+            if (userName.length() > MAX_SIZE) {
+                put(USER_NAME, userName.substring(0, MAX_SIZE));
             } else {
                 put(USER_NAME, userName);
             }
@@ -88,8 +88,8 @@ public class SystemContext {
     }
     public static void setTrace(String trace) {
         if (trace != null) {
-            if (trace.length() > MAX_SIZE.intValue()) {
-                put(TRACE, trace.substring(0, MAX_SIZE.intValue()));
+            if (trace.length() > MAX_SIZE) {
+                put(TRACE, trace.substring(0, MAX_SIZE));
             } else {
                 put(TRACE, trace);
             }

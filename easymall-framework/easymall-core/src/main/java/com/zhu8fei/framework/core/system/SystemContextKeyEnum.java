@@ -8,7 +8,7 @@ import org.springframework.util.StringUtils;
 public enum SystemContextKeyEnum {
     userId_, userName_, locale_, trace_,;
 
-    private SystemContextKeyEnum() {
+    SystemContextKeyEnum() {
     }
 
     public static boolean checkKey(String key) {

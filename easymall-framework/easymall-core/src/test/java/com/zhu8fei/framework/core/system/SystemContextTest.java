@@ -26,7 +26,6 @@ public class SystemContextTest extends BaseJunitTest {
 
     @Test
     public void registered() {
-
         expectedException.expect(RuntimeException.class);
         expectedException.expectMessage("is not registered");
         SystemContext.put("", "");
@@ -57,12 +56,32 @@ public class SystemContextTest extends BaseJunitTest {
 
     @Test
     public void more() {
+        logger.info(String.valueOf(SystemContext.getUserId()));
+        SystemContext.setTrace("12345678901234567890123456789012345678901234567890" +
+
+                "12345678901234567890123456789012345678901234567890" +
+
+                "12345678901234567890123456789012345678901234567890" +
+
+                "12345678901234567890123456789012345678901234567890" +
+
+                "12345678901234567890123456789012345678901234567890");
+        logger.info(SystemContext.getTrace());
         SystemContext.setTrace("go go go go go");
         logger.info(SystemContext.getTrace());
         SystemContext.setLocale("zh_cn");
         logger.info(SystemContext.getLocale());
         SystemContext.setUserId(250L);
         logger.info(String.valueOf(SystemContext.getUserId()));
+        SystemContext.setUserName("12345678901234567890123456789012345678901234567890" +
+
+                "12345678901234567890123456789012345678901234567890" +
+
+                "12345678901234567890123456789012345678901234567890" +
+
+                "12345678901234567890123456789012345678901234567890" +
+
+                "12345678901234567890123456789012345678901234567890");
         SystemContext.setUserName("250");
         logger.info(String.valueOf(SystemContext.getUserName()));
     }

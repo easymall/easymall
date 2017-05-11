@@ -37,16 +37,14 @@ public class InsertSqlPluginTransactionalSpringTest extends BaseTransactionalSpr
         User result = userMapper.selectByPrimaryKey(user.getId());
         logger.info(result.getName());
         logger.info(result.getEmail());
-    }
 
-    @Test
-    public void select() {
-        User user = new User();
+        user = new User();
         user.setRealName("last11");
         List<User> list = userMapper.select(user);
-        User result = list.get(0);
+        result = list.get(0);
         logger.info(result.getName());
         logger.info(result.getEmail());
         assertNotNull(result);
     }
+
 }
