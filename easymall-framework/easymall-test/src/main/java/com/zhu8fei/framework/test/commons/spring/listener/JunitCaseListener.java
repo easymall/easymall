@@ -2,6 +2,7 @@ package com.zhu8fei.framework.test.commons.spring.listener;
 
 import com.zhu8fei.framework.test.commons.annotation.DataSet;
 import com.zhu8fei.framework.test.commons.annotation.DataSetAnnotationUtils;
+import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
 import com.zhu8fei.framework.test.commons.mybatis.MybatisTestProcessor;
 import org.junit.Assert;
 import org.slf4j.Logger;
@@ -35,35 +36,45 @@ public class JunitCaseListener extends AbstractTestExecutionListener implements 
     }
 
     @Override
-    public void beforeTestClass(TestContext testContext) throws Exception {
+    public void beforeTestClass(TestContext testContext) {
         logger.debug("beforeTestClass");
     }
 
     @Override
-    public void prepareTestInstance(TestContext testContext) throws Exception {
+    public void prepareTestInstance(TestContext testContext) {
         MDC.put("Trace", UUID.randomUUID().toString());
     }
 
     @Override
-    public void beforeTestMethod(TestContext testContext) throws Exception {
+    public void beforeTestMethod(TestContext testContext) {
         Method method = testContext.getTestMethod();
         if (DataSetAnnotationUtils.isRun(method)) {
-            MybatisTestProcessor mybatisTestProcessor = testContext.
-                    getApplicationContext().getBean(DataSetAnnotationUtils.getImplName(method));
-            mybatisTestProcessor.insertPrepareData(method);
+            try{
+                MybatisTestProcessor mybatisTestProcessor = testContext.
+                        getApplicationContext().getBean(DataSetAnnotationUtils.getImplName(method));
+                mybatisTestProcessor.insertPrepareData(method);
+            } catch (EasyMallTestException e) {
+                logger.error(e.getMessage(), e);
+                Assert.fail(e.getMessage());
+            }
         }
     }
 
     @Override
-    public void afterTestMethod(TestContext testContext) throws Exception {
+    public void afterTestMethod(TestContext testContext)  {
         Method method = testContext.getTestMethod();
         if (DataSetAnnotationUtils.isRun(method)) {
-            MybatisTestProcessor mybatisTestProcessor = testContext.
-                    getApplicationContext().getBean(DataSetAnnotationUtils.getImplName(method));
-            boolean success = mybatisTestProcessor.compareResult(method);
-            if (!success) {
-                logger.info("Data test result : failure");
-                Assert.fail();
+            try {
+                MybatisTestProcessor mybatisTestProcessor = testContext.
+                        getApplicationContext().getBean(DataSetAnnotationUtils.getImplName(method));
+                boolean success = mybatisTestProcessor.compareResult(method);
+                if (!success) {
+                    logger.info("Data test result : failure");
+                    Assert.fail();
+                }
+            } catch (EasyMallTestException e) {
+                logger.error(e.getMessage(), e);
+                Assert.fail(e.getMessage());
             }
         }
         logger.info("Data test result : success");
@@ -71,7 +82,7 @@ public class JunitCaseListener extends AbstractTestExecutionListener implements 
     }
 
     @Override
-    public void afterTestClass(TestContext testContext) throws Exception {
+    public void afterTestClass(TestContext testContext) {
 
     }
 

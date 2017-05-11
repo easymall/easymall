@@ -15,7 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 
-        LangTest.class, SystemTest.class, FindNotMakeTest.class
+        SystemTest.class, LangTest.class, FindNotMakeTest.class
 
 })
 @ActiveProfiles("test")

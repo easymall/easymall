@@ -14,7 +14,6 @@ import java.lang.reflect.Method;
  */
 public class DataSetAnnotationUtils {
     private static final String DOT = ".";
-    private static final String DEFAULT_NAME = "data";
     private static final String DEFAULT_TYPE = "json";
 
     /**
@@ -25,7 +24,8 @@ public class DataSetAnnotationUtils {
      */
     public static boolean isRun(Method method) {
         DataSet dataSet = method.getAnnotation(DataSet.class);
-        return dataSet != null && dataSet.run();
+        boolean isRun = dataSet != null && dataSet.run();
+        return isRun;
     }
 
     /**
@@ -36,13 +36,11 @@ public class DataSetAnnotationUtils {
      * @throws EasyMallTestException
      */
     public static Class<? extends MybatisTestProcessor> getImplName(Method method) throws EasyMallTestException {
-        if (method == null) {
-            throw new EasyMallTestException("Test method is not be null");
-        }
         DataSet dataSet = method.getAnnotation(DataSet.class);
-
         String type = dataSet.type();
-
+        if (StringUtils.isEmpty(type)) {
+            type = DEFAULT_TYPE;
+        }
         Class<? extends MybatisTestProcessor> clz = DataSetProcessorEnum.getProcessorType(type);
         if (clz == null) {
             throw new EasyMallTestException("实现类型(DataSet.type)错误");
@@ -57,10 +55,7 @@ public class DataSetAnnotationUtils {
      * @return 是否打印日志
      * @throws EasyMallTestException
      */
-    public static boolean isLog(Method method) throws EasyMallTestException {
-        if (method == null) {
-            throw new EasyMallTestException("Test method is not be null");
-        }
+    public static boolean isLog(Method method) {
         DataSet dataSet = method.getAnnotation(DataSet.class);
         return dataSet.log();
     }
@@ -73,16 +68,13 @@ public class DataSetAnnotationUtils {
      * @throws EasyMallTestException
      */
     public static String dataContext(Method method) throws EasyMallTestException {
-        if (method == null) {
-            throw new EasyMallTestException("Test method is not be null");
-        }
         DataSet dataSet = method.getAnnotation(DataSet.class);
         String context = dataSet.value();
         if (StringUtils.isNotEmpty(context)) {
             return context;
         }
         try {
-            context =  SimpleFileReader.readAnFileContext(DataSetAnnotationUtils.dataSetFileName(method));
+            context = SimpleFileReader.readAnFileContext(DataSetAnnotationUtils.dataSetFileName(method));
         } catch (EasyMallCoreException e) {
             throw new EasyMallTestException(e.getMessage(), e);
         }
@@ -99,16 +91,13 @@ public class DataSetAnnotationUtils {
      * @throws EasyMallTestException
      */
     public static String dataSetFileName(Method method) throws EasyMallTestException {
-        if (method == null) {
-            throw new EasyMallTestException("Test method is not be null");
-        }
         DataSet dataSet = method.getAnnotation(DataSet.class);
         String path = dataSet.path();
         String file = dataSet.file();
         String type = dataSet.type();
         if (StringUtils.isEmpty(file)) {
             file = method.getDeclaringClass().getSimpleName();
-            file += "." + method.getName();
+            file += DOT + method.getName();
         }
         return getPath(method, path, file, type);
     }
@@ -126,9 +115,6 @@ public class DataSetAnnotationUtils {
     private static String getPath(Method method, String path, String file, String type) throws EasyMallTestException {
         if (StringUtils.isEmpty(path)) {
             path = DOT;
-        }
-        if (StringUtils.isEmpty(file)) {
-            file = DEFAULT_NAME;
         }
         if (StringUtils.isEmpty(type)) {
             type = DEFAULT_TYPE;

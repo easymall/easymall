@@ -1,10 +1,13 @@
 package com.zhu8fei.framework.test.commons.annotation;
 
 import com.zhu8fei.framework.test.commons.BaseJunitTest;
+import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import com.zhu8fei.framework.test.method.AnnotationTest;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.lang.reflect.Method;
 
@@ -13,6 +16,9 @@ import java.lang.reflect.Method;
  */
 @MarkTestTarget(AnnotationTest.class)
 public class DataSetAnnotationUtilsJunitTest extends BaseJunitTest {
+
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @DataSet(path = "/", value = "SimpleFileReader", run = false)
     @Test
@@ -30,4 +36,32 @@ public class DataSetAnnotationUtilsJunitTest extends BaseJunitTest {
         logger.info(fileName);
         Assert.assertTrue(fileName.contains("com/zhu8fei/framework/test/commons/annotation/DataSetAnnotationUtilsJunitTest.dataSetFileNameToDot.json"));
     }
+
+    @DataSet(file = "SimpleFileReader", run = false)
+    @Test
+    public void fileNotExist() throws Exception {
+        Method method = getClass().getMethod("fileNotExist");
+
+        exception.expect(EasyMallTestException.class);
+        exception.expectMessage("文件不存在");
+        DataSetAnnotationUtils.dataContext(method);
+    }
+
+
+    @DataSet(type = "WTF", run = false)
+    @Test
+    public void implNotExist() throws Exception {
+        Method method = getClass().getMethod("implNotExist");
+        exception.expect(EasyMallTestException.class);
+        exception.expectMessage("实现类型");
+        DataSetAnnotationUtils.getImplName(method);
+    }
+
+
+    @Test
+    public void isRunNotExist() throws Exception {
+        Method method = getClass().getMethod("isRunNotExist");
+        DataSetAnnotationUtils.isRun(method);
+    }
+
 }

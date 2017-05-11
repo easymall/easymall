@@ -36,10 +36,7 @@ public class SystemContext {
         if ((value == null)) {
             throw new RuntimeException("value:" + key + " is null,i can't put it into the context map");
         }
-        if (key.length() > MAX_SIZE.intValue()) {
-            throw new RuntimeException("key is more than " + MAX_SIZE + ", i can't put it into the context map");
-        }
-        if (value.length() > MAX_SIZE.intValue()) {
+        if (value.length() > MAX_SIZE) {
             throw new RuntimeException("value is more than " + MAX_SIZE + ", i can't put it into the context map");
         }
 

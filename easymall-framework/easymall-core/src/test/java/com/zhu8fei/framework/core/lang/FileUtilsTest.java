@@ -23,11 +23,11 @@ public class FileUtilsTest extends BaseJunitTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void createFileTest() throws IOException {
+    public void createFile() throws IOException {
         logger.info("user.dir : {}", projectDir);
         // 日志.log文件 会被git忽略
         // mac下  \\目录会死活认为目录存在
-        FileUtils.createFile(projectDir+"/a/a.log");
+        FileUtils.createFile(projectDir + "/a/a.log");
         FileUtils.createFile(projectDir + "/a.log");
         Files.delete(Paths.get(projectDir + "/a.log"));
         Files.delete(Paths.get(projectDir + "/a/a.log"));
@@ -35,7 +35,7 @@ public class FileUtilsTest extends BaseJunitTest {
     }
 
     @Test
-    public void createDirTest() throws IOException {
+    public void createDir() throws IOException {
         logger.info("user.dir : {}", projectDir);
         // 日志.log文件 会被git忽略
         FileUtils.mkdir(projectDir + "/b.log");
@@ -45,4 +45,21 @@ public class FileUtilsTest extends BaseJunitTest {
         Files.delete(Paths.get(projectDir + "/b/b"));
         Files.delete(Paths.get(projectDir + "/b"));
     }
+
+
+    @Test
+    public void createFileIsDirectory() throws IOException {
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("is a directory");
+        FileUtils.createFile(projectDir);
+    }
+
+
+    @Test
+    public void createDirIsFile() throws IOException {
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("is a file");
+        FileUtils.mkdir(getClass().getResource(".").getPath() + "/FileUtilsTest.class");
+    }
+
 }

@@ -4,13 +4,17 @@ import com.zhu8fei.framework.test.commons.BaseTransactionalSpringTest;
 import com.zhu8fei.framework.test.commons.annotation.DataSet;
 import com.zhu8fei.framework.test.commons.utils.MarkTestTarget;
 import com.zhu8fei.framework.test.method.PrepareAndExpectSqlTest;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  * Created by zhu8fei on 2017/5/9.
  */
 @MarkTestTarget(PrepareAndExpectSqlTest.class)
 public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest {
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @DataSet(value = "{" +
          "     \"prepare\": [{" +
@@ -39,7 +43,7 @@ public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest
     }
 
     @Test
-    @DataSet()
+    @DataSet(type="" , path="")
     public void dataSetFileTest() {
         logger.info(" 谁知道呢. ");
     }
@@ -49,4 +53,5 @@ public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest
     public void dataSetTest() {
         logger.info(" 谁知道呢. ");
     }
+
 }
