@@ -1,4 +1,4 @@
-package com.zhu8fei.user.login;
+package com.zhu8fei.business.user.login;
 
 
 import org.apache.shiro.SecurityUtils;
@@ -16,7 +16,7 @@ import org.junit.Test;
  */
 public class LoginTest {
     @Test
-    public void testHelloworld() {
+    public void testHelloWorld() {
         //1、获取 SecurityManager 工厂，此处使用 Ini 配置文件初始化 SecurityManager
         Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
         //2、得到 SecurityManager 实例 并绑定给 SecurityUtils
