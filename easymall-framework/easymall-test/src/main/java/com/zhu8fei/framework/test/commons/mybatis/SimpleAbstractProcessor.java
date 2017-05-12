@@ -1,9 +1,11 @@
 package com.zhu8fei.framework.test.commons.mybatis;
 
-import com.zhu8fei.framework.core.lang.CollectionDiff;
 import com.zhu8fei.framework.test.commons.annotation.DataSetAnnotationUtils;
 import com.zhu8fei.framework.test.commons.exception.EasyMallTestException;
-import com.zhu8fei.framework.test.commons.mybatis.bean.*;
+import com.zhu8fei.framework.test.commons.mybatis.bean.DataSetBean;
+import com.zhu8fei.framework.test.commons.mybatis.bean.ExpectBean;
+import com.zhu8fei.framework.test.commons.mybatis.bean.PrepareBean;
+import com.zhu8fei.framework.test.commons.mybatis.bean.SimpleTable;
 import com.zhu8fei.framework.test.commons.mybatis.mapper.SimpleMybatisMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +13,11 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by zhu8fei on 2017/5/6.
@@ -139,10 +145,18 @@ public abstract class SimpleAbstractProcessor implements MybatisTestProcessor {
                 }
                 target.add(rowMap);
             }
+
             // 取预期和结果的差集
-            List<Map<String, String>> diff = CollectionDiff.listDiff(target, dataResult);
+            List<Map<String, String>> diff = null;
+            if (target.size() > 0 && dataResult.size() > 0) {
+                diff = target.stream()
+                        // 过滤当前元素如果存在 则不拿取
+                        .filter(x -> dataResult.stream().noneMatch(y -> x.equals(y)))
+                        // 返回过滤后的集合
+                        .collect(Collectors.toList());
+            }
             // 差集存在则测试失败
-            if (diff.size() > 0) {
+            if (diff!=null && diff.size() > 0) {
                 // 第几行出错
                 for (int j = 0; j < target.size(); j++) {
                     Map<String, String> rowMap = target.get(j);
