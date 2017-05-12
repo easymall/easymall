@@ -10,7 +10,7 @@ import org.junit.rules.ExpectedException;
 import org.junit.runners.MethodSorters;
 
 /**
- * Created by cwx on 2017/5/11.
+ * Created by zhu8fei on 2017/5/11.
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @MarkTestTarget(SystemTest.class)

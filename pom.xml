@@ -29,6 +29,7 @@
         <pagehelper.verion>5.0.0</pagehelper.verion>
         <dbunit.version>2.5.3</dbunit.version>
         <mockito.verison>1.10.19</mockito.verison>
+        <powermock.version>1.6.6</powermock.version>
         <dbcp2.version>2.1.1</dbcp2.version>
         <commonslang.version>2.6</commonslang.version>
         <commonslang3.version>3.5</commonslang3.version>
@@ -249,6 +250,16 @@
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
                 <version>${mockito.verison}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${powermock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito</artifactId>
+                <version>${powermock.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>

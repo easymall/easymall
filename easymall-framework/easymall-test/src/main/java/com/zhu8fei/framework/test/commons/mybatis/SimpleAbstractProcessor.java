@@ -7,9 +7,11 @@ import com.zhu8fei.framework.test.commons.mybatis.bean.ExpectBean;
 import com.zhu8fei.framework.test.commons.mybatis.bean.PrepareBean;
 import com.zhu8fei.framework.test.commons.mybatis.bean.SimpleTable;
 import com.zhu8fei.framework.test.commons.mybatis.mapper.SimpleMybatisMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
@@ -24,9 +26,9 @@ import java.util.stream.Collectors;
  */
 @Service
 public abstract class SimpleAbstractProcessor implements MybatisTestProcessor {
-    protected Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(SimpleAbstractProcessor.class);
     @Resource(name = "simpleMybatisMapper")
-    protected SimpleMybatisMapper simpleMybatisMapper;
+    private SimpleMybatisMapper simpleMybatisMapper;
 
     @Override
     public void insertPrepareData(Method method) throws EasyMallTestException {
@@ -79,7 +81,7 @@ public abstract class SimpleAbstractProcessor implements MybatisTestProcessor {
         return expectData(bean);
     }
 
-    protected List<SimpleTable> insert(DataSetBean bean) {
+    private List<SimpleTable> insert(DataSetBean bean) {
         if (bean == null) {
             logger.warn("Not found prepare data !");
             return new ArrayList<>();
@@ -117,7 +119,7 @@ public abstract class SimpleAbstractProcessor implements MybatisTestProcessor {
      * @param bean
      * @return
      */
-    protected boolean expectData(DataSetBean bean) {
+    private boolean expectData(DataSetBean bean) {
         if (bean == null) {
             logger.warn("Not found expect data !");
             return true;
@@ -127,9 +129,10 @@ public abstract class SimpleAbstractProcessor implements MybatisTestProcessor {
             logger.warn("Not found expect data !");
             return true;
         }
-
-        for (int i = 0; i < expectBeans.size(); i++) {
-            ExpectBean expectBean = expectBeans.get(i);
+        StringBuilder sb = new StringBuilder("存在差异\t\tExist difference\n");
+        boolean exist = false;
+        for (ExpectBean expectBean : expectBeans) {
+            sb.append(" table : ").append(expectBean.getTableName()).append("\n");
             SimpleTable st = new SimpleTable();
             st.putParamAll(expectBean.getParam());
             st.setTableName(expectBean.getTableName());
@@ -145,54 +148,42 @@ public abstract class SimpleAbstractProcessor implements MybatisTestProcessor {
                 }
                 target.add(rowMap);
             }
-
             // 取预期和结果的差集
-            List<Map<String, String>> diff = null;
-            if (target.size() > 0 && dataResult.size() > 0) {
-                diff = target.stream()
-                        // 过滤当前元素如果存在 则不拿取
-                        .filter(x -> dataResult.stream().noneMatch(y -> x.equals(y)))
-                        // 返回过滤后的集合
-                        .collect(Collectors.toList());
-            }
+            List<Map<String, String>> diff = target.stream()
+                    // 过滤当前元素如果存在 则不拿取
+                    .filter(x -> dataResult.stream().noneMatch(y -> x.equals(y)))
+                    // 返回过滤后的集合
+                    .collect(Collectors.toList());
             // 差集存在则测试失败
-            if (diff!=null && diff.size() > 0) {
+            if (!diff.isEmpty()) {
                 // 第几行出错
                 for (int j = 0; j < target.size(); j++) {
                     Map<String, String> rowMap = target.get(j);
-                    boolean exist = false;
+                    // 循环差异
                     for (Map<String, String> diffRow : diff) {
                         boolean eq = true;
                         // 某行对比  每个字段都相等时,则认为这一行相等.
                         for (String key : columns) {
-                            String value = rowMap.get(key);
-                            String diffValue = diffRow.get(key);
-                            if (value == null && diffValue == null) {
-                                // 都为null时,这个字段相等
-                                eq = true;
-                            } else if (value != null && !value.equals(diffValue)) {
-                                // 某个字段不为null 并且 不相等 则这一行不相等.
+                            if (!StringUtils.equals(rowMap.get(key), diffRow.get(key))) {
+                                // 有字段不相等则这一行不相等
                                 eq = false;
                                 break;
                             }
                         }
                         // 某行相等则跳过
                         if (eq) {
-                            exist = true;
+                            sb.append("  line ").append(j + 1).append(" :").append(rowMap.toString()).append("\n");
                             break;
                         }
                     }
-                    if (!exist) {
-                        logger.error("table : {} , line {} \n" + "存在差异\n" + "Exist difference", expectBean.getTableName(), j);
-                        logger.error(rowMap.toString());
-                    }
-
                 }
-                return false;
+                exist = true;
             }
-
         }
-
+        if (exist) {
+            logger.error(sb.toString());
+            return false;
+        }
         return true;
     }
 
@@ -201,11 +192,10 @@ public abstract class SimpleAbstractProcessor implements MybatisTestProcessor {
      *
      * @param result 预处理数据插入结果
      */
-    protected void printPrepare(List<SimpleTable> result) {
-        if (result != null && result.size() != 0) {
+    private void printPrepare(List<SimpleTable> result) {
+        if (!CollectionUtils.isEmpty(result)) {
             for (SimpleTable simpleTable : result) {
                 logger.debug("Prepare table name : {}", simpleTable.getTableName());
-                Map<String, Object> row = simpleTable.getRow();
                 logger.debug("Prepare id : {}", simpleTable.getId());
             }
         }

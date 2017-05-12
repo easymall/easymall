@@ -12,7 +12,7 @@ import org.junit.rules.ExpectedException;
  * Created by zhu8fei on 2017/5/9.
  */
 @MarkTestTarget(PrepareAndExpectSqlTest.class)
-public class SimpleJsonFileProcessorIpmlTest extends BaseTransactionalSpringTest {
+public class SimpleJsonProcessorIpmlTest extends BaseTransactionalSpringTest {
     @Rule
     public ExpectedException exception = ExpectedException.none();
 

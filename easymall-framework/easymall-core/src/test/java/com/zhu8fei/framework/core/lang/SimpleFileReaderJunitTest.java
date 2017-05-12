@@ -9,6 +9,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.io.IOException;
+
 /**
  * Created by zhu8fei on 2017/5/7.
  */
@@ -18,7 +20,10 @@ public class SimpleFileReaderJunitTest extends BaseJunitTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void readAnFileContext() throws EasyMallCoreException {
+    public void readAnFileContext() throws EasyMallCoreException, IOException {
+        SimpleFileReader simpleFileReader = new SimpleFileReader();
+        logger.info("SimpleFileReader.toString {}", simpleFileReader.toString());
+
         String path = getClass().getResource("/").getFile();
         logger.info(path);
         String context = SimpleFileReader.readAnFileContext(path + "SimpleFileReader.json");
@@ -37,5 +42,4 @@ public class SimpleFileReaderJunitTest extends BaseJunitTest {
         // Do nothing, and can not do!
 
     }
-
 }

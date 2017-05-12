@@ -32,6 +32,9 @@ public class FileUtilsTest extends BaseJunitTest {
         Files.delete(Paths.get(projectDir + "/a.log"));
         Files.delete(Paths.get(projectDir + "/a/a.log"));
         Files.delete(Paths.get(projectDir + "/a"));
+        // 蹭覆盖率
+        FileUtils fileUtils = new FileUtils();
+        logger.info("fileUtils.toString() {}",fileUtils);
     }
 
     @Test
